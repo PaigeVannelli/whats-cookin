@@ -1718,3 +1718,9 @@ let ingredientsTestData = [
                 }
               ]
             }];
+
+            module.exports = {
+              ingredientsTestData,
+              recipeTestData,
+              usersTestData,
+            }
