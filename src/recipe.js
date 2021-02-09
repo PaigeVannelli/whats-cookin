@@ -40,7 +40,10 @@ class Recipe {
     }
 
     returnInstructions() {
-        console.log(this.instructions)
+        const instructionsList = this.instructions.map(instruction => {
+            return `${instruction.number}: ${instruction.instruction}`;
+        })
+        return instructionsList;
     }
 }
 
