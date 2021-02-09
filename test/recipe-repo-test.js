@@ -19,4 +19,11 @@ describe('RecipeRepo', function() {
         expect(recipeTestData).to.be.an('array')
     })
 
+    it(`should be able to filter by one tag and return an array of recipes`, function() {
+        const recipeRepo = new RecipeRepo(recipeTestData);
+        // console.log(recipeTestData)
+        recipeRepo.filterByTag(['side dish', 'starter'])
+        // expect(recipeRepo.filterByTag('lunch')).to.be.equal()
+    })
+
 });

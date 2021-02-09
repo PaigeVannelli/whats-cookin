@@ -243,6 +243,7 @@ let ingredientsTestData = [
           "name": "Maple Dijon Apple Cider Grilled Pork Chops",
           "tags": [
             "lunch",
+            "side dish",
             "main course",
             "main dish",
             "dinner"
