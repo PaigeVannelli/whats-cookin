@@ -1,7 +1,9 @@
-const Ingredient = {
-    constructor(ingredient) {
-        this.id = ingredient.id;
-        this.name = ingredient.name;
-        this.estimatedCostInCents = ingredient.estimatedCostInCents;
+class Ingredient {
+    constructor(ingredient = {}) {
+        this.id = ingredient.id || 'no id found';
+        this.name = ingredient.name || 'no name found';
+        this.estimatedCostInCents = ingredient.estimatedCostInCents || 'no cost found';
     }
 };
+
+module.exports = Ingredient;

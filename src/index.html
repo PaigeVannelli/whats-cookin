@@ -5,8 +5,90 @@
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
-
+    <header class ="header" id ="header">
+      <button class ="whats-Button top-button" id="whatsButton">Whats Cooking</button>
+      <input type="search" class="search" id="search"></search>
+      <article class="tags-container">
+        <label for="tags-values">Types of food</label>
+        <select multiple size="2" name="tags" id="tagSelect">
+          <option value="">--Please choose an option--</option>
+            <option value="default">Food Types</option>
+            <option value="antipasti">antipasti</option>
+            <option value="antipasto">antipasto</option>
+            <option value="appetizer">appetizer</option>
+            <option value="breakfast">breakfast</option>
+            <option value="brunch">brunch</option>
+            <option value="condiment">condiment</option>
+            <option value="dip">dip</option>
+            <option value="hor d'oeuvre">hor d'oeuvre</option>
+            <option value="lunch">lunch</option>
+            <option value="main course">main course</option>
+            <option value="main dish">main dish</option>
+            <option value="morning meal">morning meal</option>
+            <option value="sauce">sauce</option>
+            <option value="side dish">side dish</option>
+            <option value="snack">snack</option>
+            <option value="spread">spread</option>
+            <option value="starter">starter</option>
+        </select>
+      </article>
+      <button class="user-page top-button" id"userPage">User Page</button>
+    </header>
+    <div class="left-side-styling">
+      <section>
+        <article class="main-card-img">
+          <img class="main-card-img" id="mainCardImg" src"To input with Dom" alt="To input with dom"></img>
+        <article>
+        <article class="main-card-header">
+          <h1 class="main-name" id="mainName">THE NAME</h1>
+        </article>
+        <article class"main-card">
+          <p class="instructions" id="instructions">instructions</p>
+          <p  class="message" id="message">message</p>
+          <p  class="cost" id="cost">Cost</p>
+          <button class="" id="">Main button</button>
+          <button class="" id="">Main button</button>
+        </article>
+      </section>
+      <section class="like-items" id="likeItems">
+        <article>
+          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
+          <div class="like-header">
+            <h4 class="small-name" id="smallName">Like Item<h2>
+          </div>
+            <p class="small-disc" id="smallDisc">try these</p>
+        </article>
+        <!-- will need to make these dynamic pull out later just to set styling -->
+        <article>
+          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
+          <div class="like-header">
+            <h4 class="small-name" id="smallName">Like Item<h2>
+          </div>
+            <p class="small-disc" id="smallDisc">try these</p>
+        </article>
+        <article>
+          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
+          <div class="like-header">
+            <h4 class="small-name" id="smallName">Like Item<h2>
+          </div>
+            <p class="small-disc" id="smallDisc">try these</p>
+        </article>
+        <article>
+          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
+          <div class="like-header">
+            <h4 class="small-name" id="smallName">Like Item<h2>
+          </div>
+            <p class="small-disc" id="smallDisc">try these</p>
+        </article>
+        <!-- pull out to here -->
+      </section>
+    </div>
+    <section class="side-bar" id="sideBar">
+      <div class="side-header">
+        <h3 class"side-header-text" id="sideHeaderText">Side header text<h3>
+      </div>
+      <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p>
+    </section>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
