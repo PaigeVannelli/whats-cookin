@@ -75,11 +75,20 @@ describe('Recipe', function() {
 
     });
 
-    describe('returnIngredients', function() {
+    describe('returnCost', function() {
 
         it(`should return the total cost of the meal in dollars`, function() {
             const recipe = new Recipe(recipeTestData[0]);
             expect(recipe.returnCost()).to.be.equal('$177.76')
+        });
+    });
+
+    describe('returnInstructions', function() {
+
+        it(`should return the recipe instructions`, function() {
+            const recipe = new Recipe(recipeTestData[0]);
+            recipe.returnInstructions();
+            // expect(recipe.returnInstructions()).to.be.equal()
         });
     });
 
