@@ -36,7 +36,7 @@ describe('RecipeRepo', function() {
         // What should I test??
     })
 
-    describe('RecipeRepo', function() {
+    describe('filterByTags', function() {
 
         it(`should be able to filter by one tags and return an array of recipes`, function() {
             const recipe1 = new Recipe(recipeTestData[0]);
