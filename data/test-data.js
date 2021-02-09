@@ -1721,6 +1721,6 @@ let ingredientsTestData = [
 
             module.exports = {
               ingredientsTestData,
-              usersTestData,
               recipeTestData,
+              usersTestData,
             }

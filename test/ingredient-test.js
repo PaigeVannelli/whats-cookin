@@ -50,3 +50,4 @@ describe('Ingredient', function() {
         expect(ingredient.estimatedCostInCents).to.be.equal('no cost found');
     });
 });
+
