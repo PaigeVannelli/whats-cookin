@@ -1,0 +1,47 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+}
+
+/* ---gen stuff */
+body {
+  background-color: #2B8A8C;
+}
+
+button {
+  background-color: #223037;
+  color: white;
+  border-radius: 5px;
+  border-color: #223037;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* ---top bar--- */
+.header {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  background-color: #F8B736;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.top-button {
+  height: 35px;
+  width: 210px;
+}
+
+.search {
+  background-color: #DDD9C5;
+  border-color: #DDD9C5;
+}
+
+.select {
+  background-color: #DDD9C5;
+  border-color: #DDD9C5;
+}
