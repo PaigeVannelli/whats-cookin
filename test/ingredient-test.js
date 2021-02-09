@@ -40,12 +40,12 @@ describe('Ingredient', function() {
         expect(ingredient.id).to.be.equal('no id found');
     });
 
-    it(`should return no id found if not given an argument`, function() {
+    it(`should return no name found if not given an argument`, function() {
         const ingredient = new Ingredient();
         expect(ingredient.name).to.be.equal('no name found');
     });
 
-    it(`should return no id found if not given an argument`, function() {
+    it(`should return no cost found if not given an argument`, function() {
         const ingredient = new Ingredient();
         expect(ingredient.estimatedCostInCents).to.be.equal('no cost found');
     });
