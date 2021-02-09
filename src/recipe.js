@@ -1,7 +1,7 @@
 
 const ingredientsData = require('../data/ingredients');
 class Recipe {
-    constructor(recipe) {
+    constructor(recipe = {}) {
         this.id = recipe.id;
         this.image = recipe.image;
         this.ingredients = this.getIngredientsInfo(recipe.ingredients);
@@ -10,8 +10,8 @@ class Recipe {
         this.tags = recipe.tags;
     }
 
-    getIngredientsInfo(array) {
-        let ingredientNames = array.map(ingredient => {
+    getIngredientsInfo(recipeIngredients) {
+        let updatedIngredientInfo = recipeIngredients.map(ingredient => {
             const ingredientInfo = ingredientsData.find(ingredientObject => {
                 return ingredient.id === ingredientObject.id
             })
@@ -20,35 +20,23 @@ class Recipe {
             currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
             return currentIngredient
         })
-        return ingredientNames
+        return updatedIngredientInfo
     }
 
     returnIngredients() {
-        //We gave an array and need to target each id in the array 
-        // we need to return a new mutated array of the same length 
-        // new array should just be a list of names 
-        // 1. if ingredient.id === ingredients.id
-        //return ingredients.name 
-        // iterate through ingredients
-        console.log(this.ingredients[0].name)
-
-        // let ingredientNames = this.ingredients.map(ingredient => {
-        //     const ingredientInfo = ingredientsData.find(ingredientObject => {
-        //         return ingredient.id === ingredientObject.id
-        //     })
-        //     let currentIngredient = ingredient;
-        //     currentIngredient.name =ingredientInfo.name
-        //     currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
-        //     return currentIngredient
-        // })
-        // console.log(ingredientNames)
-        // return ingredientNames
-        // console.log(this.ingredients)
+        const ingredientNames = this.ingredients.map(ingredient => {
+            return ingredient.name;
+        })
+        return ingredientNames;
     }
 
     returnCost() {
-        // return a total meal cost 
-        // change to dollar amount 
+        const totalCost = this.ingredients.reduce((total, ingredient) => {
+            return total += ingredient.quantity.amount * ingredient.estimatedCostInCents;
+        }, 0)
+        let dollars = totalCost / 100
+        dollars = dollars.toLocaleString("en-US", {style:"currency", currency:"USD"})
+        return dollars;
     }
 
     returnInstructions() {

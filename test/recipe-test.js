@@ -28,7 +28,9 @@ describe('Recipe', function() {
 
     it(`should store a list of ingredients`, function() {
         const recipe = new Recipe(recipeTestData[0]);
-        expect(recipe.ingredients).to.be.equal(recipeTestData[0].ingredients)
+        const updatedRecipe = recipe.getIngredientsInfo(recipe.ingredients);
+        expect(recipe.ingredients).to.deep.equal(updatedRecipe);
+        // do we need to run the getIngredientInfo method on this to tes?
     });
 
     it(`should store instructions`, function() {
@@ -50,13 +52,35 @@ describe('Recipe', function() {
 
         it(`should store a list of tags`, function() {
             const recipe = new Recipe(recipeTestData[0]);
-            recipe.returnIngredients();
-
-            // expect(recipe.tags).to.be.equal(recipeTestData[0].tags)
+            expect(recipe.returnIngredients()).to.deep.equal([
+                'wheat flour',
+                'bicarbonate of soda',
+                'eggs',
+                'sucrose',
+                'instant vanilla pudding',
+                'brown sugar',
+                'salt',
+                'fine sea salt',
+                'semi sweet chips',
+                'unsalted butter',
+                'vanilla'
+              ]);   
         });
 
+        // it(`should return an emptry array if there are no ingredients`, function() {
+        //     const recipe = new Recipe();
+        //     expect(recipe.returnIngredients()).to.deep.equal([]);
+        // })
+        //I need to include ome Sad path testing in case we don't have an array passed in 
 
+    });
 
-    })
+    describe('returnIngredients', function() {
+
+        it(`should return the total cost of the meal in dollars`, function() {
+            const recipe = new Recipe(recipeTestData[0]);
+            expect(recipe.returnCost()).to.be.equal('$177.76')
+        });
+    });
 
 });
