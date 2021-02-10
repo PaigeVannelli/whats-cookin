@@ -20,7 +20,7 @@ describe('RecipeRepo', function() {
         expect(recipeTestData).to.be.an('array')
     })
 
-    it.only(`should be able to search by an ingredient and return an array of recipes`, function() {
+    it(`should be able to search by an ingredient and return an array of recipes`, function() {
         const recipe1 = new Recipe(recipeTestData[0]);
         const recipe2 = new Recipe(recipeTestData[1]);
         const recipe3 = new Recipe(recipeTestData[2]);
@@ -38,69 +38,37 @@ describe('RecipeRepo', function() {
 
     describe('filterByTags', function() {
 
-        //beforeEach
+        let recipeTest = [];
+        beforeEach(() => {
+            const recipe1 = new Recipe(recipeTestData[0]);
+            const recipe2 = new Recipe(recipeTestData[1]);
+            const recipe3 = new Recipe(recipeTestData[2]);
+            const recipe4 = new Recipe(recipeTestData[3]);
+            const recipe5 = new Recipe(recipeTestData[4]);
+
+            recipeTest.push(recipe1)
+            recipeTest.push(recipe2)
+            recipeTest.push(recipe3)
+            recipeTest.push(recipe4)
+            recipeTest.push(recipe5)
+              });
 
         it(`should be able to filter by one tags and return an array of recipes`, function() {
-            const recipe1 = new Recipe(recipeTestData[0]);
-            const recipe2 = new Recipe(recipeTestData[1]);
-            const recipe3 = new Recipe(recipeTestData[2]);
-            const recipe4 = new Recipe(recipeTestData[3]);
-            const recipe5 = new Recipe(recipeTestData[4]);
-            
-            let recipeTest = []
-            recipeTest.push(recipe1)
-            recipeTest.push(recipe2)
-            recipeTest.push(recipe3)
-            recipeTest.push(recipe4)
-            recipeTest.push(recipe5)
-            // console.log(recipeTest[2].ingredients)
             const recipeRepo = new RecipeRepo(recipeTest);
-            recipeRepo.filterByTag(['side dish'])
-            // expect(recipeRepo.filterByTag('lunch')).to.be.equal()
-            //How do I test this??
-        })
+            const filterRecipe = recipeRepo.filterByTag(['side dish']);
+            expect(filterRecipe[1].id).to.be.equal(741603);
+        });
 
         it(`should be able to filter by multiple tags and return an array of recipes taht include all tags`, function() {
-            const recipe1 = new Recipe(recipeTestData[0]);
-            const recipe2 = new Recipe(recipeTestData[1]);
-            const recipe3 = new Recipe(recipeTestData[2]);
-            const recipe4 = new Recipe(recipeTestData[3]);
-            const recipe5 = new Recipe(recipeTestData[4]);
-            
-            let recipeTest = []
-            recipeTest.push(recipe1)
-            recipeTest.push(recipe2)
-            recipeTest.push(recipe3)
-            recipeTest.push(recipe4)
-            recipeTest.push(recipe5)
-            // console.log(recipeTest[2].ingredients)
             const recipeRepo = new RecipeRepo(recipeTest);
-            recipeRepo.filterByTag(['side dish', 'dinner'])
-            // expect(recipeRepo.filterByTag(['side dish', 'dinner'])).to.be.equal()
-            //How do I test this??
-        })
+            const filterRecipe = recipeRepo.filterByTag(['side dish', 'dinner']);
+            expect(filterRecipe[0].id).to.be.equal(678353);
+        });
 
-        it.only(`should return an empty array if the tags don't match a recipe`, function() {
-            const recipe1 = new Recipe(recipeTestData[0]);
-            const recipe2 = new Recipe(recipeTestData[1]);
-            const recipe3 = new Recipe(recipeTestData[2]);
-            const recipe4 = new Recipe(recipeTestData[3]);
-            const recipe5 = new Recipe(recipeTestData[4]);
-            
-            let recipeTest = []
-            recipeTest.push(recipe1)
-            recipeTest.push(recipe2)
-            recipeTest.push(recipe3)
-            recipeTest.push(recipe4)
-            recipeTest.push(recipe5)
-
+        it(`should return an empty array if the tags don't match a recipe`, function() {
             const recipeRepo = new RecipeRepo(recipeTest);
-
             expect(recipeRepo.filterByTag(['breakfast'])).to.deep.equal([])
-        })
-
-
-
+        });
 
     })
 
