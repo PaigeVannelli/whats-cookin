@@ -20,7 +20,7 @@ describe('RecipeRepo', function() {
         expect(recipeTestData).to.be.an('array')
     })
 
-    it(`should be able to search by an ingredient and return an array of recipes`, function() {
+    it.only(`should be able to search by an ingredient and return an array of recipes`, function() {
         const recipe1 = new Recipe(recipeTestData[0]);
         const recipe2 = new Recipe(recipeTestData[1]);
         const recipe3 = new Recipe(recipeTestData[2]);
@@ -31,12 +31,14 @@ describe('RecipeRepo', function() {
         recipeTest.push(recipe3)
 
         const recipeRepo = new RecipeRepo(recipeTest);
-        console.log(recipeRepo.filterByIngredient('salt'))
-        // expect(recipeRepo.filterByTag('salt')).to.be.equal()
+        const recipesWithTags = recipeRepo.filterByIngredient('salt')
+        expect(recipesWithTags[0].id).to.be.equal(595736)
         // What should I test??
     })
 
     describe('filterByTags', function() {
+
+        //beforeEach
 
         it(`should be able to filter by one tags and return an array of recipes`, function() {
             const recipe1 = new Recipe(recipeTestData[0]);
