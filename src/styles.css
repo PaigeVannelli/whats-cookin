@@ -65,7 +65,7 @@ button:hover {
 }
 
 .main-card-img {
-  height: 270px;
+  height: 280px;
   width: 480px;
 }
 
@@ -112,9 +112,10 @@ button:hover {
   padding: 5px 30px 5px 30px;
 }
 
-/* ---like card--- */
+/* ---like items cards--- */
 
-h1{
+.suggestions{
+  font-size: 1.75em;
   margin: 20px 0 20px 0;
 }
 
@@ -123,7 +124,46 @@ h1{
   justify-content: space-between;
 }
 
+.small-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width:  200px;
+  height: 270px;
+  background-color: #DDD9C5;
+}
+
 .small-card-img {
   height: 140px;
   width: 200px;
+}
+
+.like-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  background-color: #F8B736;
+}
+
+/* ---Right sidebar--- */
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 340px;
+  background-color: #DDD9C5;
+  margin: 45px 5px 45px 5px;
+}
+
+.side-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  height: 60px;
+  width: 340px;
+  background-color: #F8B736;
 }
