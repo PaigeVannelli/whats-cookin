@@ -54,7 +54,6 @@ describe('RecipeRepo', function() {
 
         it(`should be able to filter through recipes by a full recipe name`, function() {
             const recipeRepo = new RecipeRepo(recipeTest);
-            // console.log("pork", recipeRepo.filterByName(['Maple Dijon Apple Cider Grilled Pork Chops']))
             const filterRecipe = recipeRepo.filterByName(['Maple Dijon Apple Cider Grilled Pork Chops']);
             expect(filterRecipe[0].id).to.be.equal(678353);
         });
