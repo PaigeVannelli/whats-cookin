@@ -2,15 +2,19 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles.css">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <header class ="header" id ="header">
-      <button class ="whats-Button top-button" id="whatsButton">Whats Cooking</button>
-      <input type="search" class="search" id="search"></search>
+    <header class="header" id ="header">
+      <button class="whats-Button top-button" id="whatsButton">Whats Cooking</button>
+      <article class="search-feild">
+        <label class="search-label" for="search">Search</label>
+        <input type="search" class="search" id="search"></search>
+      </article>
       <article class="tags-container">
         <label for="tags-values">Types of food</label>
-        <select multiple size="2" name="tags" id="tagSelect">
+        <select class="select" multiple size="1" name="tags" id="tagSelect">
           <option value="">--Please choose an option--</option>
             <option value="default">Food Types</option>
             <option value="antipasti">antipasti</option>
@@ -34,61 +38,68 @@
       </article>
       <button class="user-page top-button" id"userPage">User Page</button>
     </header>
-    <div class="left-side-styling">
-      <section>
-        <article class="main-card-img">
-          <img class="main-card-img" id="mainCardImg" src"To input with Dom" alt="To input with dom"></img>
-        <article>
-        <article class="main-card-header">
-          <h1 class="main-name" id="mainName">THE NAME</h1>
-        </article>
-        <article class"main-card">
-          <p class="instructions" id="instructions">instructions</p>
-          <p  class="message" id="message">message</p>
-          <p  class="cost" id="cost">Cost</p>
-          <button class="" id="">Main button</button>
-          <button class="" id="">Main button</button>
-        </article>
-      </section>
-      <section class="like-items" id="likeItems">
-        <article>
-          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
-          <div class="like-header">
-            <h4 class="small-name" id="smallName">Like Item<h2>
+    <div class="page-layout">
+      <div class="left-side-styling">
+        <section class="main-card-layout">
+          <article class="main-card-img">
+            <img class="main-card-img" id="mainCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+          </article>
+          <div class="main-info-layout">
+            <article class="main-card-header">
+              <h1 class="main-name" id="mainName">THE NAME</h1>
+            </article>
+            <article class="main-card-stuff">
+              <p class="instructions" id="instructions">instructions</p>
+              <p class="message" id="message">message</p>
+              <p class="cost" id="cost">Cost</p>
+              <div class="main-card-buttons">
+                <button class="card-buttons" id="cardButtonOne">Main button</button>
+                <button class="card-buttons" id="cardButtonTwo">Main button</button>
+              </div>
+            </article>
           </div>
-            <p class="small-disc" id="smallDisc">try these</p>
-        </article>
-        <!-- will need to make these dynamic pull out later just to set styling -->
-        <article>
-          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
-          <div class="like-header">
-            <h4 class="small-name" id="smallName">Like Item<h2>
-          </div>
-            <p class="small-disc" id="smallDisc">try these</p>
-        </article>
-        <article>
-          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
-          <div class="like-header">
-            <h4 class="small-name" id="smallName">Like Item<h2>
-          </div>
-            <p class="small-disc" id="smallDisc">try these</p>
-        </article>
-        <article>
-          <img class="smallcard-img" id="smallCardImg" src"To input with Dom" alt="To input with dom"></img>
-          <div class="like-header">
-            <h4 class="small-name" id="smallName">Like Item<h2>
-          </div>
-            <p class="small-disc" id="smallDisc">try these</p>
-        </article>
-        <!-- pull out to here -->
-      </section>
-    </div>
-    <section class="side-bar" id="sideBar">
-      <div class="side-header">
-        <h3 class"side-header-text" id="sideHeaderText">Side header text<h3>
+        </section>
+        <h1 class= "suggestions">You might also like to try these!</h1>
+        <section class="like-items" id="likeItems">
+          <article class="small-card">
+            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+            <div class="like-header">
+              <h4 class="small-name" id="smallName">Like Item name<h2>
+            </div>
+              <p class="small-disc" id="smallDisc">try these</p>
+          </article>
+          <!-- will need to make these dynamic pull out later just to set styling -->
+          <article class="small-card">
+            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+            <div class="like-header">
+              <h4 class="small-name" id="smallName">Like Item Name<h2>
+            </div>
+              <p class="small-disc" id="smallDisc">try these</p>
+          </article>
+          <article class="small-card">
+            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+            <div class="like-header">
+              <h4 class="small-name" id="smallName">Like Item Name<h2>
+            </div>
+              <p class="small-disc" id="smallDisc">try these</p>
+          </article>
+          <article class="small-card">
+            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+            <div class="like-header">
+              <h4 class="small-name" id="smallName">Like Item Name<h2>
+            </div>
+              <p class="small-disc" id="smallDisc">try these</p>
+          </article>
+          <!-- pull out to here -->
+        </section>
       </div>
-      <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p>
-    </section>
+      <section class="side-bar" id="sideBar">
+        <div class="side-header">
+          <h3 class"side-header-text" id="sideHeaderText">Side header text<h3>
+        </div>
+        <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p>
+      </section>
+    <div>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
