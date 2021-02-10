@@ -6,39 +6,7 @@ const expect = chai.expect;
 
 describe('RecipeRepo', function() {
 
-    it(`Should be a function`, function() {
-        expect(RecipeRepo).to.be.a(`function`);
-    });
-
-    it(`should be an instance of Ingredient`, function() {
-        const recipeRepo = new RecipeRepo(recipeTestData);
-        expect(recipeRepo).to.be.an.instanceOf(RecipeRepo);
-    });
-
-    it(`should take in an array of ingredients as an argument`, function() {
-        const recipeRepo = new RecipeRepo(recipeTestData);
-        expect(recipeTestData).to.be.an('array')
-    })
-
-    it(`should be able to search by an ingredient and return an array of recipes`, function() {
-        const recipe1 = new Recipe(recipeTestData[0]);
-        const recipe2 = new Recipe(recipeTestData[1]);
-        const recipe3 = new Recipe(recipeTestData[2]);
-        
-        let recipeTest = []
-        recipeTest.push(recipe1)
-        recipeTest.push(recipe2)
-        recipeTest.push(recipe3)
-
-        const recipeRepo = new RecipeRepo(recipeTest);
-        const recipesWithTags = recipeRepo.filterByIngredient('salt')
-        expect(recipesWithTags[0].id).to.be.equal(595736)
-        // What should I test??
-    })
-
-    describe('filterByTags', function() {
-
-        let recipeTest = [];
+    let recipeTest = [];
         beforeEach(() => {
             const recipe1 = new Recipe(recipeTestData[0]);
             const recipe2 = new Recipe(recipeTestData[1]);
@@ -52,6 +20,59 @@ describe('RecipeRepo', function() {
             recipeTest.push(recipe4)
             recipeTest.push(recipe5)
               });
+
+    it(`Should be a function`, function() {
+        expect(RecipeRepo).to.be.a(`function`);
+    });
+
+    it(`should be an instance of Ingredient`, function() {
+        const recipeRepo = new RecipeRepo(recipeTestData);
+        expect(recipeRepo).to.be.an.instanceOf(RecipeRepo);
+    });
+
+    it(`should take in an array of ingredients as an argument`, function() {
+        const recipeRepo = new RecipeRepo(recipeTestData);
+        expect(recipeTestData).to.be.an('array')
+    });
+
+    describe('filterByIngredient', function() {
+
+        it(`should be able to search by an ingredient and return an array of recipes`, function() {
+            const recipeRepo = new RecipeRepo(recipeTest);
+            const recipesWithTags = recipeRepo.filterByIngredient('salt')
+            expect(recipesWithTags[0].id).to.be.equal(595736)
+        });
+
+        it(`should return an empty array if the ingredient doesn't exist`, function() {
+            const recipeRepo = new RecipeRepo(recipeTest);
+            const filterRecipe = recipeRepo.filterByIngredient('vanilla bean')
+            expect(filterRecipe).to.deep.equal([])
+        });
+    });
+
+    describe('filterByName', function() {
+
+        it(`should be able to filter through recipes by a full recipe name`, function() {
+            const recipeRepo = new RecipeRepo(recipeTest);
+            // console.log("pork", recipeRepo.filterByName(['Maple Dijon Apple Cider Grilled Pork Chops']))
+            const filterRecipe = recipeRepo.filterByName(['Maple Dijon Apple Cider Grilled Pork Chops']);
+            expect(filterRecipe[0].id).to.be.equal(678353);
+        });
+
+        it(`should be able to filter through recipes by a partial recipe name`, function() {
+            const recipeRepo = new RecipeRepo(recipeTest);
+            const filterRecipe = recipeRepo.filterByName(['Pork Chops']);
+            expect(filterRecipe[0].id).to.be.equal(678353);
+        });
+
+        it(`should return an empty array is recipe name doesn't exist`, function() {
+            const recipeRepo = new RecipeRepo(recipeTest);
+            const filterRecipe = recipeRepo.filterByName(['unicorn steak']);
+            expect(filterRecipe).to.deep.equal([]);
+        });
+    });
+
+    describe('filterByTags', function() {
 
         it(`should be able to filter by one tags and return an array of recipes`, function() {
             const recipeRepo = new RecipeRepo(recipeTest);
@@ -71,5 +92,4 @@ describe('RecipeRepo', function() {
         });
 
     })
-
 });
