@@ -21,6 +21,10 @@ button:hover {
   cursor: pointer;
 }
 
+.page-layout {
+ display: flex;
+}
+
 /* ---top bar--- */
 .header {
   display: flex;
@@ -33,15 +37,93 @@ button:hover {
 
 .top-button {
   height: 35px;
-  width: 210px;
+  width: 200px;
 }
 
-.search {
-  background-color: #DDD9C5;
-  border-color: #DDD9C5;
-}
-
+.search,
 .select {
   background-color: #DDD9C5;
   border-color: #DDD9C5;
+  width: 300px;
+}
+
+/* Left display area */
+
+.left-side-styling {
+  margin: 45px;
+  display: flex;
+  width: 960px;
+  height: 625px;
+  flex-direction: column;
+}
+
+/* main card styling */
+
+.main-card-layout {
+  background-color: #DDD9C5;
+  display: flex;
+}
+
+.main-card-img {
+  height: 270px;
+  width: 480px;
+}
+
+.main-info-layout {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-card-header {
+  display: flex;
+  font-size: 1.5em;
+  align-items: center;
+  justify-content: center;
+  background-color: #F8B736;
+  margin-bottom: 10px;
+  height: 60px;
+  width: 480px;
+}
+
+.main-card-stuff {
+  height: 210px;
+  width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.instructions,
+.message,
+.cost {
+  margin: 5px;
+}
+
+.main-card-buttons {
+  width: 480px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-buttons {
+  margin: 0 30px 5px 30px;
+  padding: 5px 30px 5px 30px;
+}
+
+/* ---like card--- */
+
+h1{
+  margin: 20px 0 20px 0;
+}
+
+.like-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.small-card-img {
+  height: 140px;
+  width: 200px;
 }
