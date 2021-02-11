@@ -65,7 +65,7 @@ button:hover {
 }
 
 .main-card-img {
-  height: 280px;
+  height: 350px;
   width: 480px;
 }
 
@@ -87,7 +87,7 @@ button:hover {
 }
 
 .main-card-stuff {
-  height: 210px;
+  height: 250px;
   width: 480px;
   display: flex;
   align-items: center;
@@ -99,6 +99,12 @@ button:hover {
 .message,
 .cost {
   margin: 5px;
+}
+
+.instructions-box {
+  height: 150px;
+  width: 400px;
+  overflow: auto;
 }
 
 .main-card-buttons {
@@ -154,6 +160,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   width: 340px;
+  height: 692px;
   background-color: #DDD9C5;
   margin: 45px 5px 45px 5px;
 }
@@ -166,6 +173,7 @@ button:hover {
   height: 60px;
   width: 340px;
   background-color: #F8B736;
+  outline: none;
 }
 
 .sidebar-select {
@@ -174,9 +182,25 @@ button:hover {
   align-items: center; */
   text-align: center;
   border: none;
+  outline: none;
   background-color: #DDD9C5;
   margin-top: .4em;
   width: 95%;
+  height: 90%
+}
+
+
+.sidebar-select option {
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.sidebar-select option:hover {
+  transform: scale(1.05);
+}
+
+.sidebar-select option:active {
+  text-decoration: underline;
 }
 
 .all-recipes-list {

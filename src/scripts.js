@@ -50,11 +50,13 @@ function displayMainCard(recipe) {
     const mainCardTitle = document.getElementById("mainName")
     const mainCardInstructions = document.getElementById("instructions")
     const mainCardCost = document.getElementById("cost")
-    mainCardInstructions.innerHTML = `${instructions}`
-    // I need to use split to add spaces in between the steps for instructions 
-    mainCardCost.innerHTML = `Total Cost: ${cost}`
+    const mainCardImage = document.getElementById("mainCardImg")
+    mainCardImage.src = `${recipe[0].image}`
     mainCardTitle.innerHTML = `${recipe[0].name}`
+    mainCardInstructions.innerHTML = `${instructions.join(" ")}`
+    mainCardCost.innerHTML = `Total Cost: ${cost}`
 }
+
 
 
 
