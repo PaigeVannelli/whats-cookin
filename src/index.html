@@ -49,8 +49,9 @@
               <h1 class="main-name" id="mainName">THE NAME</h1>
             </article>
             <article class="main-card-stuff">
-              <p class="instructions" id="instructions">instructions</p>
-              <p class="message" id="message">message</p>
+              <div class="instructions-box">
+                <p class="instructions" id="instructions">instructions</p>
+              </div>
               <p class="cost" id="cost">Cost</p>
               <div class="main-card-buttons">
                 <button class="card-buttons" id="cardButtonOne">Main button</button>
@@ -97,12 +98,21 @@
         <div class="side-header">
           <h3 class"side-header-text" id="sideHeaderText">Side header text<h3>
         </div>
-        <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p>
+        <select class="sidebar-select" single size="25" name="recipes" id="recipeSelect">
+          <!-- <option value="">--Please choose an option--</option> -->
+            <!-- <option class="all-recipes-list" id="595736" value="default">Loaded Chocolate Chip Pudding Cookie Cups</option> -->
+            <!-- <option class="all-recipes-list" value="default">Food Types</option>
+            <option class="all-recipes-list" value="default">Food Types</option>
+            <option class="all-recipes-list" value="default">Food Types</option> -->
+        </select>
+        <!-- <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p> -->
       </section>
     <div>
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
+      <script type="text/javascript" src="../data/test-data.js"></script>
+      <script type="text/javascript" src="../data/ingredients.js"></script>
+      <script type="text/javascript" src="../data/recipes.js"></script>
+      <script type="text/javascript" src="../data/users.js"></script>
+      <script type="text/javascript" src="./recipe.js"></script>
+      <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
