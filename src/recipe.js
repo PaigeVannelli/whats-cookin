@@ -23,29 +23,29 @@ class Recipe {
         return updatedIngredientInfo
     }
 
-    returnIngredients() {
-        const ingredientNames = this.ingredients.map(ingredient => {
-            return ingredient.name;
-        })
-        return ingredientNames;
-    }
+  returnIngredients() {
+    const ingredientNames = this.ingredients.map(ingredient => {
+      return ingredient.name;
+    })
+    return ingredientNames;
+  }
 
-    returnCost() {
-        const totalCost = this.ingredients.reduce((total, ingredient) => {
-            return total += ingredient.quantity.amount * ingredient.estimatedCostInCents;
-        }, 0)
-        let dollars = totalCost / 100
-        dollars = dollars.toLocaleString("en-US", {style:"currency", currency:"USD"})
-        return dollars;
-    }
+  returnCost() {
+    const totalCost = this.ingredients.reduce((total, ingredient) => {
+      return total += ingredient.quantity.amount * ingredient.estimatedCostInCents;
+    }, 0)
+    let dollars = totalCost / 100
+    dollars = dollars.toLocaleString("en-US", { style: "currency", currency: "USD"})
+    return dollars;
+  }
 
-    returnInstructions() {
-        const instructionsList = this.instructions.map(instruction => {
-            return `${instruction.number}: ${instruction.instruction}`;
-        })
-        return instructionsList;
-    }
+  returnInstructions() {
+    const instructionsList = this.instructions.map(instruction => {
+      return `${instruction.number}: ${instruction.instruction}`;
+    })
+    return instructionsList;
+  }
 }
 
-
 module.exports = Recipe;
+
