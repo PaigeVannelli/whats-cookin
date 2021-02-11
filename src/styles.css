@@ -199,7 +199,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-.sidebar-select option:active {
+.sidebar-select option:visited {
   text-decoration: underline;
 }
 
