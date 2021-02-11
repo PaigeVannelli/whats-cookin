@@ -167,3 +167,26 @@ button:hover {
   width: 340px;
   background-color: #F8B736;
 }
+
+.sidebar-select {
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: center;
+  border: none;
+  background-color: #DDD9C5;
+  margin-top: .4em;
+  width: 95%;
+}
+
+.all-recipes-list {
+  font-size: 1.2em;
+  align-items: center;
+  justify-content: center;
+}
+
+/* @media screen and (max-width: 425px) {
+    .example class {
+
+    }
+} */
