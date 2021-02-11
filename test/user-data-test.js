@@ -108,51 +108,70 @@ describe('UserData', function() {
 
   describe('userFilter', function() {
 
-    it(`Should filter based on ingredient`, function() {
-      const user = new UserData(usersTestData[0]);
+    let user
+
+    beforeEach(() => {
+      user = new UserData(usersTestData[0]);
       user.addRecipe(recipe1, 'favoriteRecipes');
       user.addRecipe(recipe2, 'favoriteRecipes');
       user.addRecipe(recipe3, 'favoriteRecipes');
       user.addRecipe(recipe4, 'favoriteRecipes');
       user.addRecipe(recipe5, 'favoriteRecipes');
+    })
+
+    it(`Should filter based on ingredient`, function() {
+      // const user = new UserData(usersTestData[0]);
+      // user.addRecipe(recipe1, 'favoriteRecipes');
+      // user.addRecipe(recipe2, 'favoriteRecipes');
+      // user.addRecipe(recipe3, 'favoriteRecipes');
+      // user.addRecipe(recipe4, 'favoriteRecipes');
+      // user.addRecipe(recipe5, 'favoriteRecipes');
       user.userFilter('salt', 'favoriteRecipes', 'filterByIngredient');
       expect(user.userFilter('salt', 'favoriteRecipes', 'filterByIngredient').length).to.be.equal(4);
     });
 
     it(`Should return an empty array if the ingredient doesn't exist`, function() {
-      const user = new UserData(usersTestData[0]);
-      user.addRecipe(recipe1, 'favoriteRecipes');
-      user.addRecipe(recipe2, 'favoriteRecipes');
-      user.addRecipe(recipe3, 'favoriteRecipes');
-      user.addRecipe(recipe4, 'favoriteRecipes');
-      user.addRecipe(recipe5, 'favoriteRecipes');
+      // const user = new UserData(usersTestData[0]);
+      // user.addRecipe(recipe1, 'favoriteRecipes');
+      // user.addRecipe(recipe2, 'favoriteRecipes');
+      // user.addRecipe(recipe3, 'favoriteRecipes');
+      // user.addRecipe(recipe4, 'favoriteRecipes');
+      // user.addRecipe(recipe5, 'favoriteRecipes');
       expect(user.userFilter('vanilla bean', 'favoriteRecipes', 'filterByIngredient')).to.deep.equal([]);
     });
 
     it(`Should filter based on recipe name`, function() {
-      const user = new UserData(usersTestData[0]);
-      user.addRecipe(recipe1, 'favoriteRecipes');
-      user.addRecipe(recipe2, 'favoriteRecipes');
-      user.addRecipe(recipe3, 'favoriteRecipes');
-      user.addRecipe(recipe4, 'favoriteRecipes');
-      user.addRecipe(recipe5, 'favoriteRecipes');
+      // const user = new UserData(usersTestData[0]);
+      // user.addRecipe(recipe1, 'favoriteRecipes');
+      // user.addRecipe(recipe2, 'favoriteRecipes');
+      // user.addRecipe(recipe3, 'favoriteRecipes');
+      // user.addRecipe(recipe4, 'favoriteRecipes');
+      // user.addRecipe(recipe5, 'favoriteRecipes');
       const filterRecipe = user.userFilter('Maple Dijon Apple Cider Grilled Pork Chops', 'favoriteRecipes', 'filterByName');
       expect(filterRecipe[0].name).to.be.equal('Maple Dijon Apple Cider Grilled Pork Chops');
     });
 
     it(`should filter based on tags`, function() {
-      const user = new UserData(usersTestData[0]);
-      user.addRecipe(recipe1, 'favoriteRecipes');
-      user.addRecipe(recipe2, 'favoriteRecipes');
-      user.addRecipe(recipe3, 'favoriteRecipes');
-      user.addRecipe(recipe4, 'favoriteRecipes');
-      user.addRecipe(recipe5, 'favoriteRecipes');
+      // const user = new UserData(usersTestData[0]);
+      // user.addRecipe(recipe1, 'favoriteRecipes');
+      // user.addRecipe(recipe2, 'favoriteRecipes');
+      // user.addRecipe(recipe3, 'favoriteRecipes');
+      // user.addRecipe(recipe4, 'favoriteRecipes');
+      // user.addRecipe(recipe5, 'favoriteRecipes');
       const filterRecipe = user.userFilter(['side dish'], 'favoriteRecipes', 'filterByTag');
       expect(filterRecipe[1].id).to.be.equal(741603);
-    })
+    });
 
-
-
+    it(`Should filter based on multiple tags`, function() {
+      // const user = new UserData(usersTestData[0]);
+      // user.addRecipe(recipe1, 'favoriteRecipes');
+      // user.addRecipe(recipe2, 'favoriteRecipes');
+      // user.addRecipe(recipe3, 'favoriteRecipes');
+      // user.addRecipe(recipe4, 'favoriteRecipes');
+      // user.addRecipe(recipe5, 'favoriteRecipes');
+      const filterRecipe = user.userFilter(['side dish', 'dinner'], 'favoriteRecipes', 'filterByTag');
+      expect(filterRecipe[0].id).to.be.equal(678353);
+    });
 
   });
 
