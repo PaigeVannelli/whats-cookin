@@ -1,5 +1,8 @@
 // const {recipeTestData} = require("../data/test-data");
 
+// const Recipe = require("./recipe");
+console.log('wtf', Recipe)
+
 console.log('Hello world');
 //DOM manipulation 
 // ~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~ //
@@ -33,7 +36,24 @@ function setupPage() {
 }
 
 function displayRecipe() {
-    console.log(event.target.id)
+    const recipeID = event.target.id
+    const matchingRecipe = recipeData.filter(recipe => {
+        return recipe.id === parseInt(recipeID)
+    })
+    displayMainCard(matchingRecipe)
+}
+
+function displayMainCard(recipe) {
+    const targetRecipe = new Recipe(recipe[0])
+    const instructions = targetRecipe.returnInstructions()
+    const cost = targetRecipe.returnCost()
+    const mainCardTitle = document.getElementById("mainName")
+    const mainCardInstructions = document.getElementById("instructions")
+    const mainCardCost = document.getElementById("cost")
+    mainCardInstructions.innerHTML = `${instructions}`
+    // I need to use split to add spaces in between the steps for instructions 
+    mainCardCost.innerHTML = `Total Cost: ${cost}`
+    mainCardTitle.innerHTML = `${recipe[0].name}`
 }
 
 
