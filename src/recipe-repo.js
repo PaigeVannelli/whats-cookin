@@ -2,7 +2,6 @@ class RecipeRepo {
     constructor(recipes) {
         this.recipes = recipes;
     }
-
     filterByIngredient(ingredientName) {
         const recipesWithIngredient = this.recipes.filter(recipe => {
             return recipe.ingredients.some(ingredient => ingredient.name.includes(ingredientName))

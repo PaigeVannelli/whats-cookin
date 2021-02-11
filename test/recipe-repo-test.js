@@ -19,7 +19,7 @@ describe('RecipeRepo', function() {
             recipeTest.push(recipe3)
             recipeTest.push(recipe4)
             recipeTest.push(recipe5)
-              });
+        });
 
     it(`Should be a function`, function() {
         expect(RecipeRepo).to.be.a(`function`);
@@ -32,21 +32,21 @@ describe('RecipeRepo', function() {
 
     it(`should take in an array of ingredients as an argument`, function() {
         const recipeRepo = new RecipeRepo(recipeTestData);
-        expect(recipeTestData).to.be.an('array')
+        expect(recipeTestData).to.be.an('array');
     });
 
     describe('filterByIngredient', function() {
 
         it(`should be able to search by an ingredient and return an array of recipes`, function() {
             const recipeRepo = new RecipeRepo(recipeTest);
-            const recipesWithTags = recipeRepo.filterByIngredient('salt')
-            expect(recipesWithTags[0].id).to.be.equal(595736)
+            const recipesWithTags = recipeRepo.filterByIngredient('salt');
+            expect(recipesWithTags[0].id).to.be.equal(595736);
         });
 
         it(`should return an empty array if the ingredient doesn't exist`, function() {
             const recipeRepo = new RecipeRepo(recipeTest);
-            const filterRecipe = recipeRepo.filterByIngredient('vanilla bean')
-            expect(filterRecipe).to.deep.equal([])
+            const filterRecipe = recipeRepo.filterByIngredient('vanilla bean');
+            expect(filterRecipe).to.deep.equal([]);
         });
     });
 
