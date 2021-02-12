@@ -77,33 +77,17 @@ function displayRandomRecipeCards(cardNumber, i) {
 
 function searchRecipes() {
     const searchBar = document.getElementById("search");
-    // console.log("before1", recipeData)
-    // console.log("before", allRecipes)
     const newMutatedRecipes = recipeData.reduce((newRecipes, recipe) => {
         const mutatedRecipes = new Recipe(recipe, ingredientsData)
         newRecipes.push(mutatedRecipes)
         return newRecipes
     }, [])
-    console.log(newMutatedRecipes)
     const allRecipes = new RecipeRepo(newMutatedRecipes)
-    console.log(allRecipes)
-    const recipeNameMatch = allRecipes.filterByName(searchBar.value);
-    // const recipeIngredientMatch = allRecipes.filterByIngredient(searchBar.value);
-    // }, recipeNameMatch)
-    // console.log(recipeIngredientMatch)
-    displaySidebarRecipes(recipeNameMatch)
-    
-    // recipeIngredientsMatch.reduce((nameMatch, recipe) => {
-    //     console.log(nameMatch, recipeNameMatch)
-    //     // if (!nameMatch.includes(recipe)) {
-    //     //     nameMatch.push(recipe)
-    //     // }
-    // recipeNameMatch
-    // take search/value
-    // run the filter by name method on the array
-    // check if search.value is strictly matching 
-    // console..log the new array 
-    // both methods and then put togeher their arrays but make sure they are unique items 
+    const recipeNameMatch = allRecipes.filterByName(searchBar.value.toLowerCase());
+    const recipeIngredientMatch = allRecipes.filterByIngredient(searchBar.value.toLowerCase());
+    let allSearchedRecipes = recipeNameMatch.concat(recipeIngredientMatch);
+    let searchedRecipesToDisplay = [...new Set(allSearchedRecipes)];
+    displaySidebarRecipes(searchedRecipesToDisplay);
 }
 
 
