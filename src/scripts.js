@@ -1,16 +1,18 @@
 
 // ~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~ //
 
+
 const recipeSidebar = document.getElementById("recipeSelect");
 const recipesSelector = document.getElementById("recipeSelect")
+const searchButton = document.getElementById("searchButton")
 
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
-window.addEventListener('load', setupPage)
-recipeSidebar.addEventListener("click", displayRecipe)
+window.addEventListener('load', setupPage);
+recipeSidebar.addEventListener("click", displayRecipe);
+searchButton.addEventListener('click', searchRecipes);
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
-
 
 function setupPage() {
     displayAllRecipes()
@@ -22,10 +24,18 @@ function setupPage() {
 }
 
 function displayAllRecipes() {
-    recipeData.forEach(recipe => {
+    // recipeData.forEach(recipe => {
+    //     recipesSelector.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
+    // });
+    displaySidebarRecipes(recipeData)
+};
+
+function displaySidebarRecipes(array) {
+    recipesSelector.innerHTML = ""
+    array.forEach(recipe => {
         recipesSelector.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
     });
-};
+}
 
 function displayRandomMainCard() {
     const randomIndex = getRandomIndex(recipeData);
@@ -60,25 +70,45 @@ function displayMainCard(recipe) {
     mainCardCost.innerHTML = `Total Cost: ${cost}`
 }
 
-// function pickRandomCards()
-
 function displayRandomRecipeCards(cardNumber, i) {
     document.getElementById(`smallCardImg${cardNumber}`).src = `${recipeData[i].image}`
     document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[i].name}`
+}
+
+function searchRecipes() {
+    const searchBar = document.getElementById("search");
+    // console.log("before1", recipeData)
+    // console.log("before", allRecipes)
+    const newMutatedRecipes = recipeData.reduce((newRecipes, recipe) => {
+        const mutatedRecipes = new Recipe(recipe, ingredientsData)
+        newRecipes.push(mutatedRecipes)
+        return newRecipes
+    }, [])
+    console.log(newMutatedRecipes)
+    const allRecipes = new RecipeRepo(newMutatedRecipes)
+    console.log(allRecipes)
+    const recipeNameMatch = allRecipes.filterByName(searchBar.value);
+    // const recipeIngredientMatch = allRecipes.filterByIngredient(searchBar.value);
+    // }, recipeNameMatch)
+    // console.log(recipeIngredientMatch)
+    displaySidebarRecipes(recipeNameMatch)
+    
+    // recipeIngredientsMatch.reduce((nameMatch, recipe) => {
+    //     console.log(nameMatch, recipeNameMatch)
+    //     // if (!nameMatch.includes(recipe)) {
+    //     //     nameMatch.push(recipe)
+    //     // }
+    // recipeNameMatch
+    // take search/value
+    // run the filter by name method on the array
+    // check if search.value is strictly matching 
+    // console..log the new array 
+    // both methods and then put togeher their arrays but make sure they are unique items 
 }
 
 
 
 
 
-// 2. get random other recipes to display on cards below 
-    // pick one recipe and display it on one card 
-
-//     <article class="small-card">
-//     <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
-//     <div class="like-header">
-//       <h4 class="small-name" id="smallName">Like Item name<h2>
-//     </div>
-//       <p class="small-disc" id="smallDisc">try these</p>
-//   </article>
-// 3. filter through recipes by name
+// Issues :
+// search is case sensative 
