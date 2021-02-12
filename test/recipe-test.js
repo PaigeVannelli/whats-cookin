@@ -7,51 +7,51 @@ const expect = chai.expect;
 describe('Recipe', function() {
 
   it('should be a function', function() {
-    const recipe = new Recipe(recipeTestData[0]);
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
     expect(Recipe).to.be.a('function');
   });
 
   it('should be an instance of Recipe', function() {
-    const recipe = new Recipe(recipeTestData[0]);
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
     expect(recipe).to.be.an.instanceof(Recipe);
   });
 
   it(`should store an id`, function() {
-      const recipe = new Recipe(recipeTestData[0]);
+      const recipe = new Recipe(recipeTestData[0], ingredientsData);
       expect(recipe.id).to.be.equal(recipeTestData[0].id)
   });
 
   it(`should store an image`, function() {
-      const recipe = new Recipe(recipeTestData[0]);
+      const recipe = new Recipe(recipeTestData[0], ingredientsData);
       expect(recipe.image).to.be.equal(recipeTestData[0].image)
   });
 
   it(`should store a list of ingredients`, function() {
-    const recipe = new Recipe(recipeTestData[0]);
-    const updatedRecipe = recipe.getIngredientsInfo(recipe.ingredients);
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
+    const updatedRecipe = recipe.getIngredientsInfo(recipe.ingredients, ingredientsData);
     expect(recipe.ingredients).to.deep.equal(updatedRecipe);
       // do we need to run the getIngredientInfo method on this to tes?
   });
 
   it(`should store instructions`, function() {
-    const recipe = new Recipe(recipeTestData[0]);
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
     expect(recipe.instructions).to.be.equal(recipeTestData[0].instructions)
   });
 
   it(`should store a name`, function() {
-    const recipe = new Recipe(recipeTestData[0]);
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
     expect(recipe.name).to.be.equal(recipeTestData[0].name)
   });
 
   it(`should store a list of tags`, function() {
-    const recipe = new Recipe(recipeTestData[0]);
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
     expect(recipe.tags).to.be.equal(recipeTestData[0].tags)
   });
 
   describe('returnIngredients', function() {
 
     it(`should store a list of tags`, function() {
-      const recipe = new Recipe(recipeTestData[0]);
+      const recipe = new Recipe(recipeTestData[0], ingredientsData);
       expect(recipe.returnIngredients()).to.deep.equal([
         'wheat flour',
         'bicarbonate of soda',
@@ -76,7 +76,7 @@ describe('Recipe', function() {
   describe('returnCost', function() {
 
     it(`should return the total cost of the meal in dollars`, function() {
-      const recipe = new Recipe(recipeTestData[0]);
+      const recipe = new Recipe(recipeTestData[0], ingredientsData);
       expect(recipe.returnCost()).to.be.equal('$177.76')
     });
   });
@@ -84,7 +84,7 @@ describe('Recipe', function() {
   describe('returnInstructions', function() {
 
     it(`should return the recipe instructions`, function() {
-      const recipe = new Recipe(recipeTestData[0]);
+      const recipe = new Recipe(recipeTestData[0], ingredientsData);
       expect(recipe.returnInstructions()).to.deep.equal([
         '1: In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.',
         '2: Add egg and vanilla and mix until combined.',
