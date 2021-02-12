@@ -8,19 +8,20 @@ class Recipe {
         this.instructions = recipe.instructions;
         this.name = recipe.name;
         this.tags = recipe.tags;
+
     }
 
     getIngredientsInfo(recipeIngredients, ingredientsData) {
-        let updatedIngredientInfo = recipeIngredients.map(ingredient => {
-            const ingredientInfo = ingredientsData.find(ingredientObject => {
-                return ingredient.id === ingredientObject.id
-            })
-            let currentIngredient = ingredient;
-            currentIngredient.name =ingredientInfo.name
-            currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
-            return currentIngredient
+      let updatedIngredientInfo = recipeIngredients.map(ingredient => {
+        const ingredientInfo = ingredientsData.find(ingredientObject => {
+          return ingredient.id === ingredientObject.id
         })
-        return updatedIngredientInfo
+        let currentIngredient = ingredient;
+        currentIngredient.name =ingredientInfo.name
+        currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
+        return currentIngredient
+      })
+      return updatedIngredientInfo
     }
 
   returnIngredients() {
@@ -48,4 +49,3 @@ class Recipe {
 }
 
 module.exports = Recipe;
-
