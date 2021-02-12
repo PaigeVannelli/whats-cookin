@@ -15,6 +15,10 @@ recipeSidebar.addEventListener("click", displayRecipe)
 function setupPage() {
     displayAllRecipes()
     displayRandomMainCard()
+    displayRandomRecipeCards(1, 15)
+    displayRandomRecipeCards(2, 7)
+    displayRandomRecipeCards(3, 22)
+    displayRandomRecipeCards(4, 11)
 }
 
 function displayAllRecipes() {
@@ -56,8 +60,25 @@ function displayMainCard(recipe) {
     mainCardCost.innerHTML = `Total Cost: ${cost}`
 }
 
+// function pickRandomCards()
+
+function displayRandomRecipeCards(cardNumber, i) {
+    document.getElementById(`smallCardImg${cardNumber}`).src = `${recipeData[i].image}`
+    document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[i].name}`
+}
+
+
+
 
 
 // 2. get random other recipes to display on cards below 
+    // pick one recipe and display it on one card 
 
+//     <article class="small-card">
+//     <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+//     <div class="like-header">
+//       <h4 class="small-name" id="smallName">Like Item name<h2>
+//     </div>
+//       <p class="small-disc" id="smallDisc">try these</p>
+//   </article>
 // 3. filter through recipes by name
