@@ -13,9 +13,25 @@ recipeSidebar.addEventListener("click", displayRecipe)
 
 
 function setupPage() {
+    displayAllRecipes()
+    displayRandomMainCard()
+}
+
+function displayAllRecipes() {
     recipeData.forEach(recipe => {
         recipesSelector.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
     });
+};
+
+function displayRandomMainCard() {
+    const randomIndex = getRandomIndex(recipeData);
+    const randomRecipe = []
+    randomRecipe.push(recipeData[randomIndex]);
+    displayMainCard(randomRecipe)
+}
+
+function getRandomIndex(array) {
+    return Math.floor(Math.random() * array.length);
 }
 
 function displayRecipe() {
@@ -42,4 +58,6 @@ function displayMainCard(recipe) {
 
 
 
+// 2. get random other recipes to display on cards below 
 
+// 3. filter through recipes by name
