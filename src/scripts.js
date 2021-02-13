@@ -7,6 +7,7 @@ const recipesSelector = document.getElementById("recipeSelect")
 const searchButton = document.getElementById("searchButton")
 const searchByTagsButton = document.getElementById("searchByTagsButton");
 const searchBar = document.getElementById("search")
+const userPageButton = document.getElementById("userPageButton");
 
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
@@ -14,6 +15,7 @@ window.addEventListener('load', setupPage);
 recipeSidebar.addEventListener("click", displayRecipe);
 searchButton.addEventListener('click', searchRecipes);
 searchByTagsButton.addEventListener('click', searchByTags);
+userPageButton.addEventListener('click', displayUserPage);
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -131,3 +133,32 @@ function searchTags(tags, recipes) {
     return recipeTagsMatch
 }
 
+
+
+
+
+
+
+function displayUserPage() {
+    displayUserPage();
+    displayPantryItems();
+    displayFavoritedRecipes();
+    displayRecipesToCook();
+}
+
+function displayUserPage() {
+    hide('mainSideBar', true);
+    hide('userSideBar', false);
+}
+
+function hide(element, hidden) {
+    if (hidden) {
+        document.getElementById(element).classList.add('hidden')
+    } else {
+        document.getElementById(element).classList.remove('hidden')
+    }
+}
+
+functio
+
+//need to change recipe title upon filtering 

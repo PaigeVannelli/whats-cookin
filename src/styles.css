@@ -224,6 +224,15 @@ button:hover {
   justify-content: center;
 }
 
+.button-display {
+  display: flex;
+  flex-direction: row;
+}
+
+.hidden {
+  display: none
+}
+
 /* @media screen and (max-width: 425px) {
     .example class {
 
