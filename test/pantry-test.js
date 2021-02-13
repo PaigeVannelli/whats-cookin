@@ -49,30 +49,48 @@ describe('Pantry', function() {
 
     it(`Should be able to to check if there is the ingredients to cook a meal`, function() {
       const pantry = new Pantry(user.pantry);
-      expect(pantry.userCanCook(recipe1)).to.be.equal(true);
+      expect(pantry.userCanCook(recipe1)).to.equal(true);
     });
 
     it(`Should return false if missing an item`, function() {
       const pantry = new Pantry(user.pantry);
-      expect(pantry.userCanCook(recipe3)).to.be.equal(false);
+      expect(pantry.userCanCook(recipe3)).to.equal(false);
     });
 
     it(`Should return false if missing ingredient quantity`, function() {
       const pantry = new Pantry(user.pantry);
-      expect(pantry.userCanCook(recipe2)).to.be.equal(false);
+      expect(pantry.userCanCook(recipe2)).to.equal(false);
     })
 
   });
 
-  describe('dealWithItems', function() {
+  describe('itemsToCook', function() {
 
     it(`Should remove the ingredients used to cook form the pantry`, function() {
       const pantry = new Pantry(user.pantry);
-      expect(pantry.dealWithItems(recipe1)).to.be.equal(true);
+      pantry.itemsToCook(recipe1)
+      expect(pantry.pantryItems).to.deep.equal([
+        { ingredient: 20081, amount: 4.5 },
+        { ingredient: 18372, amount: 4 },
+        { ingredient: 1123, amount: 4 },
+        { ingredient: 19335, amount: 4 },
+        { ingredient: 19206, amount: 2 },
+        { ingredient: 19334, amount: 4 },
+        { ingredient: 2047, amount: 4 },
+        { ingredient: 1012047, amount: 4 },
+        { ingredient: 10019903, amount: 9 },
+        { ingredient: 1145, amount: 5 },
+        { ingredient: 2050, amount: 10 },
+        { ingredient: 1009016, amount: 10 },
+        { ingredient: 9003, amount: 10 },
+        { ingredient: 20027, amount: 10 },
+        { ingredient: 1002046, amount: 10.5 }
+      ]);
     });
 
-    it.skip(`Should be able to determine what ingredients are missing`, function() {
-
+    it(`Should be able to determine what ingredients are missing`, function() {
+      const pantry = new Pantry(user.pantry);
+      expect(pantry.whatsMissing(recipe3)).to.deep.equal("arrayOfobjects")
     });
 
   })

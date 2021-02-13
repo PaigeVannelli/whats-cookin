@@ -16,33 +16,32 @@ class Pantry {
     return canCook;
   }
 
-  dealWithItems(recipe) {
-    if (this.userCanCook(recipe) === true) {
-      recipe.ingredients.forEach(item => {
+  itemsToCook(recipe) {
+    recipe.ingredients.forEach(item => {
         let checkCook = this.pantryItems.findIndex(pantryItem => {
-          return item.id === pantryItem.ingredient
-        })
-        console.log('before', this.pantryItems[checkCook].amount)
-        this.pantryItems[checkCook].amount = this.pantryItems[checkCook].amount - item.quantity.amount;
-        console.log('after', this.pantryItems[checkCook].amount)
+          return item.id === pantryItem.ingredient;
       })
-    }
+      this.pantryItems[checkCook].amount = this.pantryItems[checkCook].amount - item.quantity.amount;
+    })
   }
 
+  whatsMissing(recipe) {
+    let missing = [];
+    // may need to add anouther var to save pantryItem, will not save outide of the findIndex-loop
+    // may also be able to do this with a reduce method.
+    recipe.ingredients.forEach(item => {
+      let checkCook = this.pantryItems.findIndex(pantryItem => {
+        return item.id === pantryItem.ingredient && item.quantity.amount < pantryItem.amount;
+      })
+      if (checkCook === -1) {
+        let missQty = item.quantity.amount - pantryItem.amount;
+        missing.push({ id: item.id, amount: missQty});
+      }
+    });
+    console.log(missing);
+    return missing;
+  }
 
 }
 
-
-// } else {
-//   this.pantryItems[checkCook].amount = this.pantryItems[checkCook].amount - item.quantity.amount;
-// }
-
-// pantryItems.indexOf
-// that index if
-
-
-
-
-// this is the path to target ingredients Qt.
-// recipe1.ingredients[0].quantity.amount
 module.exports = Pantry;
