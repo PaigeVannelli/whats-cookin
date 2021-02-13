@@ -1,12 +1,12 @@
 
 // ~~~~~~~~~~~~~~ QUERY SELECTORS ~~~~~~~~~~~~~~~~ //
 
-
-const recipeSidebar = document.getElementById("recipeSelect");
-const recipesSelector = document.getElementById("recipeSelect")
+const recipeSidebar = document.getElementById("mainSideBar");
+const recipesSelector = document.getElementById("mainRecipeSelect")
 const searchButton = document.getElementById("searchButton")
 const searchByTagsButton = document.getElementById("searchByTagsButton");
 const searchBar = document.getElementById("search")
+const userPageButton = document.getElementById("userPageButton");
 
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
@@ -14,12 +14,14 @@ window.addEventListener('load', setupPage);
 recipeSidebar.addEventListener("click", displayRecipe);
 searchButton.addEventListener('click', searchRecipes);
 searchByTagsButton.addEventListener('click', searchByTags);
+userPageButton.addEventListener('click', displayUserPage);
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
 function setupPage() {
     displayAllRecipes()
     displayRandomMainCard()
+    generateRandomUser();
     displayRandomRecipeCards(1, 15)
     displayRandomRecipeCards(2, 7)
     displayRandomRecipeCards(3, 22)
@@ -27,13 +29,13 @@ function setupPage() {
 }
 
 function displayAllRecipes() {
-    displaySidebarRecipes(recipeData)
+    displaySidebarRecipes(recipeData, recipesSelector);
 };
 
-function displaySidebarRecipes(array) {
-    recipesSelector.innerHTML = ""
+function displaySidebarRecipes(array, displayArea) {
+    displayArea.innerHTML = ""
     array.forEach(recipe => {
-        recipesSelector.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
+        displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
     });
 }
 
@@ -46,6 +48,12 @@ function displayRandomMainCard() {
 
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
+}
+
+function generateRandomUser() {
+    let newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo)
+    console.log(newUser)
+    return newUser
 }
 
 function displayRecipe() {
@@ -131,3 +139,34 @@ function searchTags(tags, recipes) {
     return recipeTagsMatch
 }
 
+
+
+
+
+
+
+function displayUserPage() {
+    displayUserPage();
+    displayPantryItems();
+    displayFavoritedRecipes();
+    displayRecipesToCook();
+}
+
+function displayUserPage() {
+    hide('mainSideBar', true);
+    hide('userSideBar', false);
+}
+
+function hide(element, hidden) {
+    if (hidden) {
+        document.getElementById(element).classList.add('hidden')
+    } else {
+        document.getElementById(element).classList.remove('hidden')
+    }
+}
+
+function displayFavoritedRecipes() {
+
+}
+
+//need to change recipe title upon filtering 

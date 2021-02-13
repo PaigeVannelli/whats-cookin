@@ -4,6 +4,7 @@ const ingredientsData = require('../data/ingredients');
 const {usersTestData} = require('../data/test-data');
 const {recipeTestData} = require('../data/test-data');
 const Recipe = require('../src/recipe');
+const RecipeRepo = require('../src/recipe-repo');
 const UserData = require('../src/user-data');
 
 describe('UserData', function() {
@@ -19,6 +20,7 @@ describe('UserData', function() {
     recipe3 = new Recipe(recipeTestData[2], ingredientsData);
     recipe4 = new Recipe(recipeTestData[3], ingredientsData);
     recipe5 = new Recipe(recipeTestData[4], ingredientsData);
+
   });
 
   it(`Should be a function`, function() {
@@ -26,56 +28,56 @@ describe('UserData', function() {
   });
 
   it(`Should be an instance of User`, function() {
-    const user = new UserData(usersTestData[0]);
+    const user = new UserData(usersTestData[0], RecipeRepo);
     expect(user).to.be.an.instanceOf(UserData);
   });
 
   it(`Should store a users name`, function() {
-    const user = new UserData(usersTestData[0]);
+    const user = new UserData(usersTestData[0], RecipeRepo);
     expect(user.name).to.equal("Saige O'Kon");
   });
 
   it(`Should store a users id number`, function() {
-    const user = new UserData(usersTestData[0]);
+    const user = new UserData(usersTestData[0], RecipeRepo);
     expect(user.id).to.equal(1);
   });
 
   it(`Should store a list of the users pantry items`, function() {
-    const user = new UserData(usersTestData[0]);
+    const user = new UserData(usersTestData[0], RecipeRepo);
     expect(user.pantry).to.be.an('array');
   });
 
   it(`Should store a pantry of the same length`, function() {
-    const user = new UserData(usersTestData[0]);
+    const user = new UserData(usersTestData[0], RecipeRepo);
     expect(user.pantry.length).to.equal(36);
   });
 
   it(`Should store the users favorite recipes`, function() {
-    const user = new UserData(usersTestData[0]);
+    const user = new UserData(usersTestData[0], RecipeRepo);
     expect(user.favoriteRecipes.recipes).to.deep.equal([]);
   });
 
   it(`Should store the recipes to cook.`, function() {
-    const user = new UserData(usersTestData[0]);
+    const user = new UserData(usersTestData[0], RecipeRepo);
     expect(user.recipeToCook.recipes).to.deep.equal([]);
   });
 
   describe('addFRecipe', function() {
 
     it(`Should have a way to add favorite recipes`, function() {
-      const user = new UserData(usersTestData[0]);
+      const user = new UserData(usersTestData[0], RecipeRepo);
       user.addRecipe(recipe1, 'favoriteRecipes');
       expect(user.favoriteRecipes.recipes[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
     });
 
     it(`Should also add to recipes to cook`, function() {
-      const user = new UserData(usersTestData[0]);
+      const user = new UserData(usersTestData[0], RecipeRepo);
       user.addRecipe(recipe1, 'recipeToCook');
       expect(user.recipeToCook.recipes[0].name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
     });
 
     it(`Should be able to save multiple recipes`, function() {
-      const user = new UserData(usersTestData[1]);
+      const user = new UserData(usersTestData[1], RecipeRepo);
       user.addRecipe(recipe1, 'favoriteRecipes');
       user.addRecipe(recipe2, 'favoriteRecipes');
       user.addRecipe(recipe3, 'favoriteRecipes');
@@ -87,7 +89,7 @@ describe('UserData', function() {
   describe('removeFavorite', function() {
 
       it(`should be able to remove a recipe from favorites`, function() {
-        const user = new UserData(usersTestData[0]);
+        const user = new UserData(usersTestData[0], RecipeRepo);
         user.addRecipe(recipe1, 'favoriteRecipes');
         user.addRecipe(recipe2, 'favoriteRecipes');
         user.removeRecipe(recipe1, 'favoriteRecipes');
@@ -95,7 +97,7 @@ describe('UserData', function() {
       });
 
       it(`Should remove the correct recipe`, function() {
-        const user = new UserData(usersTestData[0]);
+        const user = new UserData(usersTestData[0], RecipeRepo);
         user.addRecipe(recipe1, 'favoriteRecipes');
         user.addRecipe(recipe2, 'favoriteRecipes');
         user.addRecipe(recipe3, 'favoriteRecipes');
@@ -111,7 +113,7 @@ describe('UserData', function() {
     let user
 
     beforeEach(() => {
-      user = new UserData(usersTestData[0]);
+      user = new UserData(usersTestData[0], RecipeRepo);
       user.addRecipe(recipe1, 'favoriteRecipes');
       user.addRecipe(recipe2, 'favoriteRecipes');
       user.addRecipe(recipe3, 'favoriteRecipes');
@@ -129,7 +131,7 @@ describe('UserData', function() {
     });
 
     it(`Should filter based on recipe name`, function() {
-      const filterRecipe = user.userFilter('Maple Dijon Apple Cider Grilled Pork Chops', 'favoriteRecipes', 'filterByName');
+      const filterRecipe = user.userFilter('maple dijon apple cider grilled pork chops', 'favoriteRecipes', 'filterByName');
       expect(filterRecipe[0].name).to.be.equal('Maple Dijon Apple Cider Grilled Pork Chops');
     });
 

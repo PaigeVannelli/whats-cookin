@@ -50,7 +50,7 @@
         </form>
         <button class="search-button tags-button" id="searchByTagsButton">Search By Tag</button>
       </article>
-      <button class="user-page top-button" id"userPage">User Page</button>
+      <button class="user-page top-button" id="userPageButton">User Page</button>
     </header>
     <div class="page-layout">
       <div class="left-side-styling">
@@ -108,11 +108,24 @@
           <!-- pull out to here -->
         </section>
       </div>
-      <section class="side-bar" id="sideBar">
+      <section class="side-bar main-side-bar" id="mainSideBar">
         <div class="side-header">
-          <h3 class"side-header-text" id="sideHeaderText">Side header text<h3>
+          <h3 class"side-header-text" id="sideHeaderText">All Recipes<h3>
         </div>
-        <select class="sidebar-select" single size="25" name="recipes" id="recipeSelect">
+        <select class="sidebar-select" single size="25" name="recipes" id="mainRecipeSelect">
+        </select>
+        <!-- <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p> -->
+      </section>
+      <section class="side-bar user-side-bar hidden" id="userSideBar">
+        <div class="side-header">
+          <h3 class"side-header-text" id="sideHeaderText">Favorited Recipes<h3>
+        </div>
+        <div class="button-display">
+          <button class="sidebar-display-button" id="displayFavoritesButton">Favorited Recipes</button>
+          <button class="sidebar-display-button" id="displayToCookButton">Recipes To Cook</button>
+          <button class="sidebar-display-button" id="displayPantryButton">Pantry Items</button>
+        </div>
+        <select class="sidebar-select" single size="25" name="recipes" id="userRecipeSelect">
         </select>
         <!-- <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p> -->
       </section>
@@ -122,7 +135,9 @@
       <script type="text/javascript" src="../data/recipes.js"></script>
       <script type="text/javascript" src="../data/users.js"></script>
       <script type="text/javascript" src="./recipe.js"></script>
+      <!-- <script type="text/javascript" src="./recipe.js"></script> -->
       <script type="text/javascript" src="./recipe-repo.js"></script>
+      <script type="text/javascript" src="./user-data.js"></script>
       <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>

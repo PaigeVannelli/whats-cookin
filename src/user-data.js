@@ -1,16 +1,24 @@
-const RecipeRepo = require('../src/recipe-repo');
+// const RecipeRepo = require('../src/recipe-repo');
 
 class UserData  {
-  constructor(user) {
+  constructor(user, RecipeRepo) {
     this.name = user.name;
     this.id = user.id;
     this.pantry = user.pantry;
-    this.favoriteRecipes = new RecipeRepo([]);
-    this.recipeToCook = new RecipeRepo([]);
+    this.favoriteRecipes = this.createNewRecipeRepo(RecipeRepo);
+    // this.favoriteRecipes = [];
+    this.recipeToCook = this.createNewRecipeRepo(RecipeRepo);
+    // this.recipeToCook = [];
+  }
+
+  createNewRecipeRepo(RecipeRepo) {
+    const newRecipeRepo = new RecipeRepo([])
+    return newRecipeRepo
   }
 
   addRecipe(recipe, list) {
     this[list].recipes.push(recipe);
+    // const favorites = this[list].recipes = new RecipeRepo;
   }
 
   removeRecipe(recipe, list) {
