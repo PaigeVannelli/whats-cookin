@@ -56,13 +56,13 @@ describe('RecipeRepo', function() {
 
       it(`should be able to filter through recipes by a full recipe name`, function() {
         const recipeRepo = new RecipeRepo(recipeTest);
-        const filterRecipe = recipeRepo.filterByName(['Maple Dijon Apple Cider Grilled Pork Chops']);
+        const filterRecipe = recipeRepo.filterByName(['maple dijon apple cider grilled pork chops']);
         expect(filterRecipe[0].id).to.be.equal(678353);
       });
 
       it(`should be able to filter through recipes by a partial recipe name`, function() {
         const recipeRepo = new RecipeRepo(recipeTest);
-        const filterRecipe = recipeRepo.filterByName(['Pork Chops']);
+        const filterRecipe = recipeRepo.filterByName(['pork chops']);
         expect(filterRecipe[0].id).to.be.equal(678353);
       });
 
