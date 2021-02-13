@@ -5,12 +5,15 @@
 const recipeSidebar = document.getElementById("recipeSelect");
 const recipesSelector = document.getElementById("recipeSelect")
 const searchButton = document.getElementById("searchButton")
+const searchByTagsButton = document.getElementById("searchByTagsButton");
+const searchBar = document.getElementById("search")
 
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
 window.addEventListener('load', setupPage);
 recipeSidebar.addEventListener("click", displayRecipe);
 searchButton.addEventListener('click', searchRecipes);
+searchByTagsButton.addEventListener('click', searchByTags);
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -76,23 +79,63 @@ function displayRandomRecipeCards(cardNumber, i) {
 }
 
 function searchRecipes() {
-    const searchBar = document.getElementById("search");
+    const allRecipes = setUpData()
+    const recipeNameMatch = searchNames(allRecipes, searchBar)
+    // const recipeNameMatch = allRecipes.filterByName(searchBar.value.toLowerCase());
+    // const recipeIngredientMatch = allRecipes.filterByIngredient(searchBar.value.toLowerCase());
+    const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
+    const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
+    displaySidebarRecipes(searchedRecipesToDisplay);
+}
+
+function setUpData() {
+    // const searchBar = document.getElementById("search");
     const newMutatedRecipes = recipeData.reduce((newRecipes, recipe) => {
         const mutatedRecipes = new Recipe(recipe, ingredientsData)
         newRecipes.push(mutatedRecipes)
         return newRecipes
     }, [])
-    const allRecipes = new RecipeRepo(newMutatedRecipes)
-    const recipeNameMatch = allRecipes.filterByName(searchBar.value.toLowerCase());
-    const recipeIngredientMatch = allRecipes.filterByIngredient(searchBar.value.toLowerCase());
-    let allSearchedRecipes = recipeNameMatch.concat(recipeIngredientMatch);
-    let searchedRecipesToDisplay = [...new Set(allSearchedRecipes)];
-    displaySidebarRecipes(searchedRecipesToDisplay);
+    return new RecipeRepo(newMutatedRecipes)
 }
 
+function searchNames(recipes, searchBar) {
+    const recipeNameMatch = recipes.filterByName(searchBar.value.toLowerCase());
+    return recipeNameMatch
+}
 
+function searchIngredients(recipes, searchBar) {
+    const recipeIngredientMatch = recipes.filterByIngredient(searchBar.value.toLowerCase());
+    return recipeIngredientMatch
+}
 
+function compareNamesIngredients(recipeNameMatch, recipeIngredientMatch) {
+    let allSearchedRecipes = recipeNameMatch.concat(recipeIngredientMatch);
+    let searchedRecipesToDisplay = [...new Set(allSearchedRecipes)];
+    return searchedRecipesToDisplay
+}
 
+function searchByTags() {
+    const allRecipes = setUpData()
+    const checkedTags = checkTags()
+    const recipesToDisplay = searchTags(checkedTags, allRecipes);
+    displaySidebarRecipes(recipesToDisplay);
+}
 
-// Issues :
-// search is case sensative 
+function checkTags() {
+    var test = document.querySelectorAll('input[type="checkbox"]');
+    console.log(test)
+    let checkedTags = []
+    test.forEach(tag => {
+        if (tag.checked) {
+            checkedTags.push(tag.name)
+        }
+    })
+    console.log(checkedTags)
+    return checkedTags
+}
+
+function searchTags(tags, recipes) {
+    const recipeTagsMatch = recipes.filterByTag(tags);
+    return recipeTagsMatch
+}
+
