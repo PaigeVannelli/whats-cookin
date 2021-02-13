@@ -47,6 +47,21 @@ button:hover {
   width: 300px;
 }
 
+.tags-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.select {
+  height: 50px;
+  width: 400px;
+  overflow: auto;
+}
+
+.tags-button {
+  height: 20px;
+}
+
 /* Left display area */
 
 .left-side-styling {

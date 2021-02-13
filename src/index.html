@@ -11,30 +11,44 @@
       <article class="search-feild">
         <label class="search-label" for="search">Search</label>
         <input type="search" class="search" id="search"></search>
+        <button class="search-button" id="searchButton">Search</button>
       </article>
       <article class="tags-container">
-        <label for="tags-values">Types of food</label>
-        <select class="select" multiple size="1" name="tags" id="tagSelect">
-          <option value="">--Please choose an option--</option>
-            <option value="default">Food Types</option>
-            <option value="antipasti">antipasti</option>
-            <option value="antipasto">antipasto</option>
-            <option value="appetizer">appetizer</option>
-            <option value="breakfast">breakfast</option>
-            <option value="brunch">brunch</option>
-            <option value="condiment">condiment</option>
-            <option value="dip">dip</option>
-            <option value="hor d'oeuvre">hor d'oeuvre</option>
-            <option value="lunch">lunch</option>
-            <option value="main course">main course</option>
-            <option value="main dish">main dish</option>
-            <option value="morning meal">morning meal</option>
-            <option value="sauce">sauce</option>
-            <option value="side dish">side dish</option>
-            <option value="snack">snack</option>
-            <option value="spread">spread</option>
-            <option value="starter">starter</option>
-        </select>
+        <form class="select" multiple size="4" name="tags" id="tagSelect">
+          <input type="checkbox" id="antipasti" name="antipasti">
+          <label for="antipasti">Antipasti</label>
+          <input type="checkbox" id="antipasto" name="antipasto">
+          <label for="antipasto">Antipasto</label>
+          <input type="checkbox" id="appetizer" name="appetizer">
+          <label for="appetizer">Appetizer</label>
+          <input type="checkbox" id="breakfast" name="breakfast">
+          <label for="breakfast">Breakfast</label>
+          <input type="checkbox" id="brunch" name="brunch">
+          <label for="brunch">Brunch</label>
+          <input type="checkbox" id="condiment" name="condiment">
+          <label for="condiment">Condiment</label>
+          <input type="checkbox" id="dip" name="dip">
+          <label for="dip">Dip</label>
+          <input type="checkbox" id="horD'oeuvre" name="hor d'oeuvre">
+          <label for="hor d'oeuvre">Hor d'oeuvre</label>
+          <input type="checkbox" id="lunch" name="lunch">
+          <label for="lunch">Lunch</label>
+          <input type="checkbox" id="mainCourse" name="main course">
+          <label for="main course">Main Course</label>
+          <input type="checkbox" id="morningMeal" name="morning meal">
+          <label for="morning meal">Morning Meal</label>
+          <input type="checkbox" id="sauce" name="sauce">
+          <label for="sauce">Sauce</label>
+          <input type="checkbox" id="sideDish" name="side dish">
+          <label for="side dish">Side Dish</label>
+          <input type="checkbox" id="snack" name="snack">
+          <label for="snack">Snack</label>
+          <input type="checkbox" id="spread" name="spread">
+          <label for="spread">Spread</label>
+          <input type="checkbox" id="starter" name="starter">
+          <label for="starter">Starter</label>
+        </form>
+        <button class="search-button tags-button" id="searchByTagsButton">Search By Tag</button>
       </article>
       <button class="user-page top-button" id"userPage">User Page</button>
     </header>
@@ -62,32 +76,32 @@
         </section>
         <h1 class= "suggestions">You might also like to try these!</h1>
         <section class="like-items" id="likeItems">
-          <article class="small-card">
-            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+          <article class="small-card" id="smallCard1">
+            <img class="small-card-img" id="smallCardImg1" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
             <div class="like-header">
-              <h4 class="small-name" id="smallName">Like Item name<h2>
+              <h4 class="small-name" id="smallName1">Like Item name<h2>
             </div>
               <p class="small-disc" id="smallDisc">try these</p>
           </article>
           <!-- will need to make these dynamic pull out later just to set styling -->
           <article class="small-card">
-            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+            <img class="small-card-img" id="smallCardImg2" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
             <div class="like-header">
-              <h4 class="small-name" id="smallName">Like Item Name<h2>
+              <h4 class="small-name" id="smallName2">Like Item Name<h2>
             </div>
               <p class="small-disc" id="smallDisc">try these</p>
           </article>
           <article class="small-card">
-            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+            <img class="small-card-img" id="smallCardImg3" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
             <div class="like-header">
-              <h4 class="small-name" id="smallName">Like Item Name<h2>
+              <h4 class="small-name" id="smallName3">Like Item Name<h2>
             </div>
               <p class="small-disc" id="smallDisc">try these</p>
           </article>
           <article class="small-card">
-            <img class="small-card-img" id="smallCardImg" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="To input with dom"></img>
+            <img class="small-card-img" id="smallCardImg4" src="https://spoonacular.com/recipeImages/602311-556x370.jpg" alt="To input with dom"></img>
             <div class="like-header">
-              <h4 class="small-name" id="smallName">Like Item Name<h2>
+              <h4 class="small-name" id="smallName4">Like Item Name<h2>
             </div>
               <p class="small-disc" id="smallDisc">try these</p>
           </article>
@@ -99,11 +113,6 @@
           <h3 class"side-header-text" id="sideHeaderText">Side header text<h3>
         </div>
         <select class="sidebar-select" single size="25" name="recipes" id="recipeSelect">
-          <!-- <option value="">--Please choose an option--</option> -->
-            <!-- <option class="all-recipes-list" id="595736" value="default">Loaded Chocolate Chip Pudding Cookie Cups</option> -->
-            <!-- <option class="all-recipes-list" value="default">Food Types</option>
-            <option class="all-recipes-list" value="default">Food Types</option>
-            <option class="all-recipes-list" value="default">Food Types</option> -->
         </select>
         <!-- <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p> -->
       </section>
@@ -113,6 +122,7 @@
       <script type="text/javascript" src="../data/recipes.js"></script>
       <script type="text/javascript" src="../data/users.js"></script>
       <script type="text/javascript" src="./recipe.js"></script>
+      <script type="text/javascript" src="./recipe-repo.js"></script>
       <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>

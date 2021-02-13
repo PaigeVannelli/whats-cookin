@@ -4,14 +4,14 @@ class RecipeRepo {
   }
   filterByIngredient(ingredientName) {
     const recipesWithIngredient = this.recipes.filter(recipe => {
-      return recipe.ingredients.some(ingredient => ingredient.name.includes(ingredientName))
+      return recipe.ingredients.some(ingredient => ingredient.name.toLowerCase().includes(ingredientName))
     })
     return recipesWithIngredient;
   }
 
   filterByName(recipeName) {
     const filteredRecipesWithName = this.recipes.filter(recipe => {
-      return recipe.name.includes(recipeName);
+      return recipe.name.toLowerCase().includes(recipeName);
     });
     return filteredRecipesWithName;
   }
