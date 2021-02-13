@@ -117,7 +117,7 @@ describe('UserData', function() {
       user.addRecipe(recipe3, 'favoriteRecipes');
       user.addRecipe(recipe4, 'favoriteRecipes');
       user.addRecipe(recipe5, 'favoriteRecipes');
-    })
+    });
 
     it(`Should filter based on ingredient`, function() {
       user.userFilter('salt', 'favoriteRecipes', 'filterByIngredient');
