@@ -7,6 +7,12 @@ const searchButton = document.getElementById("searchButton")
 const searchByTagsButton = document.getElementById("searchByTagsButton");
 const searchBar = document.getElementById("search")
 const userPageButton = document.getElementById("userPageButton");
+const displayFavoritesButton = document.getElementById("displayFavoritesButton");
+const displayToCookButton = document.getElementById("displayToCookButton");
+const displayPantryButton = document.getElementById("displayPantryButton");
+const userRecipesSelector = document.getElementById("userRecipeSelect");
+const userRecipeSidebar = document.getElementById("userSideBar");
+let newUser = {}
 
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
@@ -15,6 +21,10 @@ recipeSidebar.addEventListener("click", displayRecipe);
 searchButton.addEventListener('click', searchRecipes);
 searchByTagsButton.addEventListener('click', searchByTags);
 userPageButton.addEventListener('click', displayUserPage);
+displayFavoritesButton.addEventListener('click', displayFavoritedRecipes);
+displayToCookButton.addEventListener('click', displayToCookRecipes);
+displayPantryButton.addEventListener('click', displayPantry);
+userRecipeSidebar.addEventListener("click", displayRecipe);
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -29,6 +39,7 @@ function setupPage() {
 }
 
 function displayAllRecipes() {
+    // console.log(recipesSelector)
     displaySidebarRecipes(recipeData, recipesSelector);
 };
 
@@ -51,9 +62,12 @@ function getRandomIndex(array) {
 }
 
 function generateRandomUser() {
-    let newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo)
+    newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
     console.log(newUser)
-    return newUser
+    newUser.pantry = new Pantry(newUser, ingredientsData)
+    newUser.favoriteRecipes.recipes = [recipeData[5]]
+    newUser.recipeToCook.recipes = [recipeData[3]]
+    console.log(newUser)
 }
 
 function displayRecipe() {
@@ -88,7 +102,7 @@ function searchRecipes() {
     const recipeNameMatch = searchNames(allRecipes, searchBar)
     const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
     const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
-    displaySidebarRecipes(searchedRecipesToDisplay);
+    displaySidebarRecipes(searchedRecipesToDisplay, recipesSelector);
 }
 
 function setUpData() {
@@ -120,7 +134,7 @@ function searchByTags() {
     const allRecipes = setUpData()
     const checkedTags = checkTags()
     const recipesToDisplay = searchTags(checkedTags, allRecipes);
-    displaySidebarRecipes(recipesToDisplay);
+    displaySidebarRecipes(recipesToDisplay, recipesSelector);
 }
 
 function checkTags() {
@@ -166,7 +180,16 @@ function hide(element, hidden) {
 }
 
 function displayFavoritedRecipes() {
+    displaySidebarRecipes(newUser.favoriteRecipes.recipes, userRecipesSelector)
+}
 
+function displayToCookRecipes() {
+    console.log(newUser.recipeToCook.recipes)
+    displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector)
+}
+
+function displayPantry() {
+    displaySidebarRecipes(newUser.pantry, userRecipesSelector)
 }
 
 //need to change recipe title upon filtering 

@@ -1,8 +1,22 @@
 
 
 class Pantry {
-  constructor(userPantry) {
-    this.pantryItems = userPantry;
+  constructor(user, ingredientsData) {
+    this.pantryItems = user.pantry;
+    this.namedPantryItems = this.getIngredientsInfo(user.pantry, ingredientsData)
+  }
+
+  getIngredientsInfo(recipeIngredients, ingredientsData) {
+    let updatedIngredientInfo = recipeIngredients.map(ingredient => {
+      const ingredientInfo = ingredientsData.find(ingredientObject => {
+        return ingredient.ingredient === ingredientObject.id
+      })
+      let currentIngredient = ingredient;
+        currentIngredient.name = ingredientInfo.name
+        currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
+        return currentIngredient
+    });
+    return updatedIngredientInfo
   }
 
   userCanCook(recipe) {
