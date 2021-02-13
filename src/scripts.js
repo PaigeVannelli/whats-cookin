@@ -27,9 +27,6 @@ function setupPage() {
 }
 
 function displayAllRecipes() {
-    // recipeData.forEach(recipe => {
-    //     recipesSelector.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
-    // });
     displaySidebarRecipes(recipeData)
 };
 
@@ -81,15 +78,12 @@ function displayRandomRecipeCards(cardNumber, i) {
 function searchRecipes() {
     const allRecipes = setUpData()
     const recipeNameMatch = searchNames(allRecipes, searchBar)
-    // const recipeNameMatch = allRecipes.filterByName(searchBar.value.toLowerCase());
-    // const recipeIngredientMatch = allRecipes.filterByIngredient(searchBar.value.toLowerCase());
     const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
     const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
     displaySidebarRecipes(searchedRecipesToDisplay);
 }
 
 function setUpData() {
-    // const searchBar = document.getElementById("search");
     const newMutatedRecipes = recipeData.reduce((newRecipes, recipe) => {
         const mutatedRecipes = new Recipe(recipe, ingredientsData)
         newRecipes.push(mutatedRecipes)
@@ -123,14 +117,12 @@ function searchByTags() {
 
 function checkTags() {
     var test = document.querySelectorAll('input[type="checkbox"]');
-    console.log(test)
     let checkedTags = []
     test.forEach(tag => {
         if (tag.checked) {
             checkedTags.push(tag.name)
         }
     })
-    console.log(checkedTags)
     return checkedTags
 }
 
