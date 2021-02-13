@@ -641,7 +641,7 @@ let ingredientsTestData = [
           ],
           "name": "Mock Udi\u2019s Gluten Free Whole Grain Bread",
           "tags": []
-        }]   
+        }]
 
 
         let usersTestData = [
@@ -1720,8 +1720,404 @@ let ingredientsTestData = [
               ]
             }];
 
+            // pantry test items.
+
+            const pantryRecipeTestData = [
+                {
+                  "id": 595736,
+                  "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
+                  "ingredients": [
+                    {
+                      "id": 20081,
+                      "quantity": {
+                        "amount": .5,
+                        "unit": "c"
+                      }
+                    },
+                    {
+                      "id": 18372,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "tsp"
+                      }
+                    },
+                    {
+                      "id": 1123,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "large"
+                      }
+                    },
+                    {
+                      "id": 19335,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "c"
+                      }
+                    },
+                    {
+                      "id": 19206,
+                      "quantity": {
+                        "amount": 3,
+                        "unit": "Tbsp"
+                      }
+                    },
+                    {
+                      "id": 19334,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "c"
+                      }
+                    },
+                    {
+                      "id": 2047,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "tsp"
+                      }
+                    },
+                    {
+                      "id": 1012047,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "servings"
+                      }
+                    },
+                    {
+                      "id": 10019903,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "c"
+                      }
+                    },
+                    {
+                      "id": 1145,
+                      "quantity": {
+                        "amount": 5,
+                        "unit": "c"
+                      }
+                    }
+                  ],
+                  "instructions": [
+                    {
+                      "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
+                      "number": 1
+                    },
+                    {
+                      "instruction": "Add egg and vanilla and mix until combined.",
+                      "number": 2
+                    },
+                    {
+                      "instruction": "Add dry ingredients and mix on low just until incorporated. Stir in chocolate chips.Scoop the dough into 1,5 tablespoon size balls and place on a plate or sheet. Cover with saran wrap and chill at least 2 hours or overnight.When ready to bake, preheat oven to 350 degrees.",
+                      "number": 3
+                    },
+                    {
+                      "instruction": "Place the cookie dough balls into ungreased muffin pan. Sprinkle with sea salt.",
+                      "number": 4
+                    },
+                    {
+                      "instruction": "Bake for 9 to 10 minutes, or until you see the edges start to brown.",
+                      "number": 5
+                    },
+                    {
+                      "instruction": "Remove the pan from the oven and let sit for 10 minutes before removing onto a cooling rack.Top with ice cream and a drizzle of chocolate sauce.",
+                      "number": 6
+                    }
+                  ],
+                  "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+                  "tags": [
+                    "antipasti",
+                    "starter",
+                    "snack",
+                    "appetizer",
+                    "antipasto",
+                    "hor d'oeuvre"
+                  ]
+                },
+                {
+                  "id": 595736,
+                  "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
+                  "ingredients": [
+                    {
+                      "id": 20081,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "cups"
+                      }
+                    },
+                    {
+                      "id": 18372,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": ""
+                      }
+                    },
+                    {
+                      "id": 1123,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "tablespoon"
+                      }
+                    },
+                    {
+                      "id": 19335,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "tablespoon"
+                      }
+                    },
+                    {
+                      "id": 19206,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "clove"
+                      }
+                    },
+                    {
+                      "id": 19334,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "tablespoon"
+                      }
+                    },
+                    {
+                      "id": 2047,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "cup"
+                      }
+                    },
+                    {
+                      "id": 1012047,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "tablespoon"
+                      }
+                    },
+                    {
+                      "id": 10019903,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "ounce"
+                      }
+                    },
+                    {
+                      "id": 1145,
+                      "quantity": {
+                        "amount": 20,
+                        "unit": "servings"
+                      }
+                    }
+                  ],
+                  "instructions": [
+                    {
+                      "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
+                      "number": 1
+                    }
+                  ],
+                  "name": "Maple Dijon Apple Cider Grilled Pork Chops",
+                  "tags": [
+                    "lunch",
+                    "side dish",
+                    "main course",
+                    "main dish",
+                    "dinner"
+                  ]
+                },
+                {
+                  "id": 595736,
+                  "image": "https://spoonacular.com/recipeImages/562334-556x370.jpg",
+                  "ingredients": [
+                    {
+                      "id": 9037,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "teaspoons"
+                      }
+                    },
+                    {
+                      "id": 18372,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "teaspoon"
+                      }
+                    },
+                    {
+                      "id": 1123,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "cup"
+                      }
+                    },
+                    {
+                      "id": 19335,
+                      "quantity": {
+                        "amount": 2,
+                        "unit": "teaspoons"
+                      }
+                    },
+                    {
+                      "id": 19206,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "cup"
+                      }
+                    },
+                    {
+                      "id": 19334,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "large"
+                      }
+                    },
+                    {
+                      "id": 2047,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "teaspoons"
+                      }
+                    },
+                    {
+                      "id": 1012047,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "Tablespoons"
+                      }
+                    },
+                    {
+                      "id": 10019903,
+                      "quantity": {
+                        "amount": 1,
+                        "unit": "teaspoons"
+                      }
+                    },
+                    {
+                      "id": 1145,
+                      "quantity": {
+                        "amount": 20,
+                        "unit": "teaspoons"
+                      }
+                    }
+                  ],
+                  "instructions": [
+                    {
+                      "instruction": "Grease or spray oil a 9\u00d75 inch loaf pan.Preheat oven to 170 \u2013 200\u00b0F (lowest possible).",
+                      "number": 1
+                    },
+                    {
+                      "instruction": "Mix warm water with brown rice syrup, molasses, and yeast in a cup larger than 8 oz., as it may bubble over; set aside until foamy on the top, no more than 5 minutes.In the bowl of your mixer, beat the eggs at high speed in a large mixing bowl until large bubbles form, about 20 seconds.",
+                      "number": 2
+                    },
+                    {
+                      "instruction": "Whisk together the dry ingredients; set aside.",
+                      "number": 3
+                    },
+                    {
+                      "instruction": "Add the oil, vinegar and yeast mixture to the egg whites and blend on low for a few seconds.",
+                      "number": 4
+                    },
+                    {
+                      "instruction": "Add dry ingredients all at once and mix on low speed until all dry ingredients are moistened. Then beat on high for 1 minute.",
+                      "number": 5
+                    },
+                    {
+                      "instruction": "Add dough batter to prepared pan and distribute and smooth the top using a rubber spatula. You'll want to meet all sides of the pan. If you miss the corners that will still be okay. It will fill in upon rising. To even out top, drop a few drops of filtered water on top, and spread evenly with a rubber spatula, or dip spatula in water several times.",
+                      "number": 6
+                    },
+                    {
+                      "instruction": "Place the bread pan in the oven. Turn oven off. Allow the dough to rise until the center is about 1/2\u201d over the top of the pan, about 22 minutes. It will rise more while the oven is heating and during baking.",
+                      "number": 7
+                    },
+                    {
+                      "instruction": "Remove pan from oven and preheat oven to 375\u00b0F.",
+                      "number": 8
+                    },
+                    {
+                      "instruction": "Place the pan on the center of the rack in the center of the oven and bake for about 45 minutes or more.",
+                      "number": 9
+                    },
+                    {
+                      "instruction": "Remove the loaf from the oven and immediately remove it from the pan (careful it will be hot), and set the loaf on a cooling rack to cool. If you do not remove it right away the steam will make the crust soggy.Slice off the two ends to allow the steam to escape, or it will begin to sink in on the sides and bottom.Once cooled, it will shrink a little bit. Slice it with an electric slicer, electric knife or serrated knife. You'll get about 13-16, depending upon how thick you slice it.",
+                      "number": 10
+                    }
+                  ],
+                  "name": "Test",
+                  "tags": []
+                }]
+
+            let pantryUsersTestData = [
+                {
+                  "name": "Test",
+                  "id": 1,
+                  "pantry": [
+                    {
+                      "ingredient": 20081,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 18372,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 1123,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 19335,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 19206,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 19334,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 2047,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 1012047,
+                      "amount": 5
+                    },
+                    {
+                      "ingredient": 10019903,
+                      "amount": 10
+                    },
+                    {
+                      "ingredient": 1145,
+                      "amount": 10
+                    },
+                    {
+                      "ingredient": 2050,
+                      "amount": 10
+                    },
+                    {
+                      "ingredient": 1009016,
+                      "amount": 10
+                    },
+                    {
+                      "ingredient": 9003,
+                      "amount": 10
+                    },
+                    {
+                      "ingredient": 20027,
+                      "amount": 10
+                    },
+                    {
+                      "ingredient": 1002046,
+                      "amount": 10.5
+                    }
+                  ]
+                }];
+
+
             module.exports = {
               ingredientsTestData,
               recipeTestData,
               usersTestData,
+              pantryUsersTestData,
+              pantryRecipeTestData
             }
