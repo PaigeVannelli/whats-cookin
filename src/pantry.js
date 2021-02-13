@@ -1,3 +1,5 @@
+
+
 class Pantry {
   constructor(userPantry) {
     this.pantryItems = userPantry;
@@ -7,7 +9,7 @@ class Pantry {
     let canCook = true;
     recipe.ingredients.forEach(item => {
       let checkCook = this.pantryItems.findIndex(pantryItem => {
-        return item.id === pantryItem.ingredient && item.quantity.amount < pantryItem.amount;
+        return item.id === pantryItem.ingredient && item.quantity.amount <= pantryItem.amount;
       })
       if (checkCook === -1) {
         canCook = false;
@@ -21,24 +23,24 @@ class Pantry {
         let checkCook = this.pantryItems.findIndex(pantryItem => {
           return item.id === pantryItem.ingredient;
       })
-      this.pantryItems[checkCook].amount = this.pantryItems[checkCook].amount - item.quantity.amount;
+      this.pantryItems[checkCook].amount -= item.quantity.amount;
     })
   }
 
   whatsMissing(recipe) {
     let missing = [];
-    // may need to add anouther var to save pantryItem, will not save outide of the findIndex-loop
-    // may also be able to do this with a reduce method.
     recipe.ingredients.forEach(item => {
-      let checkCook = this.pantryItems.findIndex(pantryItem => {
-        return item.id === pantryItem.ingredient && item.quantity.amount < pantryItem.amount;
+      let pantryItemIndex = this.pantryItems.findIndex(pantryItem => {
+        return item.id === pantryItem.ingredient;
       })
-      if (checkCook === -1) {
-        let missQty = item.quantity.amount - pantryItem.amount;
-        missing.push({ id: item.id, amount: missQty});
+      if (pantryItemIndex === - 1) {
+        let missQty = item.quantity.amount;
+        missing.push(`${item.name} qty. ${missQty}`);
+      } else if (item.quantity.amount > this.pantryItems[pantryItemIndex].amount) {
+        let pantryItem = this.pantryItems[pantryItemIndex];
+        missing.push(`${item.name} qty. ${item.quantity.amount - pantryItem.amount}`);
       }
     });
-    console.log(missing);
     return missing;
   }
 

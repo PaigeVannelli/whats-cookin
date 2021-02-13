@@ -41,7 +41,6 @@ describe('Pantry', function() {
 
   it(`Should store an array of ingredients`, function() {
     const pantry = new Pantry(user.pantry)
-    // console.log(recipe1.ingredients[0].quantity.amount)
     expect(pantry.pantryItems.length).to.be.equal(15);
   });
 
@@ -60,7 +59,7 @@ describe('Pantry', function() {
     it(`Should return false if missing ingredient quantity`, function() {
       const pantry = new Pantry(user.pantry);
       expect(pantry.userCanCook(recipe2)).to.equal(false);
-    })
+    });
 
   });
 
@@ -88,11 +87,19 @@ describe('Pantry', function() {
       ]);
     });
 
-    it(`Should be able to determine what ingredients are missing`, function() {
+  });
+
+  describe('whatsMissing', function() {
+
+    it(`Should be able to determine what ingredients are low on`, function() {
       const pantry = new Pantry(user.pantry);
-      expect(pantry.whatsMissing(recipe3)).to.deep.equal("arrayOfobjects")
+      expect(pantry.whatsMissing(recipe2)).to.deep.equal(['unsalted butter qty. 15']);
     });
 
-  })
+    it(`Should be able to determine what ingredients are missing`, function() {
+      const pantry = new Pantry(user.pantry);
+      expect(pantry.whatsMissing(recipe3)).to.deep.equal(['haas avocados qty. 1']);
+    });
+  });
 
 });

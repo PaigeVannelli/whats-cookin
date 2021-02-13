@@ -1994,7 +1994,7 @@ let ingredientsTestData = [
                     {
                       "id": 1145,
                       "quantity": {
-                        "amount": 20,
+                        "amount": 1,
                         "unit": "teaspoons"
                       }
                     }
