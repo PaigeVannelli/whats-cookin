@@ -29,8 +29,7 @@ displayPantryButton.addEventListener('click', displayPantry);
 userRecipeSidebar.addEventListener("click", displayRecipe);
 toCookButton.addEventListener("click", saveToCook);
 favButton.addEventListener("click", saveToFav);
-toCookButton.addEventListener("dblclick", removeToCook);
-favButton.addEventListener("dblclick", removeToFav);
+
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -70,8 +69,8 @@ function getRandomIndex(array) {
 function generateRandomUser() {
     newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
     newUser.pantry = new Pantry(newUser, ingredientsData)
-    newUser.favoriteRecipes.recipes = [recipeData[5]]
-    newUser.recipeToCook.recipes = [recipeData[3]]
+    // newUser.favoriteRecipes.recipes = [recipeData[5]]
+    // newUser.recipeToCook.recipes = [recipeData[3]]
     console.log(newUser)
 }
 
@@ -85,7 +84,7 @@ function displayRecipe() {
 
 function displayMainCard(recipe) {
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
-    test = targetRecipe;
+    currentRecipe = targetRecipe;
     const instructions = targetRecipe.returnInstructions()
     const cost = targetRecipe.returnCost()
     const mainCardTitle = document.getElementById("mainName")
@@ -161,13 +160,16 @@ function searchTags(tags, recipes) {
 }
 
 function saveToCook() {
-  newUser.recipeToCook.recipes.push(currentRecipe);
+  if (!newUser.recipeToCook.recipes.includes(currentRecipe)) {
+  newUser.addRecipe(currentRecipe, "recipeToCook");
+  }
 }
 
 function saveToFav() {
-  newUser.favoriteRecipes.recipes.push(currentRecipe);
+  if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
+    newUser.addRecipe(currentRecipe, "favoriteRecipes");
+  }
 }
-
 
 
 function displayUserPage() {
@@ -195,12 +197,13 @@ function displayFavoritedRecipes() {
 }
 
 function displayToCookRecipes() {
-    console.log(newUser.recipeToCook.recipes)
+
     displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector)
 }
 
 function displayPantry() {
-    displaySidebarRecipes(newUser.pantry, userRecipesSelector)
+  console.log(newUser.pantry.pantryItems);
+    displaySidebarRecipes(newUser.pantry.pantryItems, userRecipesSelector)
 }
 
 //need to change recipe title upon filtering
