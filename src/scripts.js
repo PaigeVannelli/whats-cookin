@@ -12,8 +12,10 @@ const displayToCookButton = document.getElementById("displayToCookButton");
 const displayPantryButton = document.getElementById("displayPantryButton");
 const userRecipesSelector = document.getElementById("userRecipeSelect");
 const userRecipeSidebar = document.getElementById("userSideBar");
+const toCookButton = document.getElementById("toCookButton");
+const favButton = document.getElementById("favButton");
 let newUser = {}
-
+let currentRecipe
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
 window.addEventListener('load', setupPage);
@@ -25,17 +27,21 @@ displayFavoritesButton.addEventListener('click', displayFavoritedRecipes);
 displayToCookButton.addEventListener('click', displayToCookRecipes);
 displayPantryButton.addEventListener('click', displayPantry);
 userRecipeSidebar.addEventListener("click", displayRecipe);
+toCookButton.addEventListener("click", saveToCook);
+favButton.addEventListener("click", saveToFav);
+toCookButton.addEventListener("dblclick", removeToCook);
+favButton.addEventListener("dblclick", removeToFav);
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
 function setupPage() {
-    displayAllRecipes()
-    displayRandomMainCard()
+    displayAllRecipes();
+    displayRandomMainCard();
     generateRandomUser();
-    displayRandomRecipeCards(1, 15)
-    displayRandomRecipeCards(2, 7)
-    displayRandomRecipeCards(3, 22)
-    displayRandomRecipeCards(4, 11)
+    displayRandomRecipeCards(1, recipeData);
+    displayRandomRecipeCards(2, recipeData);
+    displayRandomRecipeCards(3, recipeData);
+    displayRandomRecipeCards(4, recipeData);
 }
 
 function displayAllRecipes() {
@@ -63,7 +69,6 @@ function getRandomIndex(array) {
 
 function generateRandomUser() {
     newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
-    console.log(newUser)
     newUser.pantry = new Pantry(newUser, ingredientsData)
     newUser.favoriteRecipes.recipes = [recipeData[5]]
     newUser.recipeToCook.recipes = [recipeData[3]]
@@ -80,6 +85,7 @@ function displayRecipe() {
 
 function displayMainCard(recipe) {
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
+    test = targetRecipe;
     const instructions = targetRecipe.returnInstructions()
     const cost = targetRecipe.returnCost()
     const mainCardTitle = document.getElementById("mainName")
@@ -92,9 +98,10 @@ function displayMainCard(recipe) {
     mainCardCost.innerHTML = `Total Cost: ${cost}`
 }
 
-function displayRandomRecipeCards(cardNumber, i) {
-    document.getElementById(`smallCardImg${cardNumber}`).src = `${recipeData[i].image}`
-    document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[i].name}`
+function displayRandomRecipeCards(cardNumber, array) {
+    const index = getRandomIndex(array);
+    document.getElementById(`smallCardImg${cardNumber}`).src = `${recipeData[index].image}`
+    document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[index].name}`
 }
 
 function searchRecipes() {
@@ -153,9 +160,13 @@ function searchTags(tags, recipes) {
     return recipeTagsMatch
 }
 
+function saveToCook() {
+  newUser.recipeToCook.recipes.push(currentRecipe);
+}
 
-
-
+function saveToFav() {
+  newUser.favoriteRecipes.recipes.push(currentRecipe);
+}
 
 
 
@@ -192,4 +203,4 @@ function displayPantry() {
     displaySidebarRecipes(newUser.pantry, userRecipesSelector)
 }
 
-//need to change recipe title upon filtering 
+//need to change recipe title upon filtering
