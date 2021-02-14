@@ -14,6 +14,8 @@ const userRecipesSelector = document.getElementById("userRecipeSelect");
 const userRecipeSidebar = document.getElementById("userSideBar");
 const toCookButton = document.getElementById("toCookButton");
 const favButton = document.getElementById("favButton");
+const cookNowButton = document.getElementById("cookNowButton");
+const unFavoriteButton = document.getElementById("unFavoriteButton");
 let newUser = {}
 let currentRecipe
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
@@ -29,7 +31,8 @@ displayPantryButton.addEventListener('click', displayPantry);
 userRecipeSidebar.addEventListener("click", displayRecipe);
 toCookButton.addEventListener("click", saveToCook);
 favButton.addEventListener("click", saveToFav);
-
+// cookNowButton.addEventListener("click", );
+unFavoriteButton.addEventListener("click", unFavorite);
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -171,15 +174,29 @@ function saveToFav() {
   }
 }
 
-
-function displayUserPage() {
-    displayUserPage();
-    displayPantryItems();
-    displayFavoritedRecipes();
-    displayRecipesToCook();
+function unFavorite() {
+  newUser.removeRecipe(currentRecipe, "favoriteRecipes");
 }
 
+
 function displayUserPage() {
+  console.log("test2");
+    displayUserSidebar();
+    // displayPantryItems();
+    // displayFavoritedRecipes();
+    // displayRecipesToCook();
+    changeButtonOptions();
+}
+
+function changeButtonOptions() {
+  console.log("test");
+    hide('toCookButton', true);
+    hide('favButton', true);
+    hide('cookNowButton', false);
+    hide('unFavoriteButton', false);
+}
+
+function displayUserSidebar() {
     hide('mainSideBar', true);
     hide('userSideBar', false);
 }
