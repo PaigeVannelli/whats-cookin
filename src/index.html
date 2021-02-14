@@ -12,6 +12,7 @@
         <label class="search-label" for="search">Search</label>
         <input type="search" class="search" id="search"></search>
         <button class="search-button" id="searchButton">Search</button>
+        <button class="search-button hidden" id="searchFavoritesButton">Search Favorites</button>
       </article>
       <article class="tags-container">
         <form class="select" multiple size="4" name="tags" id="tagSelect">
@@ -49,6 +50,7 @@
           <label for="starter">Starter</label>
         </form>
         <button class="search-button tags-button" id="searchByTagsButton">Search By Tag</button>
+        <button class="search-button tags-button" id="tagsFavoriteButton">Search Favorites By Tag</button>
       </article>
       <button class="user-page top-button" id="userPageButton">User Page</button>
     </header>
@@ -68,8 +70,10 @@
               </div>
               <p class="cost" id="cost">Cost</p>
               <div class="main-card-buttons">
-                <button class="card-buttons" id="cardButtonOne">Main button</button>
-                <button class="card-buttons" id="cardButtonTwo">Main button</button>
+                <button class="card-buttons" id="toCookButton">To Cook</button>
+                <button class="card-buttons" id="favButton">Favorite</button>
+                <button class="card-buttons hidden" id="cookNowButton">Cook Now</button>
+                <button class="card-buttons hidden" id="unFavoriteButton">Unfavorite</button>
               </div>
             </article>
           </div>
@@ -126,6 +130,7 @@
           <button class="sidebar-display-button" id="displayPantryButton">Pantry Items</button>
         </div>
         <select class="sidebar-select" single size="25" name="recipes" id="userRecipeSelect">
+          <p class"side-header-text">RECIPE SELECT</p>
         </select>
         <!-- <p class="list-of-stuff" id="listOfStuff">recipes/pantry</p> -->
       </section>
