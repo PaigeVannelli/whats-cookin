@@ -5,6 +5,7 @@ const recipeSidebar = document.getElementById("mainSideBar");
 const recipesSelector = document.getElementById("mainRecipeSelect")
 const searchButton = document.getElementById("searchButton")
 const searchByTagsButton = document.getElementById("searchByTagsButton");
+const tagsFavoriteButton = document.getElementById("tagsFavoriteButton");
 const searchBar = document.getElementById("search")
 const userPageButton = document.getElementById("userPageButton");
 const displayFavoritesButton = document.getElementById("displayFavoritesButton");
@@ -16,6 +17,8 @@ const toCookButton = document.getElementById("toCookButton");
 const favButton = document.getElementById("favButton");
 const cookNowButton = document.getElementById("cookNowButton");
 const unFavoriteButton = document.getElementById("unFavoriteButton");
+const searchFavoritesButton = document.getElementById("searchFavoritesButton");
+
 let newUser = {}
 let currentRecipe
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
@@ -24,6 +27,7 @@ window.addEventListener('load', setupPage);
 recipeSidebar.addEventListener("click", displayRecipe);
 searchButton.addEventListener('click', searchRecipes);
 searchByTagsButton.addEventListener('click', searchByTags);
+tagsFavoriteButton.addEventListener('click', searchFavoritesByTags);
 userPageButton.addEventListener('click', displayUserPage);
 displayFavoritesButton.addEventListener('click', displayFavoritedRecipes);
 displayToCookButton.addEventListener('click', displayToCookRecipes);
@@ -33,6 +37,7 @@ toCookButton.addEventListener("click", saveToCook);
 favButton.addEventListener("click", saveToFav);
 // cookNowButton.addEventListener("click", );
 unFavoriteButton.addEventListener("click", unFavorite);
+searchFavoritesButton.addEventListener('click', searchFavorites)
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -106,16 +111,32 @@ function displayRandomRecipeCards(cardNumber, array) {
     document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[index].name}`
 }
 
+// function searchRecipes() {
+//     const allRecipes = setUpData()
+//     const recipeNameMatch = searchNames(allRecipes, searchBar)
+//     const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
+//     const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
+//     displaySidebarRecipes(searchedRecipesToDisplay, recipesSelector);
+// }
+
 function searchRecipes() {
-    const allRecipes = setUpData()
+    const allRecipes = setUpData(recipeData)
     const recipeNameMatch = searchNames(allRecipes, searchBar)
     const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
     const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
     displaySidebarRecipes(searchedRecipesToDisplay, recipesSelector);
 }
 
-function setUpData() {
-    const newMutatedRecipes = recipeData.reduce((newRecipes, recipe) => {
+function searchFavorites() {
+    const allRecipes = setUpData(newUser.favoriteRecipes.recipes)
+    const recipeNameMatch = searchNames(allRecipes, searchBar)
+    const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
+    const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
+    displaySidebarRecipes(searchedRecipesToDisplay, userRecipesSelector);
+}
+
+function setUpData(recipesToSearch) {
+    const newMutatedRecipes = recipesToSearch.reduce((newRecipes, recipe) => {
         const mutatedRecipes = new Recipe(recipe, ingredientsData)
         newRecipes.push(mutatedRecipes)
         return newRecipes
@@ -140,10 +161,17 @@ function compareNamesIngredients(recipeNameMatch, recipeIngredientMatch) {
 }
 
 function searchByTags() {
-    const allRecipes = setUpData()
+    const allRecipes = setUpData(recipeData)
     const checkedTags = checkTags()
     const recipesToDisplay = searchTags(checkedTags, allRecipes);
     displaySidebarRecipes(recipesToDisplay, recipesSelector);
+}
+
+function searchFavoritesByTags() {
+    const allRecipes = setUpData(newUser.favoriteRecipes.recipes)
+    const checkedTags = checkTags()
+    const recipesToDisplay = searchTags(checkedTags, allRecipes);
+    displaySidebarRecipes(recipesToDisplay, userRecipesSelector);
 }
 
 function checkTags() {
@@ -180,7 +208,6 @@ function unFavorite() {
 
 
 function displayUserPage() {
-  console.log("test2");
     displayUserSidebar();
     // displayPantryItems();
     // displayFavoritedRecipes();
@@ -192,8 +219,10 @@ function changeButtonOptions() {
   console.log("test");
     hide('toCookButton', true);
     hide('favButton', true);
+    hide('searchButton', true);
     hide('cookNowButton', false);
     hide('unFavoriteButton', false);
+    hide('searchFavoritesButton', false);
 }
 
 function displayUserSidebar() {
@@ -210,6 +239,7 @@ function hide(element, hidden) {
 }
 
 function displayFavoritedRecipes() {
+console.log(newUser.favoriteRecipes.recipes)
     displaySidebarRecipes(newUser.favoriteRecipes.recipes, userRecipesSelector)
 }
 
