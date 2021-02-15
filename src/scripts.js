@@ -18,13 +18,14 @@ const favButton = document.getElementById("favButton");
 const cookNowButton = document.getElementById("cookNowButton");
 const unFavoriteButton = document.getElementById("unFavoriteButton");
 const searchFavoritesButton = document.getElementById("searchFavoritesButton");
+const mainPageButton = document.getElementById("whatsButton")
 
 let newUser = {}
 let currentRecipe
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
 window.addEventListener('load', setupPage);
-recipeSidebar.addEventListener("click", displayRecipe);
+recipesSelector.addEventListener("click", displayRecipe);
 searchButton.addEventListener('click', searchRecipes);
 searchByTagsButton.addEventListener('click', searchByTags);
 tagsFavoriteButton.addEventListener('click', searchFavoritesByTags);
@@ -32,12 +33,13 @@ userPageButton.addEventListener('click', displayUserPage);
 displayFavoritesButton.addEventListener('click', displayFavoritedRecipes);
 displayToCookButton.addEventListener('click', displayToCookRecipes);
 displayPantryButton.addEventListener('click', displayPantry);
-userRecipeSidebar.addEventListener("click", displayRecipe);
+userRecipesSelector.addEventListener("click", displayRecipe);
 toCookButton.addEventListener("click", saveToCook);
 favButton.addEventListener("click", saveToFav);
-// cookNowButton.addEventListener("click", );
+cookNowButton.addEventListener("click", returnCookingInfo);
 unFavoriteButton.addEventListener("click", unFavorite);
-searchFavoritesButton.addEventListener('click', searchFavorites)
+searchFavoritesButton.addEventListener('click', searchFavorites);
+
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -59,7 +61,13 @@ function displayAllRecipes() {
 function displaySidebarRecipes(array, displayArea) {
     displayArea.innerHTML = ""
     array.forEach(recipe => {
-        displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
+        // if (recipe.canCook) {
+        //     displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name} Can Cook</option>`)
+        // } else if (recipe.canCook === false) {
+        //     displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name} Can't Cook</option>`)
+        // } else {
+            displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
+        // }
     });
 }
 
@@ -79,12 +87,12 @@ function generateRandomUser() {
     newUser.pantry = new Pantry(newUser, ingredientsData)
     // newUser.favoriteRecipes.recipes = [recipeData[5]]
     // newUser.recipeToCook.recipes = [recipeData[3]]
-    console.log(newUser)
 }
 
 function displayRecipe() {
     const recipeID = event.target.id
     const matchingRecipe = recipeData.filter(recipe => {
+        // console.log("recipe ids", recipe.id, parseInt(recipeID), recipeID)
         return recipe.id === parseInt(recipeID)
     })
     displayMainCard(matchingRecipe)
@@ -204,25 +212,35 @@ function saveToFav() {
 
 function unFavorite() {
   newUser.removeRecipe(currentRecipe, "favoriteRecipes");
+  displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector)
+  displayFavoritedRecipes()
 }
 
 
 function displayUserPage() {
     displayUserSidebar();
     // displayPantryItems();
-    // displayFavoritedRecipes();
+    displayFavoritedRecipes();
     // displayRecipesToCook();
     changeButtonOptions();
 }
 
 function changeButtonOptions() {
-  console.log("test");
     hide('toCookButton', true);
     hide('favButton', true);
     hide('searchButton', true);
+    hide('searchByTagsButton', true);
     hide('cookNowButton', false);
+    checkIfCookable()
     hide('unFavoriteButton', false);
     hide('searchFavoritesButton', false);
+    hide('tagsFavoriteButton', false);
+}
+
+function checkIfCookable() {
+    if (!displayCanCook()) {
+        cookNowButton.innerHTML = 'Check Ingredients'
+    }
 }
 
 function displayUserSidebar() {
@@ -239,13 +257,12 @@ function hide(element, hidden) {
 }
 
 function displayFavoritedRecipes() {
-console.log(newUser.favoriteRecipes.recipes)
     displaySidebarRecipes(newUser.favoriteRecipes.recipes, userRecipesSelector)
 }
 
 function displayToCookRecipes() {
-
-    displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector)
+    // displayCanCook()
+    displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector);
 }
 
 function displayPantry() {
@@ -253,4 +270,19 @@ function displayPantry() {
     displaySidebarRecipes(newUser.pantry.pantryItems, userRecipesSelector)
 }
 
-//need to change recipe title upon filtering
+function displayCanCook() {
+    newUser.recipeToCook.recipes.forEach(recipe => {
+        recipe.canCook = newUser.pantry.userCanCook(recipe)
+    })
+}
+
+function returnCookingInfo() {
+    const mainCardInstructions = document.getElementById("instructions")
+    if (displayCanCook()) {
+        console.log("ingredients")
+    } else if (!displayCanCook()) {
+        console.log(newUser.pantry.whatsMissing(currentRecipe))
+        mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
+    }
+}
+

@@ -6,8 +6,8 @@ class Pantry {
     this.namedPantryItems = this.getIngredientsInfo(user.pantry, ingredientsData)
   }
 
-  getIngredientsInfo(recipeIngredients, ingredientsData) {
-    let updatedIngredientInfo = recipeIngredients.map(ingredient => {
+  getIngredientsInfo(pantryIngredients, ingredientsData) {
+    let updatedIngredientInfo = pantryIngredients.map(ingredient => {
       const ingredientInfo = ingredientsData.find(ingredientObject => {
         return ingredient.ingredient === ingredientObject.id
       })
@@ -25,6 +25,7 @@ class Pantry {
       let checkCook = this.pantryItems.findIndex(pantryItem => {
         return item.id === pantryItem.ingredient && item.quantity.amount <= pantryItem.amount;
       })
+      console.log(recipe.name, checkCook)
       if (checkCook === -1) {
         canCook = false;
       }
