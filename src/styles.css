@@ -3,12 +3,24 @@
 *:before {
   margin: 0;
   padding: 0;
+  /* border: solid 2px red; */
 }
 
 /* ---gen stuff */
 body {
   background-color: #2B8A8C;
+  /* background-image: url('../assets/background-image1.jpg'); */
+  background-image: url('../assets/background-image2.jpg');
+  background-size: 100%;
 }
+
+/* body * {
+  opacity: 95%;
+} */
+
+/* img {
+  opacity: 100%;
+} */
 
 button {
   background-color: #223037;
@@ -30,7 +42,8 @@ button:hover {
   display: flex;
   width: 100%;
   height: 60px;
-  background-color: #F8B736;
+  /* background-color: #F8B736; */
+  background-color: #2B8A8C;
   justify-content: space-around;
   align-items: center;
 }
@@ -38,6 +51,24 @@ button:hover {
 .top-button {
   height: 35px;
   width: 200px;
+  border: none;
+  outline: none;
+  width: max-content;
+  height: max-content;
+  font-size: 2rem;
+  background: none;
+}
+
+.whats-Button {
+  display: flex;
+  align-items: center;
+}
+
+.whats-Button img {
+  height: 2rem;
+  width: 2rem;
+  color: white;
+  margin-right: .5rem;
 }
 
 .search,
@@ -62,6 +93,11 @@ button:hover {
   height: 20px;
 }
 
+.user-page {
+  border: solid .2rem;
+  padding: .2rem .4rem;
+}
+
 /* Left display area */
 
 .left-side-styling {
@@ -77,28 +113,41 @@ button:hover {
 .main-card-layout {
   background-color: #DDD9C5;
   display: flex;
+  border-radius: 5px 5px 5px 5px;
+  opacity: .95;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+
 }
 
 .main-card-img {
   height: 350px;
   width: 480px;
+  border-radius: 5px 0 0 5px;
+  opacity: 100%;
 }
 
 .main-info-layout {
   display: flex;
   align-items: center;
   flex-direction: column;
+  border-radius: 0 0px 15px 0;
+  opacity: .95;
 }
 
 .main-card-header {
   display: flex;
   font-size: 1.5em;
+  color: #DDD9C5;
   align-items: center;
   justify-content: center;
-  background-color: #F8B736;
+  text-align: center;
+  /* background-color: #F8B736; */
+  background-color: #2B8A8C;
   margin-bottom: 10px;
   height: 60px;
   width: 480px;
+  border-radius: 0 5px 0px 0;
+  opacity: .95;
 }
 
 .main-card-stuff {
@@ -108,6 +157,7 @@ button:hover {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+  opacity: 95%;
 }
 
 .instructions,
@@ -152,21 +202,32 @@ button:hover {
   width:  200px;
   height: 270px;
   background-color: #DDD9C5;
+  border-radius: 5px;
+  opacity: .95;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .small-card-img {
   height: 140px;
   width: 200px;
+  border-radius: 5px 5px 0 0;
 }
 
 .like-header {
+  color: #DDD9C5;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 200px;
   height: 40px;
-  background-color: #F8B736;
+  /* background-color: #F8B736; */
+  background-color: #2B8A8C;
+  /* background-color: #223037; */
 }
+
+/* .small-name {
+  font: #DDD9C5;
+} */
 
 /* ---Right sidebar--- */
 
@@ -178,17 +239,25 @@ button:hover {
   height: 692px;
   background-color: #DDD9C5;
   margin: 45px 5px 45px 5px;
+  border-radius: 5px;
+  opacity: .95;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
 .side-header {
+  color: #DDD9C5;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1.5em;
   height: 60px;
   width: 340px;
-  background-color: #F8B736;
+  /* background-color: #F8B736; */
+  background-color: #2B8A8C;
   outline: none;
+  border-radius: 5px 5px 0 0;
+  opacity: .95;
 }
 
 .sidebar-select {
@@ -201,7 +270,9 @@ button:hover {
   background-color: #DDD9C5;
   margin-top: .4em;
   width: 95%;
-  height: 90%
+  height: 90%;
+  opacity: .95;
+
 }
 
 
@@ -232,6 +303,7 @@ button:hover {
 .hidden {
   display: none
 }
+
 
 /* @media screen and (max-width: 425px) {
     .example class {
