@@ -47,14 +47,14 @@ function setupPage() {
     displayAllRecipes();
     displayRandomMainCard();
     generateRandomUser();
-    displayRandomRecipeCards(1, recipeData);
-    displayRandomRecipeCards(2, recipeData);
-    displayRandomRecipeCards(3, recipeData);
-    displayRandomRecipeCards(4, recipeData);
+    // displayRandomRecipeCards(1, recipeData);
+    // displayRandomRecipeCards(2, recipeData);
+    // displayRandomRecipeCards(3, recipeData);
+    // displayRandomRecipeCards(4, recipeData);
+    buildLikeCards(recipeData);
 }
 
 function displayAllRecipes() {
-    // console.log(recipesSelector)
     displaySidebarRecipes(recipeData, recipesSelector);
 };
 
@@ -91,6 +91,8 @@ function displayRecipe() {
 }
 
 function displayMainCard(recipe) {
+  const list = likeList(recipe)
+  buildLikeCards(list);
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
     // let targetRecipe = currentRecipe
     currentRecipe = targetRecipe;
@@ -105,6 +107,15 @@ function displayMainCard(recipe) {
     mainCardInstructions.innerHTML = `${instructions.join(" ")}`
     mainCardCost.innerHTML = `Total Cost: ${cost}`
 }
+
+function likeList(recipe) {
+  let list = [];
+  recipeData.forEach(rec => {
+    if (rec.tags.includes(recipe[0].tags[0])) {
+      list.push(rec);
+    };
+  });
+  return list;
 
 // function checkFavoritesButton() {
     // console.log(newUser.favoriteRecipes.recipes.includes(currentRecipe))
@@ -125,28 +136,44 @@ function displayRandomRecipeCards(cardNumber, array) {
     document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[index].name}`
 }
 
-// function searchRecipes() {
-//     const allRecipes = setUpData()
-//     const recipeNameMatch = searchNames(allRecipes, searchBar)
-//     const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
-//     const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
-//     displaySidebarRecipes(searchedRecipesToDisplay, recipesSelector);
+function buildLikeCards(items) {
+  for (let i = 1; i <= 4; i++) {
+    const index = getRandomIndex(items);
+    document.getElementById(`smallCardImg${i}`).src = `${items[index].image}`
+    document.getElementById(`smallName${i}`).innerHTML = `${items[index].name}`
+  }
+}
+
+// function displayRandomRecipeCards(cardNumber, array) {
+//     const index = getRandomIndex(array);
+//     document.getElementById(`smallCardImg${cardNumber}`).src = `${recipeData[index].image}`
+//     document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[index].name}`
 // }
 
 function searchRecipes() {
-    const allRecipes = setUpData(recipeData)
-    const recipeNameMatch = searchNames(allRecipes, searchBar)
-    const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
-    const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
-    displaySidebarRecipes(searchedRecipesToDisplay, recipesSelector);
+    search(recipeData, recipesSelector);
+    // const allRecipes = setUpData(recipeData)
+    // const recipeNameMatch = searchNames(allRecipes, searchBar)
+    // const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
+    // const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
+    // displaySidebarRecipes(searchedRecipesToDisplay, recipesSelector);
 }
 
 function searchFavorites() {
-    const allRecipes = setUpData(newUser.favoriteRecipes.recipes)
-    const recipeNameMatch = searchNames(allRecipes, searchBar)
-    const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
-    const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
-    displaySidebarRecipes(searchedRecipesToDisplay, userRecipesSelector);
+    search(newUser.favoriteRecipes.recipes, userRecipesSelector);
+    // const allRecipes = setUpData(newUser.favoriteRecipes.recipes)
+    // const recipeNameMatch = searchNames(allRecipes, searchBar)
+    // const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
+    // const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
+    // displaySidebarRecipes(searchedRecipesToDisplay, userRecipesSelector);
+}
+
+function search(list, display) {
+  const allRecipes = setUpData(list)
+  const recipeNameMatch = searchNames(allRecipes, searchBar)
+  const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
+  const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
+  displaySidebarRecipes(searchedRecipesToDisplay, display);
 }
 
 function setUpData(recipesToSearch) {
@@ -188,6 +215,13 @@ function searchFavoritesByTags() {
     displaySidebarRecipes(recipesToDisplay, userRecipesSelector);
 }
 
+function searchTags(list) {
+  const allRecipes = setUpData(list)
+  const checkedTags = checkTags()
+  const recipesToDisplay = searchTags(checkedTags, allRecipes);
+  displaySidebarRecipes(recipesToDisplay, userRecipesSelector);
+}
+
 function checkTags() {
     var test = document.querySelectorAll('input[type="checkbox"]');
     let checkedTags = []
@@ -222,14 +256,16 @@ function unFavorite() {
   displayFavoritedRecipes()
 }
 
-
 function displayUserPage() {
     displayUserSidebar();
     displayFavoritedRecipes();
     userButtonOptions();
 }
 
+
+// function changeButtonOptions() {
 function userButtonOptions() {
+
     hide('toCookButton', true);
     hide('favButton', true);
     hide('searchButton', true);
@@ -270,12 +306,10 @@ function displayFavoritedRecipes() {
 }
 
 function displayToCookRecipes() {
-    // displayCanCook()
     displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector);
 }
 
 function displayPantry() {
-  console.log(newUser.pantry.pantryItems);
     displaySidebarRecipes(newUser.pantry.pantryItems, userRecipesSelector)
 }
 
