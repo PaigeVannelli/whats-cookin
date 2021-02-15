@@ -44,9 +44,9 @@ mainPageButton.addEventListener('click', displayMainPage)
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
 function setupPage() {
+    generateRandomUser();
     displayAllRecipes();
     displayRandomMainCard();
-    generateRandomUser();
     // displayRandomRecipeCards(1, recipeData);
     // displayRandomRecipeCards(2, recipeData);
     // displayRandomRecipeCards(3, recipeData);
@@ -96,6 +96,7 @@ function displayMainCard(recipe) {
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
     // let targetRecipe = currentRecipe
     currentRecipe = targetRecipe;
+    checkIfFavorited()
     const instructions = targetRecipe.returnInstructions()
     const cost = targetRecipe.returnCost()
     const mainCardTitle = document.getElementById("mainName")
@@ -116,6 +117,16 @@ function likeList(recipe) {
     };
   });
   return list;
+}
+
+function checkIfFavorited() {
+    if (newUser.favoriteRecipes.recipes.some(favRec => favRec.id === currentRecipe.id)) {
+        hide('favButton', true)
+        hide('unFavoriteButton', false)
+    } else {
+        hide('favButton', false)
+        hide('unFavoriteButton', true)
+    }
 }
 
 
@@ -250,11 +261,13 @@ function saveToFav() {
     if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
         newUser.addRecipe(currentRecipe, "favoriteRecipes");
     }
+    checkIfFavorited()
 }
 
 function unFavorite() {
   newUser.removeRecipe(currentRecipe, "favoriteRecipes");
   displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector)
+  checkIfFavorited()
   displayFavoritedRecipes()
 }
 
@@ -269,12 +282,12 @@ function displayUserPage() {
 function userButtonOptions() {
 
     hide('toCookButton', true);
-    hide('favButton', true);
+    // hide('favButton', true);
     hide('searchButton', true);
     hide('searchByTagsButton', true);
     hide('cookNowButton', false);
     checkIfCookable()
-    hide('unFavoriteButton', false);
+    // hide('unFavoriteButton', false);
     hide('searchFavoritesButton', false);
     hide('tagsFavoriteButton', false);
 }
@@ -340,11 +353,19 @@ function displayMainPage() {
 
 function mainButtonOptions() {
     hide('toCookButton', false);
-    hide('favButton', false);
+    // hide('favButton', false);
     hide('searchButton', false);
     hide('searchByTagsButton', false);
     hide('cookNowButton', true);
-    hide('unFavoriteButton', true);
+    // hide('unFavoriteButton', true);
     hide('searchFavoritesButton', true);
     hide('tagsFavoriteButton', true);
 }
+
+
+// take off functionality that changes the favorites button 
+// so every time we display a card it should show favorites
+// every time we display the main card we need to 
+    // 1. See if it's favorited and change the button accoridngly 
+    // if it is not favorited we need to be able to push to favorite and upate our favoites array 
+    // if it is in favorites we need to remove 
