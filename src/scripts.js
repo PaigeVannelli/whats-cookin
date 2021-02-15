@@ -18,13 +18,14 @@ const favButton = document.getElementById("favButton");
 const cookNowButton = document.getElementById("cookNowButton");
 const unFavoriteButton = document.getElementById("unFavoriteButton");
 const searchFavoritesButton = document.getElementById("searchFavoritesButton");
+const mainPageButton = document.getElementById("whatsButton")
 
 let newUser = {}
 let currentRecipe
 // ~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~ //
 
 window.addEventListener('load', setupPage);
-recipeSidebar.addEventListener("click", displayRecipe);
+recipesSelector.addEventListener("click", displayRecipe);
 searchButton.addEventListener('click', searchRecipes);
 searchByTagsButton.addEventListener('click', searchByTags);
 tagsFavoriteButton.addEventListener('click', searchFavoritesByTags);
@@ -32,12 +33,13 @@ userPageButton.addEventListener('click', displayUserPage);
 displayFavoritesButton.addEventListener('click', displayFavoritedRecipes);
 displayToCookButton.addEventListener('click', displayToCookRecipes);
 displayPantryButton.addEventListener('click', displayPantry);
-userRecipeSidebar.addEventListener("click", displayRecipe);
+userRecipesSelector.addEventListener("click", displayRecipe);
 toCookButton.addEventListener("click", saveToCook);
 favButton.addEventListener("click", saveToFav);
-// cookNowButton.addEventListener("click", );
+cookNowButton.addEventListener("click", returnCookingInfo);
 unFavoriteButton.addEventListener("click", unFavorite);
-searchFavoritesButton.addEventListener('click', searchFavorites)
+searchFavoritesButton.addEventListener('click', searchFavorites);
+mainPageButton.addEventListener('click', displayMainPage)
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -85,12 +87,14 @@ function displayRecipe() {
         return recipe.id === parseInt(recipeID)
     })
     displayMainCard(matchingRecipe)
+    checkFavoritesButton()
 }
 
 function displayMainCard(recipe) {
   const list = likeList(recipe)
   buildLikeCards(list);
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
+    // let targetRecipe = currentRecipe
     currentRecipe = targetRecipe;
     const instructions = targetRecipe.returnInstructions()
     const cost = targetRecipe.returnCost()
@@ -112,6 +116,24 @@ function likeList(recipe) {
     };
   });
   return list;
+
+// function checkFavoritesButton() {
+    // console.log(newUser.favoriteRecipes.recipes.includes(currentRecipe))
+    // if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
+    //     console.log("false")
+    //     hide('favButton', false);
+    //     hide('unFavoriteButton', true);
+    // } else if (newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
+    //     console.log("true")
+    //     hide('favButton', true);
+    //     hide('unFavoriteButton', false);
+    // }
+// }
+
+function displayRandomRecipeCards(cardNumber, array) {
+    const index = getRandomIndex(array);
+    document.getElementById(`smallCardImg${cardNumber}`).src = `${recipeData[index].image}`
+    document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[index].name}`
 }
 
 function buildLikeCards(items) {
@@ -223,36 +245,52 @@ function saveToCook() {
 }
 
 function saveToFav() {
-  if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
-    newUser.addRecipe(currentRecipe, "favoriteRecipes");
-  }
+    if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
+        newUser.addRecipe(currentRecipe, "favoriteRecipes");
+    }
 }
 
 function unFavorite() {
   newUser.removeRecipe(currentRecipe, "favoriteRecipes");
+  displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector)
+  displayFavoritedRecipes()
 }
 
 function displayUserPage() {
     displayUserSidebar();
-    // displayPantryItems();
-    // displayFavoritedRecipes();
-    // displayRecipesToCook();
-    changeButtonOptions();
+    displayFavoritedRecipes();
+    userButtonOptions();
 }
 
-function changeButtonOptions() {
-  console.log(event.target.id)
+
+// function changeButtonOptions() {
+function userButtonOptions() {
+
     hide('toCookButton', true);
     hide('favButton', true);
     hide('searchButton', true);
+    hide('searchByTagsButton', true);
     hide('cookNowButton', false);
+    checkIfCookable()
     hide('unFavoriteButton', false);
     hide('searchFavoritesButton', false);
+    hide('tagsFavoriteButton', false);
+}
+
+function checkIfCookable() {
+    if (!displayCanCook()) {
+        cookNowButton.innerHTML = 'Check Ingredients'
+    }
 }
 
 function displayUserSidebar() {
     hide('mainSideBar', true);
     hide('userSideBar', false);
+}
+
+function displayMainSidebar() {
+    hide('mainSideBar', false);
+    hide('userSideBar', true);
 }
 
 function hide(element, hidden) {
@@ -268,11 +306,43 @@ function displayFavoritedRecipes() {
 }
 
 function displayToCookRecipes() {
-    displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector)
+    displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector);
 }
 
 function displayPantry() {
     displaySidebarRecipes(newUser.pantry.pantryItems, userRecipesSelector)
 }
 
-//need to change recipe title upon filtering
+function displayCanCook() {
+    newUser.recipeToCook.recipes.forEach(recipe => {
+        recipe.canCook = newUser.pantry.userCanCook(recipe)
+    })
+}
+
+function returnCookingInfo() {
+    const mainCardInstructions = document.getElementById("instructions")
+    if (displayCanCook()) {
+        console.log("ingredients")
+        const ingredientsToRemove = newUser.pantry.itemsToCook(currentRecipe)
+        console.log(ingredientsToRemove)
+    } else if (!displayCanCook()) {
+        console.log(newUser.pantry.whatsMissing(currentRecipe))
+        mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
+    }
+}
+
+function displayMainPage() {
+    displayMainSidebar();
+    mainButtonOptions();
+}
+
+function mainButtonOptions() {
+    hide('toCookButton', false);
+    hide('favButton', false);
+    hide('searchButton', false);
+    hide('searchByTagsButton', false);
+    hide('cookNowButton', true);
+    hide('unFavoriteButton', true);
+    hide('searchFavoritesButton', true);
+    hide('tagsFavoriteButton', true);
+}

@@ -7,7 +7,7 @@
   </head>
   <body>
     <header class="header" id ="header">
-      <button class="whats-Button top-button" id="whatsButton">Whats Cooking</button>
+      <button class="whats-Button top-button" id="whatsButton"><img src="../assets/fork.svg"/>Cooking</button>
       <article class="search-feild">
         <label class="search-label" for="search">Search</label>
         <input type="search" class="search" id="search"></search>
@@ -50,7 +50,7 @@
           <label for="starter">Starter</label>
         </form>
         <button class="search-button tags-button" id="searchByTagsButton">Search By Tag</button>
-        <button class="search-button tags-button" id="tagsFavoriteButton">Search Favorites By Tag</button>
+        <button class="search-button tags-button hidden" id="tagsFavoriteButton">Search Favorites By Tag</button>
       </article>
       <button class="user-page top-button" id="userPageButton">User Page</button>
     </header>
@@ -123,12 +123,17 @@
       <section class="side-bar user-side-bar hidden" id="userSideBar">
         <div class="side-header">
           <h3 class"side-header-text" id="sideHeaderText">Favorited Recipes<h3>
-        </div>
-        <div class="button-display">
-          <button class="sidebar-display-button" id="displayFavoritesButton">Favorited Recipes</button>
-          <button class="sidebar-display-button" id="displayToCookButton">Recipes To Cook</button>
-          <button class="sidebar-display-button" id="displayPantryButton">Pantry Items</button>
-        </div>
+            <div class="button-display">
+              <button class="sidebar-display-button" id="displayFavoritesButton">Favorited Recipes</button>
+              <button class="sidebar-display-button" id="displayToCookButton">Recipes To Cook</button>
+              <button class="sidebar-display-button" id="displayPantryButton">Pantry Items</button>
+            </div>
+          </div>
+          <!-- <div class="button-display">
+            <button class="sidebar-display-button" id="displayFavoritesButton">Favorited Recipes</button>
+            <button class="sidebar-display-button" id="displayToCookButton">Recipes To Cook</button>
+            <button class="sidebar-display-button" id="displayPantryButton">Pantry Items</button>
+          </div> -->
         <select class="sidebar-select" single size="25" name="recipes" id="userRecipeSelect">
           <p class"side-header-text">RECIPE SELECT</p>
         </select>

@@ -6,14 +6,15 @@ class Pantry {
     this.namedPantryItems = this.getIngredientsInfo(user.pantry, ingredientsData)
   }
 
-  getIngredientsInfo(recipeIngredients, ingredientsData) {
-    let updatedIngredientInfo = recipeIngredients.map(ingredient => {
+  getIngredientsInfo(pantryIngredients, ingredientsData) {
+    let updatedIngredientInfo = pantryIngredients.map(ingredient => {
       const ingredientInfo = ingredientsData.find(ingredientObject => {
         return ingredient.ingredient === ingredientObject.id
       })
       let currentIngredient = ingredient;
         currentIngredient.name = ingredientInfo.name
         currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
+        //return unit as well
         return currentIngredient
     });
     return updatedIngredientInfo
@@ -25,6 +26,7 @@ class Pantry {
       let checkCook = this.pantryItems.findIndex(pantryItem => {
         return item.id === pantryItem.ingredient && item.quantity.amount <= pantryItem.amount;
       })
+      console.log(recipe.name, checkCook)
       if (checkCook === -1) {
         canCook = false;
       }
@@ -52,7 +54,7 @@ class Pantry {
         missing.push(`${item.name} qty. ${missQty}`);
       } else if (item.quantity.amount > this.pantryItems[pantryItemIndex].amount) {
         let pantryItem = this.pantryItems[pantryItemIndex];
-        missing.push(`${item.name} qty. ${item.quantity.amount - pantryItem.amount}`);
+        missing.push(`${item.quantity.amount - pantryItem.amount} ${item.quantity.units} of ${item.name}`);
       }
     });
     return missing;
