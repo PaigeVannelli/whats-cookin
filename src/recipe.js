@@ -12,7 +12,8 @@ class Recipe {
     }
 
     getIngredientsInfo(recipeIngredients, ingredientsData) {
-      let updatedIngredientInfo = recipeIngredients.map(ingredient => {
+      const uniqueIngredients = this.filterOutDuplicates(recipeIngredients);
+      let updatedIngredientInfo = uniqueIngredients.map(ingredient => {
         const ingredientInfo = ingredientsData.find(ingredientObject => {
           return ingredient.id === ingredientObject.id
         })
@@ -22,6 +23,19 @@ class Recipe {
         return currentIngredient
       })
       return updatedIngredientInfo
+    }
+
+    filterOutDuplicates(recipeIngredients) {
+      let uniqueIngredients = [];
+      let sortedIngredients = recipeIngredients.sort((a, b) => {
+        return a.quantity.amount - b.quantity.amount
+      })
+      sortedIngredients.forEach(ing => {
+        if (!uniqueIngredients.some(uniqIng => uniqIng.id === ing.id)) {
+          uniqueIngredients.push(ing)
+        }
+      })
+      return uniqueIngredients
     }
 
   returnIngredients() {

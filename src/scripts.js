@@ -116,6 +116,7 @@ function likeList(recipe) {
     };
   });
   return list;
+}
 
 // function checkFavoritesButton() {
     // console.log(newUser.favoriteRecipes.recipes.includes(currentRecipe))
