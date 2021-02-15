@@ -26,7 +26,6 @@ class Pantry {
       let checkCook = this.pantryItems.findIndex(pantryItem => {
         return item.id === pantryItem.ingredient && item.quantity.amount <= pantryItem.amount;
       })
-      console.log(recipe.name, checkCook)
       if (checkCook === -1) {
         canCook = false;
       }

@@ -87,7 +87,7 @@ function displayRecipe() {
         return recipe.id === parseInt(recipeID)
     })
     displayMainCard(matchingRecipe)
-    checkFavoritesButton()
+    // checkFavoritesButton()
 }
 
 function displayMainCard(recipe) {
@@ -117,6 +117,7 @@ function likeList(recipe) {
   });
   return list;
 }
+
 
 // function checkFavoritesButton() {
     // console.log(newUser.favoriteRecipes.recipes.includes(currentRecipe))
@@ -323,11 +324,11 @@ function displayCanCook() {
 function returnCookingInfo() {
     const mainCardInstructions = document.getElementById("instructions")
     if (displayCanCook()) {
-        console.log("ingredients")
+        console.log("can't cook this recipe")
         const ingredientsToRemove = newUser.pantry.itemsToCook(currentRecipe)
         console.log(ingredientsToRemove)
     } else if (!displayCanCook()) {
-        console.log(newUser.pantry.whatsMissing(currentRecipe))
+        console.log("can cook!")
         mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
     }
 }
