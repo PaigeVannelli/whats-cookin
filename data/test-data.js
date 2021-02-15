@@ -275,7 +275,7 @@ let ingredientsTestData = [
               }
             },
             {
-              "id": 4582,
+              "id": 1001,
               "quantity": {
                 "amount": 4,
                 "unit": "servings"
@@ -483,120 +483,7 @@ let ingredientsTestData = [
         {
           "id": 562334,
           "image": "https://spoonacular.com/recipeImages/562334-556x370.jpg",
-          "ingredients": [
-            {
-              "id": 2048,
-              "quantity": {
-                "amount": 2,
-                "unit": "teaspoons"
-              }
-            },
-            {
-              "id": 18371,
-              "quantity": {
-                "amount": 0.3333333333333333,
-                "unit": "teaspoon"
-              }
-            },
-            {
-              "id": 20090,
-              "quantity": {
-                "amount": 1.125,
-                "unit": "cup"
-              }
-            },
-            {
-              "id": 93784,
-              "quantity": {
-                "amount": 2,
-                "unit": "teaspoons"
-              }
-            },
-            {
-              "id": 4582,
-              "quantity": {
-                "amount": 0.25,
-                "unit": "cup"
-              }
-            },
-            {
-              "id": 1124,
-              "quantity": {
-                "amount": 3,
-                "unit": "large"
-              }
-            },
-            {
-              "id": 93625,
-              "quantity": {
-                "amount": 2,
-                "unit": "teaspoons"
-              }
-            },
-            {
-              "id": 12220,
-              "quantity": {
-                "amount": 2,
-                "unit": "Tablespoons"
-              }
-            },
-            {
-              "id": 10118375,
-              "quantity": {
-                "amount": 2,
-                "unit": "teaspoons"
-              }
-            },
-            {
-              "id": 19304,
-              "quantity": {
-                "amount": 2,
-                "unit": "teaspoons"
-              }
-            },
-            {
-              "id": 11413,
-              "quantity": {
-                "amount": 0.75,
-                "unit": "cup"
-              }
-            },
-            {
-              "id": 2047,
-              "quantity": {
-                "amount": 0.75,
-                "unit": "teaspoon"
-              }
-            },
-            {
-              "id": 93696,
-              "quantity": {
-                "amount": 0.75,
-                "unit": "cup"
-              }
-            },
-            {
-              "id": 93760,
-              "quantity": {
-                "amount": 0.25,
-                "unit": "cup"
-              }
-            },
-            {
-              "id": 14412,
-              "quantity": {
-                "amount": 1,
-                "unit": "cup"
-              }
-            },
-            {
-              "id": 93626,
-              "quantity": {
-                "amount": 2,
-                "unit": "teaspoons"
-              }
-            }
-          ],
+          "ingredients": [],
           "instructions": [
             {
               "instruction": "Grease or spray oil a 9\u00d75 inch loaf pan.Preheat oven to 170 \u2013 200\u00b0F (lowest possible).",

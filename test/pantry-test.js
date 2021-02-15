@@ -93,7 +93,7 @@ describe('Pantry', function() {
 
     it(`Should be able to determine what ingredients are low on`, function() {
       const pantry = new Pantry(user, ingredientsData);
-      expect(pantry.whatsMissing(recipe2)).to.deep.equal(['unsalted butter qty. 15']);
+      expect(pantry.whatsMissing(recipe2)).to.deep.equal(["15 servings of unsalted butter"]);
     });
 
     it(`Should be able to determine what ingredients are missing`, function() {

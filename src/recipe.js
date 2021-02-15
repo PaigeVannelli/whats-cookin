@@ -1,5 +1,4 @@
 
-// let ingredientsData = require('../data/ingredients');
 class Recipe {
     constructor(recipe = {}, ingredientsData) {
         this.id = recipe.id;
