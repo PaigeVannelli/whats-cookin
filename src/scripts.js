@@ -39,7 +39,7 @@ favButton.addEventListener("click", saveToFav);
 cookNowButton.addEventListener("click", returnCookingInfo);
 unFavoriteButton.addEventListener("click", unFavorite);
 searchFavoritesButton.addEventListener('click', searchFavorites);
-
+mainPageButton.addEventListener('click', displayMainPage)
 
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -61,13 +61,7 @@ function displayAllRecipes() {
 function displaySidebarRecipes(array, displayArea) {
     displayArea.innerHTML = ""
     array.forEach(recipe => {
-        // if (recipe.canCook) {
-        //     displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name} Can Cook</option>`)
-        // } else if (recipe.canCook === false) {
-        //     displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name} Can't Cook</option>`)
-        // } else {
-            displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
-        // }
+        displayArea.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${recipe.id}" value="default">${recipe.name}</option>`)
     });
 }
 
@@ -85,21 +79,20 @@ function getRandomIndex(array) {
 function generateRandomUser() {
     newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
     newUser.pantry = new Pantry(newUser, ingredientsData)
-    // newUser.favoriteRecipes.recipes = [recipeData[5]]
-    // newUser.recipeToCook.recipes = [recipeData[3]]
 }
 
 function displayRecipe() {
     const recipeID = event.target.id
     const matchingRecipe = recipeData.filter(recipe => {
-        // console.log("recipe ids", recipe.id, parseInt(recipeID), recipeID)
         return recipe.id === parseInt(recipeID)
     })
     displayMainCard(matchingRecipe)
+    checkFavoritesButton()
 }
 
 function displayMainCard(recipe) {
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
+    // let targetRecipe = currentRecipe
     currentRecipe = targetRecipe;
     const instructions = targetRecipe.returnInstructions()
     const cost = targetRecipe.returnCost()
@@ -112,6 +105,19 @@ function displayMainCard(recipe) {
     mainCardInstructions.innerHTML = `${instructions.join(" ")}`
     mainCardCost.innerHTML = `Total Cost: ${cost}`
 }
+
+// function checkFavoritesButton() {
+    // console.log(newUser.favoriteRecipes.recipes.includes(currentRecipe))
+    // if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
+    //     console.log("false")
+    //     hide('favButton', false);
+    //     hide('unFavoriteButton', true);
+    // } else if (newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
+    //     console.log("true")
+    //     hide('favButton', true);
+    //     hide('unFavoriteButton', false);
+    // }
+// }
 
 function displayRandomRecipeCards(cardNumber, array) {
     const index = getRandomIndex(array);
@@ -205,9 +211,9 @@ function saveToCook() {
 }
 
 function saveToFav() {
-  if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
-    newUser.addRecipe(currentRecipe, "favoriteRecipes");
-  }
+    if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
+        newUser.addRecipe(currentRecipe, "favoriteRecipes");
+    }
 }
 
 function unFavorite() {
@@ -219,13 +225,11 @@ function unFavorite() {
 
 function displayUserPage() {
     displayUserSidebar();
-    // displayPantryItems();
     displayFavoritedRecipes();
-    // displayRecipesToCook();
-    changeButtonOptions();
+    userButtonOptions();
 }
 
-function changeButtonOptions() {
+function userButtonOptions() {
     hide('toCookButton', true);
     hide('favButton', true);
     hide('searchButton', true);
@@ -246,6 +250,11 @@ function checkIfCookable() {
 function displayUserSidebar() {
     hide('mainSideBar', true);
     hide('userSideBar', false);
+}
+
+function displayMainSidebar() {
+    hide('mainSideBar', false);
+    hide('userSideBar', true);
 }
 
 function hide(element, hidden) {
@@ -280,9 +289,26 @@ function returnCookingInfo() {
     const mainCardInstructions = document.getElementById("instructions")
     if (displayCanCook()) {
         console.log("ingredients")
+        const ingredientsToRemove = newUser.pantry.itemsToCook(currentRecipe)
+        console.log(ingredientsToRemove)
     } else if (!displayCanCook()) {
         console.log(newUser.pantry.whatsMissing(currentRecipe))
         mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
     }
 }
 
+function displayMainPage() {
+    displayMainSidebar();
+    mainButtonOptions();
+}
+
+function mainButtonOptions() {
+    hide('toCookButton', false);
+    hide('favButton', false);
+    hide('searchButton', false);
+    hide('searchByTagsButton', false);
+    hide('cookNowButton', true);
+    hide('unFavoriteButton', true);
+    hide('searchFavoritesButton', true);
+    hide('tagsFavoriteButton', true);
+}
