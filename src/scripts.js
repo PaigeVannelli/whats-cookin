@@ -325,7 +325,11 @@ function displayToCookRecipes() {
 }
 
 function displayPantry() {
-    displaySidebarRecipes(newUser.pantry.pantryItems, userRecipesSelector)
+    userRecipesSelector.innerHTML = ""
+    newUser.pantry.pantryItems.forEach(item => {
+        let amountDisplay = `${item.name} x${item.amount}`
+        userRecipesSelector.insertAdjacentHTML('afterbegin', `<option class="all-recipes-list" id="${item.id}" value="default">${amountDisplay}</option>`)
+    });
 }
 
 function displayCanCook() {
