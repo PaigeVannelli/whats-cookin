@@ -48,29 +48,36 @@ describe('Recipe', function() {
     expect(recipe.tags).to.be.equal(recipeTestData[0].tags)
   });
 
+
+  describe('filterOutDuplicates', function() {
+
+    it(`Should be able to filter out duplicates`, function() {
+      const recipe = new Recipe(recipeTestData[3], ingredientsData);
+      expect(recipe.ingredients.length).to.deep.equal(11);
+    });
+
+  });
+
   describe('returnIngredients', function() {
 
     it(`should store a list of tags`, function() {
       const recipe = new Recipe(recipeTestData[0], ingredientsData);
       expect(recipe.returnIngredients()).to.deep.equal([
-        'wheat flour',
-        'bicarbonate of soda',
-        'eggs',
-        'sucrose',
-        'instant vanilla pudding',
-        'brown sugar',
-        'salt',
-        'fine sea salt',
-        'semi sweet chips',
-        'unsalted butter',
-        'vanilla'
+      'bicarbonate of soda',
+      'sucrose',
+      'brown sugar',
+      'salt',
+      'unsalted butter',
+      'vanilla',
+      'eggs',
+      'wheat flour',
+      'semi sweet chips',
+      'instant vanilla pudding',
+      'fine sea salt'
+
       ]);
     });
-        // it(`should return an emptry array if there are no ingredients`, function() {
-        //     const recipe = new Recipe();
-        //     expect(recipe.returnIngredients()).to.deep.equal([]);
-        // })
-        //I need to include ome Sad path testing in case we don't have an array passed in
+
   });
 
   describe('returnCost', function() {
