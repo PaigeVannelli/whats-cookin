@@ -16,6 +16,7 @@ const userRecipeSidebar = document.getElementById("userSideBar");
 const toCookButton = document.getElementById("toCookButton");
 const favButton = document.getElementById("favButton");
 const cookNowButton = document.getElementById("cookNowButton");
+const checkIngredientsButton = document.getElementById("checkIngredientsButton");
 const unFavoriteButton = document.getElementById("unFavoriteButton");
 const searchFavoritesButton = document.getElementById("searchFavoritesButton");
 const mainPageButton = document.getElementById("whatsButton")
@@ -266,10 +267,15 @@ function saveToCook() {
 function changeToCookButton() {
     if (newUser.recipeToCook.recipes.some(toCook => toCook.id === currentRecipe.id)) {
         hide('toCookButton', true);
-        hide('cookNowButton', false);
+        if (newUser.pantry.userCanCook(currentRecipe)) {
+            hide('cookNowButton', false);
+        } else {
+            hide('checkIngredientsButton', false)
+        }
     } else {
         hide('toCookButton', false);
         hide('cookNowButton', true);
+        hide('checkIngredientsButton', true);
     }
 }
 
