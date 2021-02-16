@@ -269,17 +269,13 @@ function changeToCookButton() {
     if (newUser.recipeToCook.recipes.some(toCook => toCook.id === currentRecipe.id)) {
         hide('toCookButton', true);
         if (newUser.pantry.userCanCook(currentRecipe)) {
-            console.log("options1")
-            // hide('toCookButton', true);
             hide('cookNowButton', false);
             hide('checkIngredientsButton', true)
         } else {
-            console.log("options2")
             hide('cookNowButton', true);
             hide('checkIngredientsButton', false)
         }
     } else {
-        console.log("options3")
         hide('toCookButton', false);
         hide('cookNowButton', true);
         hide('checkIngredientsButton', true);
@@ -304,34 +300,14 @@ function displayUserPage() {
     displayUserSidebar();
     displayFavoritedRecipes();
     userButtonOptions();
-    // checkIfCookable()
 }
 
 function userButtonOptions() {
-    // hide('toCookButton', true);
     hide('searchButton', true);
     hide('searchByTagsButton', true);
-    // hide('cookNowButton', false);
     hide('searchFavoritesButton', false);
     hide('tagsFavoriteButton', false);
 }
-
-// function checkIfCookable() {
-//     if (!displayCanCook()) {
-//         cookNowButton.innerHTML = 'Check Ingredients'
-//     }
-// }
-
-function checkIfCookable() {
-    console.log("currentRecipe", currentRecipe)
-    if (currentRecipe.canCook) {
-        console.log("you can cook it!")
-    } else {
-        console.log("you can't cook")
-    }
-}
-
-//check current displayed recipe to see if canCook === true or false 
 
 function displayUserSidebar() {
     hide('mainSideBar', true);
@@ -393,19 +369,9 @@ function displayMainPage() {
 
 function mainButtonOptions() {
     hide('toCookButton', false);
-    // hide('favButton', false);
     hide('searchButton', false);
     hide('searchByTagsButton', false);
     hide('cookNowButton', true);
-    // hide('unFavoriteButton', true);
     hide('searchFavoritesButton', true);
     hide('tagsFavoriteButton', true);
 }
-
-
-// take off functionality that changes the favorites button 
-// so every time we display a card it should show favorites
-// every time we display the main card we need to 
-    // 1. See if it's favorited and change the button accoridngly 
-    // if it is not favorited we need to be able to push to favorite and upate our favoites array 
-    // if it is in favorites we need to remove 
