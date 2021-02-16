@@ -48,18 +48,14 @@ likeItems.addEventListener('click', moveToMainCard);
 // ~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~ //
 
 function setupPage() {
-    generateRandomUser();
-    displayAllRecipes();
-    displayRandomMainCard();
-    // displayRandomRecipeCards(1, recipeData);
-    // displayRandomRecipeCards(2, recipeData);
-    // displayRandomRecipeCards(3, recipeData);
-    // displayRandomRecipeCards(4, recipeData);
-    buildLikeCards(recipeData);
+  generateRandomUser();
+  displayAllRecipes();
+  displayRandomMainCard();
+  buildLikeCards(recipeData);
 }
 
 function displayAllRecipes() {
-    displaySidebarRecipes(recipeData, recipesSelector);
+  displaySidebarRecipes(recipeData, recipesSelector);
 };
 
 function displaySidebarRecipes(array, displayArea) {
@@ -82,7 +78,7 @@ function getRandomIndex(array) {
 
 function generateRandomUser() {
   newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
-  newUser.pantry = new Pantry(newUser, ingredientsData)
+  newUser.pantry = new Pantry(newUser, ingredientsData);
 }
 
 function displayRecipe() {
@@ -121,7 +117,6 @@ function likeList(recipe) {
   return list;
 }
 
-
 function checkIfFavorited() {
   if (newUser.favoriteRecipes.recipes.some(favRec => favRec.id === currentRecipe.id)) {
     hide('favButton', true)
@@ -132,68 +127,31 @@ function checkIfFavorited() {
   }
 }
 
-// function checkFavoritesButton() {
-    // console.log(newUser.favoriteRecipes.recipes.includes(currentRecipe))
-    // if (!newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
-    //     console.log("false")
-    //     hide('favButton', false);
-    //     hide('unFavoriteButton', true);
-    // } else if (newUser.favoriteRecipes.recipes.includes(currentRecipe)) {
-    //     console.log("true")
-    //     hide('favButton', true);
-    //     hide('unFavoriteButton', false);
-    // }
-// }
-
-// function buildLikeCards(items) {
-//   for (let i = 1; i <= 4; i++) {
-//     const index = getRandomIndex(items);
-//     document.getElementById(`smallCardImg${i}`).src = `${items[index].image}`
-//     document.getElementById(`smallName${i}`).innerHTML = `${items[index].name}`
-//
-//   }
-// }
-
 function buildLikeCards(items) {
   likeItems.innerHTML = ""
   for (let i = 1; i <= 4; i++) {
-    likeItems.insertAdjacentHTML('afterbegin',`<article class="small-card" id="${items[i].id}">
-        <img class="small-card-img" id="${items[i].id}" src="${items[i].image}" alt="${items[i].name}"></img>
-        <div class="like-header" id=${items[i].id}>
-          <h4 class="small-name" id=${items[i].id}>${items[i].name}<h4>
-        </div>
-      </article>`)
+    likeItems.insertAdjacentHTML('afterbegin',`<article class="small-card"        id="${items[i].id}">
+    <img class="small-card-img" id="${items[i].id}" src="${items[i].image}" alt="${items[i].name}"></img>
+    <div class="like-header" id=${items[i].id}>
+    <h4 class="small-name" id=${items[i].id}>${items[i].name}<h4>
+    </div>
+    </article>`)
   }
 }
 
 function moveToMainCard() {
+  console.log(event.target.id);
   const moveMain = event.target.id;
   const recipeIndex = recipeData.findIndex(recipe => recipe.id == moveMain);
   displayMainCard([recipeData[recipeIndex]]);
 }
 
-// function displayRandomRecipeCards(cardNumber, array) {
-//     const index = getRandomIndex(array);
-//     document.getElementById(`smallCardImg${cardNumber}`).src = `${recipeData[index].image}`
-//     document.getElementById(`smallName${cardNumber}`).innerHTML = `${recipeData[index].name}`
-// }
-
 function searchRecipes() {
   search(recipeData, recipesSelector);
-    // const allRecipes = setUpData(recipeData)
-    // const recipeNameMatch = searchNames(allRecipes, searchBar)
-    // const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
-    // const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
-    // displaySidebarRecipes(searchedRecipesToDisplay, recipesSelector);
 }
 
 function searchFavorites() {
   search(newUser.favoriteRecipes.recipes, userRecipesSelector);
-    // const allRecipes = setUpData(newUser.favoriteRecipes.recipes)
-    // const recipeNameMatch = searchNames(allRecipes, searchBar)
-    // const recipeIngredientMatch = searchIngredients(allRecipes, searchBar);
-    // const searchedRecipesToDisplay = compareNamesIngredients(recipeNameMatch, recipeIngredientMatch)
-    // displaySidebarRecipes(searchedRecipesToDisplay, userRecipesSelector);
 }
 
 function search(list, display) {
@@ -285,49 +243,46 @@ function displayUserPage() {
   userButtonOptions();
 }
 
-// function changeButtonOptions() {
 function userButtonOptions() {
   hide('toCookButton', true);
-    // hide('favButton', true);
   hide('searchButton', true);
   hide('searchByTagsButton', true);
   hide('cookNowButton', false);
   checkIfCookable()
-    // hide('unFavoriteButton', false);
   hide('searchFavoritesButton', false);
   hide('tagsFavoriteButton', false);
 }
 
 function checkIfCookable() {
-    if (!displayCanCook()) {
-        cookNowButton.innerHTML = 'Check Ingredients'
-    }
+  if (!displayCanCook()) {
+    cookNowButton.innerHTML = 'Check Ingredients'
+  }
 }
 
 function displayUserSidebar() {
-    hide('mainSideBar', true);
-    hide('userSideBar', false);
+  hide('mainSideBar', true);
+  hide('userSideBar', false);
 }
 
 function displayMainSidebar() {
-    hide('mainSideBar', false);
-    hide('userSideBar', true);
+  hide('mainSideBar', false);
+  hide('userSideBar', true);
 }
 
 function hide(element, hidden) {
-    if (hidden) {
-        document.getElementById(element).classList.add('hidden')
-    } else {
-        document.getElementById(element).classList.remove('hidden')
-    }
+  if (hidden) {
+    document.getElementById(element).classList.add('hidden')
+  } else {
+    document.getElementById(element).classList.remove('hidden')
+  }
 }
 
 function displayFavoritedRecipes() {
-    displaySidebarRecipes(newUser.favoriteRecipes.recipes, userRecipesSelector)
+  displaySidebarRecipes(newUser.favoriteRecipes.recipes, userRecipesSelector)
 }
 
 function displayToCookRecipes() {
-    displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector);
+  displaySidebarRecipes(newUser.recipeToCook.recipes, userRecipesSelector);
 }
 
 function displayPantry() {
@@ -363,18 +318,9 @@ function displayMainPage() {
 
 function mainButtonOptions() {
   hide('toCookButton', false);
-    // hide('favButton', false);
   hide('searchButton', false);
   hide('searchByTagsButton', false);
   hide('cookNowButton', true);
-    // hide('unFavoriteButton', true);
   hide('searchFavoritesButton', true);
   hide('tagsFavoriteButton', true);
 }
-
-// take off functionality that changes the favorites button
-// so every time we display a card it should show favorites
-// every time we display the main card we need to
-    // 1. See if it's favorited and change the button accoridngly
-    // if it is not favorited we need to be able to push to favorite and upate our favoites array
-    // if it is in favorites we need to remove
