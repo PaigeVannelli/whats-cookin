@@ -1,17 +1,17 @@
 
 // let ingredientsData = require('../data/ingredients');
 class Recipe {
-    constructor(recipe = {}, ingredientsData) {
-        this.id = recipe.id;
-        this.image = recipe.image;
-        this.ingredients = this.getIngredientsInfo(recipe.ingredients, ingredientsData);
-        this.instructions = recipe.instructions;
-        this.name = recipe.name;
-        this.tags = recipe.tags;
-        this.canCook = false;
-    }
+  constructor(recipe = {}, ingredientsData) {
+    this.id = recipe.id;
+    this.image = recipe.image;
+    this.ingredients = this.getIngredientsInfo(recipe.ingredients, ingredientsData);
+    this.instructions = recipe.instructions;
+    this.name = recipe.name;
+    this.tags = recipe.tags;
+    this.canCook = false;
+  }
 
-    getIngredientsInfo(recipeIngredients, ingredientsData) {
+  getIngredientsInfo(recipeIngredients, ingredientsData) {
       const uniqueIngredients = this.filterOutDuplicates(recipeIngredients);
       let updatedIngredientInfo = uniqueIngredients.map(ingredient => {
         const ingredientInfo = ingredientsData.find(ingredientObject => {

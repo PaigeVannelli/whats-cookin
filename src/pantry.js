@@ -14,7 +14,6 @@ class Pantry {
       let currentIngredient = ingredient;
         currentIngredient.name = ingredientInfo.name
         currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
-        //return unit as well
         return currentIngredient
     });
     return updatedIngredientInfo
