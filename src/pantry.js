@@ -52,7 +52,7 @@ class Pantry {
         missing.push(`${item.name} qty. ${missQty}`);
       } else if (item.quantity.amount > this.pantryItems[pantryItemIndex].amount) {
         let pantryItem = this.pantryItems[pantryItemIndex];
-        missing.push(`${item.quantity.amount - pantryItem.amount} ${item.quantity.units} of ${item.name}`);
+        missing.push(`${item.quantity.amount - pantryItem.amount} ${item.quantity.unit} of ${item.name}`);
       }
     });
     return missing;

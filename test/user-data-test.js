@@ -123,7 +123,7 @@ describe('UserData', function() {
 
     it(`Should filter based on ingredient`, function() {
       user.userFilter('salt', 'favoriteRecipes', 'filterByIngredient');
-      expect(user.userFilter('salt', 'favoriteRecipes', 'filterByIngredient').length).to.be.equal(4);
+      expect(user.userFilter('salt', 'favoriteRecipes', 'filterByIngredient').length).to.be.equal(3);
     });
 
     it(`Should return an empty array if the ingredient doesn't exist`, function() {
