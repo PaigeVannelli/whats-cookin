@@ -269,11 +269,17 @@ function changeToCookButton() {
     if (newUser.recipeToCook.recipes.some(toCook => toCook.id === currentRecipe.id)) {
         hide('toCookButton', true);
         if (newUser.pantry.userCanCook(currentRecipe)) {
+            console.log("options1")
+            // hide('toCookButton', true);
             hide('cookNowButton', false);
+            hide('checkIngredientsButton', true)
         } else {
+            console.log("options2")
+            hide('cookNowButton', true);
             hide('checkIngredientsButton', false)
         }
     } else {
+        console.log("options3")
         hide('toCookButton', false);
         hide('cookNowButton', true);
         hide('checkIngredientsButton', true);
@@ -302,10 +308,10 @@ function displayUserPage() {
 }
 
 function userButtonOptions() {
-    hide('toCookButton', true);
+    // hide('toCookButton', true);
     hide('searchButton', true);
     hide('searchByTagsButton', true);
-    hide('cookNowButton', false);
+    // hide('cookNowButton', false);
     hide('searchFavoritesButton', false);
     hide('tagsFavoriteButton', false);
 }
@@ -364,14 +370,15 @@ function displayPantry() {
 function cookRecipe() {
     newUser.pantry.itemsToCook(currentRecipe);
     displayPantry();
-    // remove recipe
-
+    removeRecipe()
     changeToCookButton();
 }
 
 function removeRecipe() {
-    // newUser.recipeToCook.recipes
-    //use splice an findInex
+    let index = newUser.recipeToCook.recipes.findIndex(recipe => {
+        return recipe.id === currentRecipe.id
+    })
+    newUser.recipeToCook.recipes.splice(index, 1)
 }
 
 function returnCookingInfo() {
