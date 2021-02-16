@@ -3,7 +3,7 @@
 *:before {
   margin: 0;
   padding: 0;
-  /* border: solid 2px red; */
+  border: solid 2px red;
 }
 
 /* ---gen stuff */
@@ -312,4 +312,37 @@ button:hover {
 } */
 
 /* Hover to change scale and brighter */
-/* y-overflow: scroll 
+/* y-overflow: scroll  */
+
+@media screen and (max-width: 768px) {
+  .main-card-layout {
+    flex-direction: column;
+  }
+
+  .main-info-layout {
+    padding: none;
+    margin: none;
+  }
+
+  .left-side-styling {
+    margin: 0;
+  }
+
+  .like-items {
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+  }
+
+  .main-card-img {
+    /* height: 5em; */
+    /* width: 60vw; */
+  }
+
+  .four-cards-section {
+    visibility: collapse;
+  }
+
+  .page-layout {
+    flex-direction: column;
+  }
+}
