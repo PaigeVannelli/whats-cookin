@@ -77,7 +77,9 @@ function getRandomIndex(array) {
 }
 
 function generateRandomUser() {
-    newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
+    // newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
+    newUser = new UserData(usersData[1], RecipeRepo);
+    // console.log(newUser, RecipeRepo)
     newUser.pantry = new Pantry(newUser, ingredientsData)
 }
 
@@ -87,7 +89,7 @@ function displayRecipe() {
         return recipe.id === parseInt(recipeID)
     })
     displayMainCard(matchingRecipe)
-    // checkFavoritesButton()
+    checkIfCookable()
 }
 
 function displayMainCard(recipe) {
@@ -255,6 +257,12 @@ function saveToCook() {
   if (!newUser.recipeToCook.recipes.includes(currentRecipe)) {
   newUser.addRecipe(currentRecipe, "recipeToCook");
   }
+  makeCookable();
+}
+
+function makeCookable() {
+    currentRecipe.canCook = newUser.pantry.userCanCook(currentRecipe)
+    console.log(currentRecipe.canCook);
 }
 
 function saveToFav() {
@@ -275,28 +283,34 @@ function displayUserPage() {
     displayUserSidebar();
     displayFavoritedRecipes();
     userButtonOptions();
+    checkIfCookable()
 }
 
-
-// function changeButtonOptions() {
 function userButtonOptions() {
-
     hide('toCookButton', true);
-    // hide('favButton', true);
     hide('searchButton', true);
     hide('searchByTagsButton', true);
     hide('cookNowButton', false);
-    checkIfCookable()
-    // hide('unFavoriteButton', false);
     hide('searchFavoritesButton', false);
     hide('tagsFavoriteButton', false);
 }
 
+// function checkIfCookable() {
+//     if (!displayCanCook()) {
+//         cookNowButton.innerHTML = 'Check Ingredients'
+//     }
+// }
+
 function checkIfCookable() {
-    if (!displayCanCook()) {
-        cookNowButton.innerHTML = 'Check Ingredients'
+    console.log("currentRecipe", currentRecipe)
+    if (currentRecipe.canCook) {
+        console.log("you can cook it!")
+    } else {
+        console.log("you can't cook")
     }
 }
+
+//check current displayed recipe to see if canCook === true or false 
 
 function displayUserSidebar() {
     hide('mainSideBar', true);
@@ -332,20 +346,27 @@ function displayPantry() {
     });
 }
 
-function displayCanCook() {
-    newUser.recipeToCook.recipes.forEach(recipe => {
-        recipe.canCook = newUser.pantry.userCanCook(recipe)
-    })
-}
+// function displayCanCook() {
+//     newUser.recipeToCook.recipes.forEach(recipe => {
+//         recipe.canCook = newUser.pantry.userCanCook(recipe)
+//     })
+// }
+// function displayCanCook() {
+//     newUser.recipeToCook.recipes.forEach(recipe => {
+//         recipe.canCook = newUser.pantry.userCanCook(recipe)
+//     })
+// }
+
+
 
 function returnCookingInfo() {
     const mainCardInstructions = document.getElementById("instructions")
-    if (displayCanCook()) {
-        console.log("can't cook this recipe")
+    if (currentRecipe.canCook) {
+        // console.log("can cook", displayCanCook())
         const ingredientsToRemove = newUser.pantry.itemsToCook(currentRecipe)
         console.log(ingredientsToRemove)
-    } else if (!displayCanCook()) {
-        console.log("can cook!")
+    } else if (!currentRecipe.canCook) {
+        // console.log("can't cook!", displayCanCook())
         mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
     }
 }
