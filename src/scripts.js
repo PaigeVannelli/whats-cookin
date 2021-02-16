@@ -37,7 +37,8 @@ displayPantryButton.addEventListener('click', displayPantry);
 userRecipesSelector.addEventListener("click", displayRecipe);
 toCookButton.addEventListener("click", saveToCook);
 favButton.addEventListener("click", saveToFav);
-cookNowButton.addEventListener("click", returnCookingInfo);
+cookNowButton.addEventListener("click", cookRecipe);
+checkIngredientsButton.addEventListener("click", returnCookingInfo);
 unFavoriteButton.addEventListener("click", unFavorite);
 searchFavoritesButton.addEventListener('click', searchFavorites);
 mainPageButton.addEventListener('click', displayMainPage)
@@ -360,29 +361,22 @@ function displayPantry() {
     });
 }
 
-// function displayCanCook() {
-//     newUser.recipeToCook.recipes.forEach(recipe => {
-//         recipe.canCook = newUser.pantry.userCanCook(recipe)
-//     })
-// }
-// function displayCanCook() {
-//     newUser.recipeToCook.recipes.forEach(recipe => {
-//         recipe.canCook = newUser.pantry.userCanCook(recipe)
-//     })
-// }
+function cookRecipe() {
+    newUser.pantry.itemsToCook(currentRecipe);
+    displayPantry();
+    // remove recipe
 
+    changeToCookButton();
+}
 
+function removeRecipe() {
+    // newUser.recipeToCook.recipes
+    //use splice an findInex
+}
 
 function returnCookingInfo() {
     const mainCardInstructions = document.getElementById("instructions")
-    if (currentRecipe.canCook) {
-        // console.log("can cook", displayCanCook())
-        const ingredientsToRemove = newUser.pantry.itemsToCook(currentRecipe)
-        console.log(ingredientsToRemove)
-    } else if (!currentRecipe.canCook) {
-        // console.log("can't cook!", displayCanCook())
-        mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
-    }
+    mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
 }
 
 function displayMainPage() {
