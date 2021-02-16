@@ -52,45 +52,46 @@ describe('RecipeRepo', function() {
       });
     });
 
-    describe('filterByName', function() {
+  describe('filterByName', function() {
 
-      it(`should be able to filter through recipes by a full recipe name`, function() {
-        const recipeRepo = new RecipeRepo(recipeTest);
-        const filterRecipe = recipeRepo.filterByName(['maple dijon apple cider grilled pork chops']);
-        expect(filterRecipe[0].id).to.be.equal(678353);
-      });
+    it(`should be able to filter through recipes by a full recipe name`, function() {
+      const recipeRepo = new RecipeRepo(recipeTest);
+      const filterRecipe = recipeRepo.filterByName(['maple dijon apple cider grilled pork chops']);
+      expect(filterRecipe[0].id).to.be.equal(678353);
+    });
 
-      it(`should be able to filter through recipes by a partial recipe name`, function() {
-        const recipeRepo = new RecipeRepo(recipeTest);
-        const filterRecipe = recipeRepo.filterByName(['pork chops']);
-        expect(filterRecipe[0].id).to.be.equal(678353);
-      });
+    it(`should be able to filter through recipes by a partial recipe name`, function() {
+      const recipeRepo = new RecipeRepo(recipeTest);
+      const filterRecipe = recipeRepo.filterByName(['pork chops']);
+      expect(filterRecipe[0].id).to.be.equal(678353);
+    });
 
-      it(`should return an empty array is recipe name doesn't exist`, function() {
-        const recipeRepo = new RecipeRepo(recipeTest);
-        const filterRecipe = recipeRepo.filterByName(['unicorn steak']);
-        expect(filterRecipe).to.deep.equal([]);
+    it(`should return an empty array is recipe name doesn't exist`, function() {
+      const recipeRepo = new RecipeRepo(recipeTest);
+      const filterRecipe = recipeRepo.filterByName(['unicorn steak']);
+      expect(filterRecipe).to.deep.equal([]);
       });
     });
 
-    describe('filterByTags', function() {
+  describe('filterByTags', function() {
 
-      it(`should be able to filter by one tags and return an array of recipes`, function() {
-        const recipeRepo = new RecipeRepo(recipeTest);
-        const filterRecipe = recipeRepo.filterByTag(['side dish']);
-        expect(filterRecipe[1].id).to.be.equal(741603);
-      });
-
-      it(`should be able to filter by multiple tags and return an array of recipes taht include all tags`, function() {
-        const recipeRepo = new RecipeRepo(recipeTest);
-        const filterRecipe = recipeRepo.filterByTag(['side dish', 'dinner']);
-        expect(filterRecipe[0].id).to.be.equal(678353);
-      });
-
-      it(`should return an empty array if the tags don't match a recipe`, function() {
-        const recipeRepo = new RecipeRepo(recipeTest);
-        expect(recipeRepo.filterByTag(['breakfast'])).to.deep.equal([])
-      });
-
+    it(`should be able to filter by one tags and return an array of recipes`, function() {
+      const recipeRepo = new RecipeRepo(recipeTest);
+      const filterRecipe = recipeRepo.filterByTag(['side dish']);
+      expect(filterRecipe[1].id).to.be.equal(741603);
     });
+
+    it(`should be able to filter by multiple tags and return an array of recipes taht include all tags`, function() {
+      const recipeRepo = new RecipeRepo(recipeTest);
+      const filterRecipe = recipeRepo.filterByTag(['side dish', 'dinner']);
+      expect(filterRecipe[0].id).to.be.equal(678353);
+    });
+
+    it(`should return an empty array if the tags don't match a recipe`, function() {
+      const recipeRepo = new RecipeRepo(recipeTest);
+      expect(recipeRepo.filterByTag(['breakfast'])).to.deep.equal([])
+    });
+
+  });
+  
 });

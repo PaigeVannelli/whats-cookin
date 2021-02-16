@@ -140,7 +140,6 @@ function buildLikeCards(items) {
 }
 
 function moveToMainCard() {
-  console.log(event.target.id);
   const moveMain = event.target.id;
   const recipeIndex = recipeData.findIndex(recipe => recipe.id == moveMain);
   displayMainCard([recipeData[recipeIndex]]);
@@ -302,11 +301,11 @@ function displayCanCook() {
 function returnCookingInfo() {
   const mainCardInstructions = document.getElementById("instructions")
   if (displayCanCook()) {
-    console.log("can't cook this recipe")
+console.log("can't cook this recipe")
     const ingredientsToRemove = newUser.pantry.itemsToCook(currentRecipe)
-    console.log(ingredientsToRemove)
+console.log(ingredientsToRemove)
   } else if (!displayCanCook()) {
-    console.log("can cook!")
+console.log("can cook!")
     mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
   }
 }

@@ -49,7 +49,7 @@ class Recipe {
     const totalCost = this.ingredients.reduce((total, ingredient) => {
       return total += ingredient.quantity.amount * ingredient.estimatedCostInCents;
     }, 0)
-    let dollars = totalCost / 100;
+    let dollars = totalCost / 100
     dollars = dollars.toLocaleString("en-US", { style: "currency", currency: "USD"})
     return dollars;
   }

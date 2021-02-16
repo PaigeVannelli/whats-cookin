@@ -66,11 +66,7 @@ describe('Recipe', function() {
         'vanilla'
       ]);
     });
-        // it(`should return an emptry array if there are no ingredients`, function() {
-        //     const recipe = new Recipe();
-        //     expect(recipe.returnIngredients()).to.deep.equal([]);
-        // })
-        //I need to include ome Sad path testing in case we don't have an array passed in
+    
   });
 
   describe('returnCost', function() {

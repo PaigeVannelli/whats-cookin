@@ -88,23 +88,23 @@ describe('UserData', function() {
 
   describe('removeFavorite', function() {
 
-      it(`should be able to remove a recipe from favorites`, function() {
-        const user = new UserData(usersTestData[0], RecipeRepo);
-        user.addRecipe(recipe1, 'favoriteRecipes');
-        user.addRecipe(recipe2, 'favoriteRecipes');
-        user.removeRecipe(recipe1, 'favoriteRecipes');
-        expect(user.favoriteRecipes.recipes.length).to.equal(1);
-      });
+    it(`should be able to remove a recipe from favorites`, function() {
+      const user = new UserData(usersTestData[0], RecipeRepo);
+      user.addRecipe(recipe1, 'favoriteRecipes');
+      user.addRecipe(recipe2, 'favoriteRecipes');
+      user.removeRecipe(recipe1, 'favoriteRecipes');
+      expect(user.favoriteRecipes.recipes.length).to.equal(1);
+    });
 
-      it(`Should remove the correct recipe`, function() {
-        const user = new UserData(usersTestData[0], RecipeRepo);
-        user.addRecipe(recipe1, 'favoriteRecipes');
-        user.addRecipe(recipe2, 'favoriteRecipes');
-        user.addRecipe(recipe3, 'favoriteRecipes');
-        user.removeRecipe(recipe1, 'favoriteRecipes');
-        user.removeRecipe(recipe3, 'favoriteRecipes');
-        expect(user.favoriteRecipes.recipes[0].name).to.equal(recipe2.name);
-      });
+    it(`Should remove the correct recipe`, function() {
+      const user = new UserData(usersTestData[0], RecipeRepo);
+      user.addRecipe(recipe1, 'favoriteRecipes');
+      user.addRecipe(recipe2, 'favoriteRecipes');
+      user.addRecipe(recipe3, 'favoriteRecipes');
+      user.removeRecipe(recipe1, 'favoriteRecipes');
+      user.removeRecipe(recipe3, 'favoriteRecipes');
+      expect(user.favoriteRecipes.recipes[0].name).to.equal(recipe2.name);
+    });
 
   });
 
