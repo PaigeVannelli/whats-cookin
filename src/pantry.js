@@ -48,7 +48,7 @@ class Pantry {
         return item.id === pantryItem.ingredient;
       })
       if (pantryItemIndex === - 1) {
-        let missQty = item.quantity.amount;
+        let missQty = item.quantity.amount.toFixed(2);
         missing.push(`${item.name} qty. ${missQty}`);
       } else if (item.quantity.amount > this.pantryItems[pantryItemIndex].amount) {
         let pantryItem = this.pantryItems[pantryItemIndex];

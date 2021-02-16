@@ -611,7 +611,7 @@ const recipeData = [
       }
     ],
     "name": "Mock Udi\u2019s Gluten Free Whole Grain Bread",
-    "tags": []
+    "tags": ["side dish"]
   },
   {
     "id": 507921,

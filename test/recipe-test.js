@@ -77,7 +77,6 @@ describe('Recipe', function() {
 
       ]);
     });
-
   });
 
   describe('returnCost', function() {
