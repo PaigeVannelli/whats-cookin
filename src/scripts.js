@@ -89,7 +89,8 @@ function displayRecipe() {
         return recipe.id === parseInt(recipeID)
     })
     displayMainCard(matchingRecipe)
-    checkIfCookable()
+    changeToCookButton()
+    checkIfFavorited()
 }
 
 function displayMainCard(recipe) {
@@ -98,7 +99,9 @@ function displayMainCard(recipe) {
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
     // let targetRecipe = currentRecipe
     currentRecipe = targetRecipe;
-    checkIfFavorited()
+    // checkIfFavorited()
+    // changeToCookButton()
+    // checkIfCookable
     const instructions = targetRecipe.returnInstructions()
     const cost = targetRecipe.returnCost()
     const mainCardTitle = document.getElementById("mainName")
@@ -255,14 +258,19 @@ function searchTags(tags, recipes) {
 
 function saveToCook() {
   if (!newUser.recipeToCook.recipes.includes(currentRecipe)) {
-  newUser.addRecipe(currentRecipe, "recipeToCook");
-  }
-  makeCookable();
+        newUser.addRecipe(currentRecipe, "recipeToCook");
+        changeToCookButton()
+    }
 }
 
-function makeCookable() {
-    currentRecipe.canCook = newUser.pantry.userCanCook(currentRecipe)
-    console.log(currentRecipe.canCook);
+function changeToCookButton() {
+    if (newUser.recipeToCook.recipes.some(toCook => toCook.id === currentRecipe.id)) {
+        hide('toCookButton', true);
+        hide('cookNowButton', false);
+    } else {
+        hide('toCookButton', false);
+        hide('cookNowButton', true);
+    }
 }
 
 function saveToFav() {
@@ -283,7 +291,7 @@ function displayUserPage() {
     displayUserSidebar();
     displayFavoritedRecipes();
     userButtonOptions();
-    checkIfCookable()
+    // checkIfCookable()
 }
 
 function userButtonOptions() {
