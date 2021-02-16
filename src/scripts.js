@@ -16,6 +16,7 @@ const userRecipeSidebar = document.getElementById("userSideBar");
 const toCookButton = document.getElementById("toCookButton");
 const favButton = document.getElementById("favButton");
 const cookNowButton = document.getElementById("cookNowButton");
+const checkIngredientsButton = document.getElementById("checkIngredientsButton");
 const unFavoriteButton = document.getElementById("unFavoriteButton");
 const searchFavoritesButton = document.getElementById("searchFavoritesButton");
 const mainPageButton = document.getElementById("whatsButton")
@@ -36,7 +37,8 @@ displayPantryButton.addEventListener('click', displayPantry);
 userRecipesSelector.addEventListener("click", displayRecipe);
 toCookButton.addEventListener("click", saveToCook);
 favButton.addEventListener("click", saveToFav);
-cookNowButton.addEventListener("click", returnCookingInfo);
+cookNowButton.addEventListener("click", cookRecipe);
+checkIngredientsButton.addEventListener("click", returnCookingInfo);
 unFavoriteButton.addEventListener("click", unFavorite);
 searchFavoritesButton.addEventListener('click', searchFavorites);
 mainPageButton.addEventListener('click', displayMainPage)
@@ -77,7 +79,9 @@ function getRandomIndex(array) {
 }
 
 function generateRandomUser() {
-    newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
+    // newUser = new UserData(usersData[getRandomIndex(usersData)], RecipeRepo);
+    newUser = new UserData(usersData[1], RecipeRepo);
+    // console.log(newUser, RecipeRepo)
     newUser.pantry = new Pantry(newUser, ingredientsData)
 }
 
@@ -87,7 +91,8 @@ function displayRecipe() {
         return recipe.id === parseInt(recipeID)
     })
     displayMainCard(matchingRecipe)
-    // checkFavoritesButton()
+    changeToCookButton()
+    checkIfFavorited()
 }
 
 function displayMainCard(recipe) {
@@ -96,7 +101,9 @@ function displayMainCard(recipe) {
     const targetRecipe = new Recipe(recipe[0], ingredientsData)
     // let targetRecipe = currentRecipe
     currentRecipe = targetRecipe;
-    checkIfFavorited()
+    // checkIfFavorited()
+    // changeToCookButton()
+    // checkIfCookable
     const instructions = targetRecipe.returnInstructions()
     const cost = targetRecipe.returnCost()
     const mainCardTitle = document.getElementById("mainName")
@@ -253,8 +260,26 @@ function searchTags(tags, recipes) {
 
 function saveToCook() {
   if (!newUser.recipeToCook.recipes.includes(currentRecipe)) {
-  newUser.addRecipe(currentRecipe, "recipeToCook");
-  }
+        newUser.addRecipe(currentRecipe, "recipeToCook");
+        changeToCookButton()
+    }
+}
+
+function changeToCookButton() {
+    if (newUser.recipeToCook.recipes.some(toCook => toCook.id === currentRecipe.id)) {
+        hide('toCookButton', true);
+        if (newUser.pantry.userCanCook(currentRecipe)) {
+            hide('cookNowButton', false);
+            hide('checkIngredientsButton', true)
+        } else {
+            hide('cookNowButton', true);
+            hide('checkIngredientsButton', false)
+        }
+    } else {
+        hide('toCookButton', false);
+        hide('cookNowButton', true);
+        hide('checkIngredientsButton', true);
+    }
 }
 
 function saveToFav() {
@@ -277,25 +302,11 @@ function displayUserPage() {
     userButtonOptions();
 }
 
-
-// function changeButtonOptions() {
 function userButtonOptions() {
-
-    hide('toCookButton', true);
-    // hide('favButton', true);
     hide('searchButton', true);
     hide('searchByTagsButton', true);
-    hide('cookNowButton', false);
-    checkIfCookable()
-    // hide('unFavoriteButton', false);
     hide('searchFavoritesButton', false);
     hide('tagsFavoriteButton', false);
-}
-
-function checkIfCookable() {
-    if (!displayCanCook()) {
-        cookNowButton.innerHTML = 'Check Ingredients'
-    }
 }
 
 function displayUserSidebar() {
@@ -332,22 +343,23 @@ function displayPantry() {
     });
 }
 
-function displayCanCook() {
-    newUser.recipeToCook.recipes.forEach(recipe => {
-        recipe.canCook = newUser.pantry.userCanCook(recipe)
+function cookRecipe() {
+    newUser.pantry.itemsToCook(currentRecipe);
+    displayPantry();
+    removeRecipe()
+    changeToCookButton();
+}
+
+function removeRecipe() {
+    let index = newUser.recipeToCook.recipes.findIndex(recipe => {
+        return recipe.id === currentRecipe.id
     })
+    newUser.recipeToCook.recipes.splice(index, 1)
 }
 
 function returnCookingInfo() {
     const mainCardInstructions = document.getElementById("instructions")
-    if (displayCanCook()) {
-        console.log("can't cook this recipe")
-        const ingredientsToRemove = newUser.pantry.itemsToCook(currentRecipe)
-        console.log(ingredientsToRemove)
-    } else if (!displayCanCook()) {
-        console.log("can cook!")
-        mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
-    }
+    mainCardInstructions.innerHTML = `Not enough ingredients! You need: ${newUser.pantry.whatsMissing(currentRecipe).join(" ")}`
 }
 
 function displayMainPage() {
@@ -357,19 +369,9 @@ function displayMainPage() {
 
 function mainButtonOptions() {
     hide('toCookButton', false);
-    // hide('favButton', false);
     hide('searchButton', false);
     hide('searchByTagsButton', false);
     hide('cookNowButton', true);
-    // hide('unFavoriteButton', true);
     hide('searchFavoritesButton', true);
     hide('tagsFavoriteButton', true);
 }
-
-
-// take off functionality that changes the favorites button 
-// so every time we display a card it should show favorites
-// every time we display the main card we need to 
-    // 1. See if it's favorited and change the button accoridngly 
-    // if it is not favorited we need to be able to push to favorite and upate our favoites array 
-    // if it is in favorites we need to remove 
