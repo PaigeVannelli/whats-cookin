@@ -1,51 +1,39 @@
-# What's Cookin'? Starter Kit 
+# What's Cookin?
 
-The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
+#### A application for Recipe/Meal planning
 
-## Set Up 
+  *Work on this project has slowed or stopped completely. Deadline 2/17/2021 9pm MST.*
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run npm install to install project dependencies.
-4. Run open src/index.html in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-5. Make sure both members of your team are collaborators on the forked repo.
+## Learning Goals
 
-## Testing 
+  * Utilize the git workflow when not pairing.
+  * Use ES6 syntax to create and interact with JavaScript classes.
+  * Practice using object and array prototype methods to manipulate data.
+  * Implement responsive layouts
+  * Create a robust testing suite using TDD
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
+## Set-up
+  * Create repository and clone to personal computer
+  * Open in text editor
+  * Read the README.md
+  * In terminal, run command "open index.html" to interact with the application.
 
-## Linting Your Code 
+## Contributors
 
-Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+  * [Paige Vannelli](https://github.com/PaigeVannelli)
+  * [Aaron Foucheaux](https://github.com/Afoucheaux)
 
-Your linter will look only at the JavaScript files you have within the src and the test directories.
 
+## Functionality Goals
 
-## Data Model
-### Users
-```js
-{
-  "id": [number],
-  "name": [string],
-  "pantry": [array of objects with amount and ingredient id properties]
-},
-```
+* Create meal planning application. This utilized a provided data set to create a user experience that allowed for. Searching recipes in multiple ways. Having a client be able to favorite recipes and save them to cook. It allows for them to utilize their pantry to check if meals are cookable. Return an updated pantry or a list of missing items.
 
-### Recipes
-```js
-{
-  "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
-  "instructions": [array of objects with instructions properties and numbered steps],
-  "name": [string],
-  "tags": [array of strings representing info about the recipes]
-}
-```
+## Road Map
 
-### Ingredients
-```js
-{
-  "estimatedCostInCents": [number],
-  "id": [number -- connection to users and recipes],
-  "name": [string]
-}
-```
+* Dynamic Search Functionality.
+* Upgraded responsive layouts
+* 3rd use of libraries to add a glide display and upgrade to the search by tags.
+* Added in additional client functionality for rating recipes and generating recommendations.   
+* Consider user experience and sit with the app and look for ways to make the experience more pleasurable and accessible.
+
+## Preview
