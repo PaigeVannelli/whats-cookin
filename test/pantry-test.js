@@ -1,7 +1,6 @@
 const chai = require('chai');
 const RecipeRepo = require('../src/recipe-repo');
 const {pantryRecipeTestData} = require('../data/test-data');
-const {recipeTestData} = require('../data/test-data');
 const Recipe = require('../src/recipe');
 const ingredientsData = require('../data/ingredients');
 const expect = chai.expect;
@@ -65,26 +64,26 @@ describe('Pantry', function() {
 
   describe('itemsToCook', function() {
 
-  it(`Should remove the ingredients used to cook form the pantry`, function() {
-    const pantry = new Pantry(user, ingredientsData);
-    pantry.itemsToCook(recipe1)
-    expect(pantry.pantryItems).to.deep.equal([
-      { ingredient: 20081, estimatedCostInCents: 142, amount: 4.5, name: "wheat flour"},
-      { ingredient: 18372, estimatedCostInCents: 582, amount: 4, name: "bicarbonate of soda"},
-      { ingredient: 1123, estimatedCostInCents: 472, amount: 4, name: "eggs"},
-      { ingredient: 19335, estimatedCostInCents: 902, amount: 4, name: "sucrose"},
-      { ingredient: 19206, estimatedCostInCents: 660, amount: 2, name: "instant vanilla pudding"},
-      { ingredient: 19334, estimatedCostInCents: 559, amount: 4, name: "brown sugar"},
-      { ingredient: 2047, estimatedCostInCents: 280, amount: 4, name: "salt"},
-      { ingredient: 1012047, estimatedCostInCents: 528, amount: 4, name: "fine sea salt"},
-      { ingredient: 10019903, estimatedCostInCents: 253, amount: 9, name: "semi sweet chips"},
-      { ingredient: 1145, estimatedCostInCents: 617, amount: 5, name: "unsalted butter"},
-      { ingredient: 2050, estimatedCostInCents: 926, amount: 10, name: "vanilla"},
-      { ingredient: 1009016, estimatedCostInCents: 468, amount: 10, name: "apple cider"},
-      { ingredient: 9003, estimatedCostInCents: 207, amount: 10, name: "apple" },
-      { ingredient: 20027, estimatedCostInCents: 236, amount: 10, name: "corn starch"},
-      { ingredient: 1002046, estimatedCostInCents: 619, amount: 10.5, name: "dijon style mustard"}]);
-   });
+    it(`Should remove the ingredients used to cook form the pantry`, function() {
+      const pantry = new Pantry(user, ingredientsData);
+      pantry.itemsToCook(recipe1)
+      expect(pantry.pantryItems).to.deep.equal([
+        { ingredient: 20081, estimatedCostInCents: 142, amount: 4.5, name: "wheat flour"},
+        { ingredient: 18372, estimatedCostInCents: 582, amount: 4, name: "bicarbonate of soda"},
+        { ingredient: 1123, estimatedCostInCents: 472, amount: 4, name: "eggs"},
+        { ingredient: 19335, estimatedCostInCents: 902, amount: 4, name: "sucrose"},
+        { ingredient: 19206, estimatedCostInCents: 660, amount: 2, name: "instant vanilla pudding"},
+        { ingredient: 19334, estimatedCostInCents: 559, amount: 4, name: "brown sugar"},
+        { ingredient: 2047, estimatedCostInCents: 280, amount: 4, name: "salt"},
+        { ingredient: 1012047, estimatedCostInCents: 528, amount: 4, name: "fine sea salt"},
+        { ingredient: 10019903, estimatedCostInCents: 253, amount: 9, name: "semi sweet chips"},
+        { ingredient: 1145, estimatedCostInCents: 617, amount: 5, name: "unsalted butter"},
+        { ingredient: 2050, estimatedCostInCents: 926, amount: 10, name: "vanilla"},
+        { ingredient: 1009016, estimatedCostInCents: 468, amount: 10, name: "apple cider"},
+        { ingredient: 9003, estimatedCostInCents: 207, amount: 10, name: "apple" },
+        { ingredient: 20027, estimatedCostInCents: 236, amount: 10, name: "corn starch"},
+        { ingredient: 1002046, estimatedCostInCents: 619, amount: 10.5, name: "dijon style mustard"}]);
+    });
 
   });
 
@@ -97,7 +96,7 @@ describe('Pantry', function() {
 
     it(`Should be able to determine what ingredients are missing`, function() {
       const pantry = new Pantry(user, ingredientsData);
-      expect(pantry.whatsMissing(recipe3)).to.deep.equal(['haas avocados qty. 1']);
+      expect(pantry.whatsMissing(recipe3)).to.deep.equal(['haas avocados qty. 1.00']);
     });
   });
 

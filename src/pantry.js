@@ -12,9 +12,9 @@ class Pantry {
         return ingredient.ingredient === ingredientObject.id
       })
       let currentIngredient = ingredient;
-        currentIngredient.name = ingredientInfo.name
-        currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
-        return currentIngredient
+      currentIngredient.name = ingredientInfo.name
+      currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
+      return currentIngredient
     });
     return updatedIngredientInfo
   }
@@ -34,8 +34,8 @@ class Pantry {
 
   itemsToCook(recipe) {
     recipe.ingredients.forEach(item => {
-        let checkCook = this.pantryItems.findIndex(pantryItem => {
-          return item.id === pantryItem.ingredient;
+      let checkCook = this.pantryItems.findIndex(pantryItem => {
+        return item.id === pantryItem.ingredient;
       })
       this.pantryItems[checkCook].amount -= item.quantity.amount;
     })
