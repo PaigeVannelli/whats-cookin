@@ -154,6 +154,8 @@ function moveToMainCard() {
   const moveMain = event.target.id;
   const recipeIndex = recipeData.findIndex(recipe => recipe.id == moveMain);
   displayMainCard([recipeData[recipeIndex]]);
+  changeToCookButton()
+  checkIfFavorited()
 }
 
 function searchRecipes() {
