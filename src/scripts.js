@@ -117,12 +117,16 @@ function displayMainCard(recipe) {
 function likeList(recipe) {
   let list = [];
   recipeData.forEach(rec => {
-    if (rec.tags.includes(recipe[0].tags[0])) {
+    if (rec.tags.includes(recipe[0].tags[0]) || rec.id === recipe[0].id) {
       list.push(rec);
     };
   });
+  list.push(recipeData[getRandomIndex(recipeData)]);
+  list.push(recipeData[getRandomIndex(recipeData)]);
+  list.push(recipeData[getRandomIndex(recipeData)]);
   return list;
 }
+
 
 function checkIfFavorited() {
   if (newUser.favoriteRecipes.recipes.some(favRec => favRec.id === currentRecipe.id)) {
@@ -136,7 +140,7 @@ function checkIfFavorited() {
 
 function buildLikeCards(items) {
   likeItems.innerHTML = ""
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 0; i <= 3; i++) {
     likeItems.insertAdjacentHTML('afterbegin',`<article class="small-card"        id="${items[i].id}">
     <img class="small-card-img" id="${items[i].id}" src="${items[i].image}" alt="${items[i].name}"></img>
     <div class="like-header" id=${items[i].id}>
