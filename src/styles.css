@@ -287,18 +287,6 @@ button:hover {
   display: none
 }
 
-@media screen and (max-width: 425px) {
-
-  .page-layout {
-   display: flex;
-   align-items: center;
-  }
-
-  .main-card-layout {
-    flex-direction: column;
-  }
-
-}
 /* Hover to change scale and brighter */
 /* y-overflow: scroll  */
 
@@ -341,6 +329,19 @@ button:hover {
   }
 
   .page-layout {
+    flex-direction: column;
+  }
+
+}
+
+@media screen and (max-width: 425px) {
+
+  .page-layout {
+   display: flex;
+   align-items: center;
+  }
+
+  .main-card-layout {
     flex-direction: column;
   }
 
