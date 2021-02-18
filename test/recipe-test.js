@@ -17,20 +17,19 @@ describe('Recipe', function() {
   });
 
   it(`should store an id`, function() {
-      const recipe = new Recipe(recipeTestData[0], ingredientsData);
-      expect(recipe.id).to.be.equal(recipeTestData[0].id)
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
+    expect(recipe.id).to.be.equal(recipeTestData[0].id)
   });
 
   it(`should store an image`, function() {
-      const recipe = new Recipe(recipeTestData[0], ingredientsData);
-      expect(recipe.image).to.be.equal(recipeTestData[0].image)
+    const recipe = new Recipe(recipeTestData[0], ingredientsData);
+    expect(recipe.image).to.be.equal(recipeTestData[0].image)
   });
 
   it(`should store a list of ingredients`, function() {
     const recipe = new Recipe(recipeTestData[0], ingredientsData);
     const updatedRecipe = recipe.getIngredientsInfo(recipe.ingredients, ingredientsData);
     expect(recipe.ingredients).to.deep.equal(updatedRecipe);
-      // do we need to run the getIngredientInfo method on this to tes?
   });
 
   it(`should store instructions`, function() {
@@ -63,18 +62,17 @@ describe('Recipe', function() {
     it(`should store a list of tags`, function() {
       const recipe = new Recipe(recipeTestData[0], ingredientsData);
       expect(recipe.returnIngredients()).to.deep.equal([
-      'bicarbonate of soda',
-      'sucrose',
-      'brown sugar',
-      'salt',
-      'unsalted butter',
-      'vanilla',
-      'eggs',
-      'wheat flour',
-      'semi sweet chips',
-      'instant vanilla pudding',
-      'fine sea salt'
-
+        'bicarbonate of soda',
+        'sucrose',
+        'brown sugar',
+        'salt',
+        'unsalted butter',
+        'vanilla',
+        'eggs',
+        'wheat flour',
+        'semi sweet chips',
+        'instant vanilla pudding',
+        'fine sea salt'
       ]);
     });
   });

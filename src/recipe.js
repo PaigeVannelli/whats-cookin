@@ -17,7 +17,7 @@ class Recipe {
         return ingredient.id === ingredientObject.id
       })
       let currentIngredient = ingredient;
-      currentIngredient.name =ingredientInfo.name
+      currentIngredient.name = ingredientInfo.name
       currentIngredient.estimatedCostInCents = ingredientInfo.estimatedCostInCents
       return currentIngredient
     })
@@ -31,7 +31,7 @@ class Recipe {
     })
     sortedIngredients.forEach(ing => {
       if (!uniqueIngredients.some(uniqIng => uniqIng.id === ing.id)) {
-       uniqueIngredients.push(ing)
+        uniqueIngredients.push(ing)
       }
     })
     return uniqueIngredients

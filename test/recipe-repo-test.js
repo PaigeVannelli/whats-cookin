@@ -49,8 +49,8 @@ describe('RecipeRepo', function() {
       const recipeRepo = new RecipeRepo(recipeTest);
       const filterRecipe = recipeRepo.filterByIngredient('vanilla bean');
       expect(filterRecipe).to.deep.equal([]);
-      });
     });
+  });
 
   describe('filterByName', function() {
 
@@ -70,8 +70,8 @@ describe('RecipeRepo', function() {
       const recipeRepo = new RecipeRepo(recipeTest);
       const filterRecipe = recipeRepo.filterByName(['unicorn steak']);
       expect(filterRecipe).to.deep.equal([]);
-      });
     });
+  });
 
   describe('filterByTags', function() {
 
@@ -93,5 +93,5 @@ describe('RecipeRepo', function() {
     });
 
   });
-  
+
 });
