@@ -330,6 +330,7 @@ function returnCookingInfo() {
 function displayMainPage() {
   displayMainSidebar();
   mainButtonOptions();
+  changeToCookButton()
 }
 
 function mainButtonOptions() {
