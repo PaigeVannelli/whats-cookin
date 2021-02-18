@@ -1,8 +1,11 @@
 # What's Cookin?
 
+## Overview
+
+What's Cookin was a paired project 8 weeks into Turing to practice dealing with and iterating through larger datasets, implimenting testing and creating responsive design. 
 #### A application for Recipe/Meal planning
 
-  *Work on this project has slowed or stopped completely. Deadline 2/17/2021 9pm MST.*
+  * Work on this project has slowed or stopped completely. Deadline 2/17/2021 9pm MST.*
 
 ## Learning Goals
 
@@ -14,6 +17,7 @@
 
 ## Set-up
   * Create repository and clone to personal computer
+  * Run ```npm install```
   * Open in text editor
   * Read the README.md
   * In terminal, run command "open index.html" to interact with the application.
@@ -36,4 +40,29 @@
 * Added in additional client functionality for rating recipes and generating recommendations.   
 * Consider user experience and sit with the app and look for ways to make the experience more pleasurable and accessible.
 
-## Preview
+## Functionality
+
+Upon opening the website, the user should be able to view all recipes on the recipe selector sidebar. When the user clicks on a recipe, that recipe is diaplyed on the main card and includes cooking instructions, cost and options to favorite/ unfavorite, and add to recipes to cook. 
+
+![](./assets/user-favoriting.gif)
+
+A user can also search by name or ingredients in the search bar or filter through recipes using one or multiple tags.
+
+![](./assets/user-favoriting.gif)
+
+When clicking on the user page, the user will be able to view all of their favorited recipes, recipes to cook and pantry items. When the user clicks on a recipe the recipe card will display an option to either cook the recipe or check ingredients. If the user has enough ingredients, they should be able to cook a recipe and the recipes ingredients will be removed from their pantry. If the user does not have enough ingredients a messgae will display telling the user what they are missing. 
+
+![](./assets/user-recipe-cook.gif)
+
+A user can also search through their favorited recipes by name or ingredient using the search bar.
+
+![](./assets/search-fav-names.gif)
+
+A user can also search through favorited recipes by tags.
+
+![](./assets/search-fav-tags.gif)
+
+## Future Iterations
+
+ * Impliment a third party library Micromodal (https://www.npmjs.com/package/micromodal) to clear up search bar functionality and design. 
+ * Past Recipe ratings. User can rate recipes they've cooked and view past ratings.
