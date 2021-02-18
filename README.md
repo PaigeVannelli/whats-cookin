@@ -44,7 +44,7 @@ What's Cookin was a paired project 8 weeks into Turing to practice dealing with 
 
 Upon opening the website, the user should be able to view all recipes on the recipe selector sidebar. When the user clicks on a recipe, that recipe is diaplyed on the main card and includes cooking instructions, cost and options to favorite/ unfavorite, and add to recipes to cook. 
 
-![](http://www.giphy.com/gifs/xl2TMWMVazDotIqCXV/giphy.gif)
+![](https://gph.is/g/EBgRDgd)
 
 A user can also search by name or ingredients in the search bar or filter through recipes using one or multiple tags.
 
