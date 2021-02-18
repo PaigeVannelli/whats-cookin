@@ -44,23 +44,42 @@ What's Cookin was a paired project 8 weeks into Turing to practice dealing with 
 
 Upon opening the website, the user should be able to view all recipes on the recipe selector sidebar. When the user clicks on a recipe, that recipe is diaplyed on the main card and includes cooking instructions, cost and options to favorite/ unfavorite, and add to recipes to cook. 
 
-![](https://gph.is/g/EBgRDgd)
+<p align='left'>Main Page</br>
+<img width='1000' height='500' src="./assets/main-page.png">
+</p>
 
 A user can also search by name or ingredients in the search bar or filter through recipes using one or multiple tags.
 
-![](http://www.giphy.com/gifs/blmfxjOqH4sbmJ0YxQ)
+<p align='left'>Main Page</br>
+<img width='1000' height='500' src="./assets/search-all.png">
+</p>
 
-When clicking on the user page, the user will be able to view all of their favorited recipes, recipes to cook and pantry items. When the user clicks on a recipe the recipe card will display an option to either cook the recipe or check ingredients. If the user has enough ingredients, they should be able to cook a recipe and the recipes ingredients will be removed from their pantry. If the user does not have enough ingredients a messgae will display telling the user what they are missing. 
+When clicking on the user page, the user will be able to view all of their favorited recipes, recipes to cook and pantry items. 
 
-![](http://www.giphy.com/gifs/S3TfNhmK08FiqRFopA)
+<p align='left'>Main Page</br>
+<img width='1000' height='500' src="./assets/favorited-recipes.png">
+</p>
 
-A user can also search through their favorited recipes by name or ingredient using the search bar.
+<p align='left'>Main Page</br>
+<img width='1000' height='500' src="./assets/pantry-display.png">
+</p>
 
-![](http://www.giphy.com/gifs/8H999KhaPYJAsVsD2m)
+When the user clicks on a recipe the recipe card will display an option to either cook the recipe or check ingredients. If the user has enough ingredients, they should be able to cook a recipe and the recipes ingredients will be removed from their pantry. If the user does not have enough ingredients a messgae will display telling the user what they are missing. 
 
-A user can also search through favorited recipes by tags.
+<p align='left'>Main Page</br>
+<img width='1000' height='500' src="./assets/ingredients-needed.png">
+</p>
 
-![](http://www.giphy.com/gifs/IJqwTIYf45nz0j7qpt)
+<p align='left'>Main Page</br>
+<img width='1000' height='500' src="./assets/cooked-recipe.png">
+</p>
+
+
+A user can also search through their favorited recipes by name or ingredient using the search bar. A user can also search through favorited recipes by tags.
+
+<p align='left'>Main Page</br>
+<img width='1000' height='500' src="./assets/search-favorited.png">
+</p>
 
 ## Future Iterations
 
