@@ -50,34 +50,34 @@ Upon opening the website, the user should be able to view all recipes on the rec
 
 A user can also search by name or ingredients in the search bar or filter through recipes using one or multiple tags.
 
-<p align='left'>Main Page</br>
+<p align='left'>Search All Recipes</br>
 <img width='1000' height='500' src="./assets/search-all.png">
 </p>
 
 When clicking on the user page, the user will be able to view all of their favorited recipes, recipes to cook and pantry items. 
 
-<p align='left'>Main Page</br>
+<p align='left'>View Favorited Recipes</br>
 <img width='1000' height='500' src="./assets/favorited-recipes.png">
 </p>
 
-<p align='left'>Main Page</br>
+<p align='left'>View Pantry Items</br>
 <img width='1000' height='500' src="./assets/pantry-display.png">
 </p>
 
 When the user clicks on a recipe the recipe card will display an option to either cook the recipe or check ingredients. If the user has enough ingredients, they should be able to cook a recipe and the recipes ingredients will be removed from their pantry. If the user does not have enough ingredients a messgae will display telling the user what they are missing. 
 
-<p align='left'>Main Page</br>
+<p align='left'>Display Ingredients Needed</br>
 <img width='1000' height='500' src="./assets/ingredients-needed.png">
 </p>
 
-<p align='left'>Main Page</br>
+<p align='left'>Cook Recipe</br>
 <img width='1000' height='500' src="./assets/cooked-recipe.png">
 </p>
 
 
 A user can also search through their favorited recipes by name or ingredient using the search bar. A user can also search through favorited recipes by tags.
 
-<p align='left'>Main Page</br>
+<p align='left'>Search Favorited Recipes</br>
 <img width='1000' height='500' src="./assets/search-favorited.png">
 </p>
 
